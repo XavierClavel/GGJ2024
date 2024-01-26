@@ -4,6 +4,10 @@ using UnityEngine;
 
 public static class Vault
 {
+    public static class key
+    {
+        public const string Key = "Key";
+    }
     public static class other
     {
         public const string scriptableObjectMenu = "GGJ2024/";

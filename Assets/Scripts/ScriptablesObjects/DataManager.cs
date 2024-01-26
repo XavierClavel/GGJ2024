@@ -8,6 +8,7 @@ public class DataManager : ScriptableObject
     [SerializeField] private TextAsset recipeCsv;
     public static Dictionary<string, CardHandler> dictKeyToCard;
     public static Dictionary<string, EmotionHandler> dictKeyToEmotion;
+    public static List<Recipe> recipes;
 
     public void LoadData()
     {
@@ -25,6 +26,20 @@ public class DataManager : ScriptableObject
         {
             Debug.Log(emotionHandler.getKey());
             dictKeyToEmotion[emotionHandler.getKey()] = emotionHandler;
+        }
+        
+        RecipeBuilder recipeBuilder = new RecipeBuilder();
+        recipes = new List<Recipe>();
+        recipeBuilder.loadText(recipeCsv, ref recipes, "Recipes");
+
+        foreach (var input in recipes[0].getInput())
+        {
+            Debug.Log($"input : {input}");
+        }
+        
+        foreach (var output in recipes[0].getOutput())
+        {
+            Debug.Log($"output : {output.Key}, amount : {output.Value}");
         }
     }
 }
