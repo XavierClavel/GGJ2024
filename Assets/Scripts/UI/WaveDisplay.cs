@@ -33,6 +33,7 @@ public class WaveDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void DisplayWaveIndicator(bool unstoppable = false)
     {
+        tweenWaveDisplay?.Kill();
         tweenWaveDisplay = waveIndicator.DOAnchorPosY(-30f, 0.5f);
         if (unstoppable) tweenWaveDisplay = null;
     }
@@ -40,7 +41,7 @@ public class WaveDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public void HideWaveIndicator()
     {
         tweenWaveDisplay?.Kill();
-        waveIndicator.DOAnchorPosY(130f, 0.5f);
+        tweenWaveDisplay = waveIndicator.DOAnchorPosY(130f, 0.5f);
     }
 
     public void MovePlayerIndicator()
