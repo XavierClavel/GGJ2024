@@ -13,7 +13,13 @@ public class DataManager : ScriptableObject
     public void LoadData()
     {
         dictKeyToCard = new Dictionary<string, CardHandler>();
-        CardHandler[] cardHandlers = Resources.LoadAll<CardHandler>("Cards/");
+        CardHandler[] cardHandlers = Resources.LoadAll<CardHandler>("Actions/");
+        foreach (var cardHandler in cardHandlers)
+        {
+            Debug.Log(cardHandler.getKey());
+            dictKeyToCard[cardHandler.getKey()] = cardHandler;
+        }
+        cardHandlers = Resources.LoadAll<CardHandler>("Intonations/");
         foreach (var cardHandler in cardHandlers)
         {
             Debug.Log(cardHandler.getKey());
