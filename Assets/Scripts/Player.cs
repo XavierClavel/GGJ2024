@@ -12,7 +12,12 @@ public class Player : MonoBehaviour
     public static void setSelectedCard(Card card)
     {
         selectedCard = card;
-        placedCards[getSelectedCardHolder().index] = card.getCardInfo();
+    }
+
+    public static void placeCard()
+    {
+        if (getSelectedCardHolder() == null) return;
+        placedCards[getSelectedCardHolder().index] = getSelectedCard().getCardInfo();
     }
 
     public static CardHolder getSelectedCardHolder() => selectedCardHolder;

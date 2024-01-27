@@ -12,9 +12,9 @@ public class RecipeBuilder : DataBuilder<Recipe>
         string keyB = null;
         string keyC = null;
         
-        SetValue(ref keyA, "CardA");
-        SetValue(ref keyB, "CardB");
-        SetValue(ref keyC, "CardC");
+        SetValue(ref keyA, "SlotA");
+        SetValue(ref keyB, "SlotB");
+        SetValue(ref keyC, "SlotC");
         
         recipe.addInput(keyA);
         recipe.addInput(keyB);

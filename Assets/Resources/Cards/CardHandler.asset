@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efdaf03016731d746ade365e9a2b936f, type: 3}
   m_Name: CardHandler
   m_EditorClassIdentifier: 
-  key: TestCard
+  key: Cajoler
   icon: {fileID: 0}

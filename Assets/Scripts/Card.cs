@@ -11,6 +11,11 @@ public class Card : MonoBehaviour
     private Vector3 startPos = new Vector3(0, -4, -9);
     [SerializeField] private CardHandler cardHandler;
 
+    private void Start()
+    {
+        startPos = transform.position;
+    }
+
     private void Update()
     {
         if (!dragged) return;
@@ -36,6 +41,7 @@ public class Card : MonoBehaviour
         else
         {
             transform.position = cardHolder.getPosition();
+            Player.placeCard();
         }
         
         

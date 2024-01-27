@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0ea03bf686052046a2bd4e7bcfc36e1, type: 3}
   m_Name: EmotionHandler
   m_EditorClassIdentifier: 
-  key: TestEmotion
+  key: Tristesse
   icon: {fileID: 0}
