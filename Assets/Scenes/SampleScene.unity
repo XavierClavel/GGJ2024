@@ -2427,7 +2427,7 @@ GameObject:
   - component: {fileID: 967667314}
   - component: {fileID: 967667313}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: GoldDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2450,7 +2450,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -143, y: 0}
+  m_AnchoredPosition: {x: -128.88, y: -4.5}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &967667313
@@ -2473,7 +2473,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100x
+  m_text: x
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2684,6 +2684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e97d8522a5558478af2de5bb9f34a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goldDisplay: {fileID: 967667313}
   cardsLayout: {fileID: 977844211}
   cardPrefab: {fileID: 4945976904194377029, guid: bd933bfcd02ed514c8cebac0a5e02dfb, type: 3}
   upgradesPanel: {fileID: 853377029}
@@ -4267,7 +4268,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -590.1, y: 407.3}
+  m_AnchoredPosition: {x: -649.56, y: 407.3}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1926452246

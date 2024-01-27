@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 
@@ -12,8 +13,10 @@ public class Player : MonoBehaviour
     private static CardHolder lastSelectedCardHolder;
     public static Card[] placedCards = new Card[3];
     private static int health;
-    
+    private static int gold;
 
+
+    [SerializeField] private TextMeshProUGUI goldDisplay;
     [SerializeField] private Transform cardsLayout;
     [SerializeField] private Card cardPrefab;
     [SerializeField] private UpgradesManager upgradesPanel;
@@ -87,6 +90,8 @@ public class Player : MonoBehaviour
         lastSelectedCardHolder = null;
         placedCards = new Card[3];
         health = 5;
+        gold = 0;
+        IncreaseGold(0);
     }
 
     private void Start()
@@ -158,6 +163,12 @@ public class Player : MonoBehaviour
     private static void Death()
     {
         Helpers.ReloadScene();
+    }
+
+    private static void IncreaseGold(int amount)
+    {
+        gold += amount;
+        instance.goldDisplay.SetText(gold.ToString());
     }
 
 }
