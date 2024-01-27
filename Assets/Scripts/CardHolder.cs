@@ -15,8 +15,7 @@ public class CardHolder : MonoBehaviour
     private void OnMouseExit()
     {
         Debug.Log("Mouse exit");
-        if (Player.getSelectedCardHolder() != this) return;
-        Player.setSelectedCardHolder(null);
+        if (Player.getSelectedCardHolder() == this) Player.setSelectedCardHolder(null);
     }
 
     public Vector3 getPosition()
