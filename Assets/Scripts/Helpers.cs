@@ -127,6 +127,23 @@ public static class SingletonManager
 public static class Extensions
 {
     
+    private static System.Random rng = new System.Random();
+
+    public static bool isEmpty<T>(this IList<T> list)
+    {
+        return list.Count == 0;
+    }
+
+    public static void Shuffle<T>(this IList<T> list)  
+    {  
+        int n = list.Count;  
+        while (n > 1) {  
+            n--;  
+            int k = rng.Next(n + 1);  
+            (list[k], list[n]) = (list[n], list[k]);
+        }  
+    }
+    
     public static Bounds getBounds(this Camera camera)
     {
         float screenAspect = (float)Screen.width / (float)Screen.height;

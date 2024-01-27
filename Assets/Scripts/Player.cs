@@ -8,7 +8,16 @@ public class Player : MonoBehaviour
     private static Card selectedCard;
     private static CardHolder selectedCardHolder;
     private static CardHolder lastSelectedCardHolder;
-    public static Card[] placedCards = new Card[3]; 
+    public static Card[] placedCards = new Card[3];
+    private static int handSize = 3;
+    private static List<string> deck;
+    private static List<string> pickPile;
+    private static List<string> discardPile;
+    private static List<string> hand;
+
+    [SerializeField] private Transform cardsLayout;
+    [SerializeField] private Card cardPrefab;
+    
     public static Card getSelectedCard() => selectedCard;
     public static void setSelectedCard(Card card)
     {
@@ -40,8 +49,11 @@ public class Player : MonoBehaviour
         foreach (var card in placedCards)
         {
             if (card == null) continue;
-            Debug.Log(card.getCardInfo().getKey());
-            keys.Add(card.getCardInfo().getKey());
+            string key = card.getCardInfo().getKey();
+            Debug.Log(key);
+            keys.Add(key);
+            hand.Remove(key);
+            discardPile.Add(key);
         }
 
         Recipe recipe = RecipeManager.getRecipe(keys);
@@ -60,14 +72,61 @@ public class Player : MonoBehaviour
             if (card == null) continue;
             Destroy(card.gameObject);
         }
-        
-        ResetSlots();
-
-
+        NewTurn();
     }
-    private void Awake()
+    
+    private void Start()
     {
-       ResetSlots();
+       PrepareWave();
+    }
+
+    private void NewTurn()
+    {
+        ResetSlots();
+        PickCards();
+    }
+
+    private void PickCards()
+    {
+        while (hand.Count < handSize)
+        {
+            if (pickPile.isEmpty())
+            {
+                foreach (var discardedCard in discardPile)
+                {
+                    pickPile.Add(discardedCard);
+                }
+
+                discardPile = new List<string>();
+            }
+            string key = pickPile.popRandom();
+            Debug.Log($"Picked {key}");
+            hand.Add(key);
+            Card newCard = Instantiate(cardPrefab, cardsLayout);
+            newCard.setup(key);
+        }
+    }
+
+    private void PrepareWave()
+    {
+        deck = new List<string>
+        {
+            "Talk",
+            "Tell",
+            "Talk",
+            "Sing",
+            "Dance",
+        };
+        ResetSlots();
+        hand = new List<string>();
+        pickPile = new List<string>();
+        discardPile = new List<string>();
+        foreach (var key in deck)
+        {
+            pickPile.Add(key);
+        }
+        pickPile.Shuffle();
+        PickCards();
     }
 
     private void ResetSlots()
