@@ -33,16 +33,19 @@ public class Card : MonoBehaviour
     {
         Debug.Log("Mouse Up");
         CardHolder cardHolder = Player.getSelectedCardHolder();
+        Debug.Log(cardHolder);
         dragged = false;
         if (cardHolder == null)
         {
             transform.position = startPos;
+            Player.removeCard();
         }
         else
         {
             transform.position = cardHolder.getPosition();
             Player.placeCard();
         }
+        if (Player.getSelectedCard() == this) Player.setSelectedCard(null);
         
         
     }

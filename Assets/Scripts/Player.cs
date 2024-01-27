@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
     private static Card selectedCard;
     private static CardHolder selectedCardHolder;
+    private static CardHolder lastSelectedCardHolder;
     public static CardHandler[] placedCards = new CardHandler[3]; 
     public static Card getSelectedCard() => selectedCard;
     public static void setSelectedCard(Card card)
@@ -20,8 +21,18 @@ public class Player : MonoBehaviour
         placedCards[getSelectedCardHolder().index] = getSelectedCard().getCardInfo();
     }
 
+    public static void removeCard()
+    {
+        if (lastSelectedCardHolder == null) return;
+        placedCards[lastSelectedCardHolder.index] = null;
+    }
+
     public static CardHolder getSelectedCardHolder() => selectedCardHolder;
-    public static void setSelectedCardHolder(CardHolder cardHolder) => selectedCardHolder = cardHolder;
+    public static void setSelectedCardHolder(CardHolder cardHolder)
+    {
+        selectedCardHolder = cardHolder;
+        if (cardHolder != null) lastSelectedCardHolder = cardHolder;
+    }
 
     public void ValidateCombination()
     {

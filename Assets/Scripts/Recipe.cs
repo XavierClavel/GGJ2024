@@ -15,6 +15,14 @@ public class Recipe
     {
         if (amount > 0) emotions[key] = amount;
     }
+
+    public void addOutput(Recipe other)
+    {
+        foreach (var output in other.getOutput())
+        {
+            addOutput(output.Key, output.Value);
+        }
+    }
     
     public List<string> getInput() => cards;
     public int getInputSize() => cards.Count;
@@ -28,5 +36,10 @@ public class Recipe
         if (keys.Count >= 2 && keys[1] != cards[1]) return false;
         if (keys.Count >= 3 && keys[2] != cards[2]) return false;
         return true;
+    }
+
+    public bool matchesInput(string key)
+    {
+        return cards[0] == key;
     }
 }
