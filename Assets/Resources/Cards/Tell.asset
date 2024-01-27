@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: efdaf03016731d746ade365e9a2b936f, type: 3}
-  m_Name: CardHandler
+  m_Name: Tell
   m_EditorClassIdentifier: 
-  key: Cajoler
+  key: Tell
   icon: {fileID: 0}
+  intonation: 0

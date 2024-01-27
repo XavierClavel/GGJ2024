@@ -4,11 +4,10 @@ using System.Collections.Generic;
 
 public static class RecipeManager
 {
-   private static List<Recipe> recipes;
 
    public static Recipe findRecipe(string key)
    {
-      foreach (var recipe in recipes)
+      foreach (var recipe in DataManager.recipes)
       {
          if (recipe.matchesInput(key)) return recipe;
       }
@@ -19,7 +18,7 @@ public static class RecipeManager
    public static Recipe getRecipe(List<string> cardKeys)
    {
       //Look for exact recipe
-      foreach (var recipe in recipes)
+      foreach (var recipe in DataManager.recipes)
       {
          if (recipe.matchesInput(cardKeys)) return recipe;
       }
