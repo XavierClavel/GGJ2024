@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
 
 
     [SerializeField] private TextMeshProUGUI goldDisplay;
+    [SerializeField] private TextMeshProUGUI healthDisplay;
     [SerializeField] private Transform cardsLayout;
     [SerializeField] private Card cardPrefab;
     [SerializeField] private UpgradesManager upgradesPanel;
@@ -92,6 +93,7 @@ public class Player : MonoBehaviour
         health = 5;
         gold = 0;
         IncreaseGold(0);
+        TakeDamage(0);
     }
 
     private void Start()
@@ -150,6 +152,12 @@ public class Player : MonoBehaviour
     public static void WaveOver()
     {
         Debug.Log("Wave Over");
+        instance.StartCoroutine(nameof(onWaveOver));
+    }
+
+    private IEnumerator onWaveOver()
+    {
+        yield return Helpers.getWait(3f);
         instance.upgradesPanel.gameObject.SetActive(true);
         instance.upgradesPanel.DisplayUpgrades();
     }
@@ -157,6 +165,8 @@ public class Player : MonoBehaviour
     public static void TakeDamage(int amount)
     {
         health -= amount;
+        if (health < 0) health = 0;
+        instance.healthDisplay.SetText(health.ToString());
         if (health <= 0) Death();
     }
 
@@ -165,7 +175,7 @@ public class Player : MonoBehaviour
         Helpers.ReloadScene();
     }
 
-    private static void IncreaseGold(int amount)
+    public static void IncreaseGold(int amount)
     {
         gold += amount;
         instance.goldDisplay.SetText(gold.ToString());

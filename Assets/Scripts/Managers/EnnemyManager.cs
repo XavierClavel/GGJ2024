@@ -7,7 +7,8 @@ public class EnnemyManager : MonoBehaviour
 {
     [SerializeField] private Ennemy ennemyPrefab;
     [SerializeField] private Transform ennemiesLayout;
-    private static EnnemyManager instance;
+    public RectTransform canvas;
+    public static EnnemyManager instance;
 
     private void Awake()
     {
@@ -16,10 +17,16 @@ public class EnnemyManager : MonoBehaviour
 
     public static void SpawnEnnemies()
     {
+        List<float> spawnPos = new List<float>
+        {
+            200f,
+            0f,
+            -200f
+        };
         int wave = WaveManager.getCurrentWave();
         for (int i = 0; i < getEnnemiesAmount(wave); i++)
         {
-            instance.SpawnEnnemy();   
+            instance.SpawnEnnemy(spawnPos.popRandom());   
         }
     }
 
@@ -51,8 +58,9 @@ public class EnnemyManager : MonoBehaviour
         };
     } 
 
-    private void SpawnEnnemy()
+    private void SpawnEnnemy(float position)
     {
         Ennemy ennemy = Instantiate(ennemyPrefab, ennemiesLayout);
+        ennemy.setup(position);
     }
 }
