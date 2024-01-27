@@ -1,19 +1,26 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;using UnityEngine.EventSystems;
-using UnityEngine.UIElements;
+using TMPro;
+using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class Card : MonoBehaviour
+public class Card : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    [SerializeField] private Collider collider;
+    [SerializeField] private TextMeshProUGUI titleDisplay;
     private bool dragged = false;
     private Vector3 startPos = new Vector3(0, -4, -9);
-    [SerializeField] private CardHandler cardHandler;
+    private CardHandler cardHandler;
 
     private void Start()
     {
         startPos = transform.position;
+    }
+
+    public void setup(string key)
+    {
+        cardHandler = DataManager.dictKeyToCard[key];
+        titleDisplay.SetText(cardHandler.getKey());
     }
 
     private void Update()
@@ -22,16 +29,21 @@ public class Card : MonoBehaviour
         transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + Vector3.forward;
     }
 
-    private void OnMouseDown()
+    public CardHandler getCardInfo()
     {
-        Debug.Log("Mouse down");
+        return cardHandler;
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        Debug.Log("Pointer down");
         dragged = true;
         Player.setSelectedCard(this);
     }
 
-    private void OnMouseUp()
+    public void OnPointerUp(PointerEventData eventData)
     {
-        Debug.Log("Mouse Up");
+        Debug.Log("Pointer up");
         CardHolder cardHolder = Player.getSelectedCardHolder();
         Debug.Log(cardHolder);
         dragged = false;
@@ -46,14 +58,6 @@ public class Card : MonoBehaviour
             Player.placeCard();
         }
         if (Player.getSelectedCard() == this) Player.setSelectedCard(null);
-        
-        
-    }
-
-
-    public CardHandler getCardInfo()
-    {
-        return cardHandler;
     }
 }
  
