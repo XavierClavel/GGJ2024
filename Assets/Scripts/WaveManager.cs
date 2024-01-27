@@ -9,8 +9,21 @@ public static class WaveManager
     public static void IncreaseWave() => currentWave++;
     public static void ResetWave() => currentWave = 0;
     public static int getCurrentWave() => currentWave;
+    public static WaveData getWaveData() => DataManager.dictIndexToWaveData[getCurrentWave()];
 
-    public static bool isWaveShop() => currentWave is 5 or 10 or 15;
+    public static bool isWaveShop() => currentWave is 5 or 10 or 15 or 19;
+
+    public static List<string> getAvailableEmotions()
+    {
+        List<string> availableEmotions = new List<string>
+        {
+            "Sadness",
+            "Anger",
+            "Fear",
+        };
+        if (currentWave >= 5) availableEmotions.Add("Disdain");
+        return availableEmotions;
+    }
 
     public static List<string> getAvailableCards()
     {

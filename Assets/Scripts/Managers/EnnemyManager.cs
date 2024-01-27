@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnnemyManager : MonoBehaviour
 {
@@ -23,44 +24,54 @@ public class EnnemyManager : MonoBehaviour
             0f,
             -200f
         };
-        int wave = WaveManager.getCurrentWave();
-        for (int i = 0; i < getEnnemiesAmount(wave); i++)
+        WaveData waveData = WaveManager.getWaveData();
+        int ennemiesAmount = waveData.ennemies.getRandom();
+        for (int i = 0; i < ennemiesAmount; i++)
         {
-            instance.SpawnEnnemy(spawnPos.popRandom());   
+            instance.SpawnEnnemy(spawnPos.popRandom(), waveData);   
         }
     }
+    
 
-    private static int getEnnemiesAmount(int wave)
-    {
-        return wave switch
-        {
-            1 => 1,
-            2 => 1,
-            3 => 1,
-            4 => 1,
-            5 => 1,
-            6 => 1,
-            7 => 2,
-            8 => 1,
-            9 => 2,
-            10 => 1,
-            11 => 2,
-            12 => 2,
-            13 => 2,
-            14 => 3,
-            15 => 2,
-            16 => 2,
-            17 => 3,
-            18 => 2,
-            19 => 3,
-            20 => 3,
-            _ => 1
-        };
-    } 
-
-    private void SpawnEnnemy(float position)
+    private void SpawnEnnemy(float position, WaveData waveData)
     {
         Ennemy ennemy = Instantiate(ennemyPrefab, ennemiesLayout);
-        ennemy.setup(position);
+        ennemy.setup(position, GenerateDictEmotions(waveData));
+    }
+
+    private Dictionary<string, int> GenerateDictEmotions(WaveData waveData)
+    {
+        Dictionary<string, int> dictEmotions = new Dictionary<string, int>();
+        
+        List<string> emotions = WaveManager.getAvailableEmotions().getRandomList(waveData.emotionsAmount.getRandom());
+        
+        int maxPoints = waveData.emotionsPoints.getRandom();
+        int pointsToSpend = maxPoints;
+        int maxPerEmotion = emotions.Count == 1 ? maxPoints : maxPoints / 2 + 1;
+        
+        for (int i = 0; i < emotions.Count; i++)
+        {
+            int amountEmotionsLeft = emotions.Count - i - 1;
+            
+            //Make sure that if all remaining emotions spend max points total is maxPerEmotion
+            int min = Mathf.Max(1,pointsToSpend - maxPerEmotion * amountEmotionsLeft);
+            
+            //Make sure that if all remaining emotions can spend at least 1 point
+            int max = Mathf.Min(maxPerEmotion, pointsToSpend - amountEmotionsLeft);
+            int amount = Random.Range(min, max+1);
+            pointsToSpend -= amount;
+
+            dictEmotions[emotions[i]] = amount;
+        }
+
+        if (pointsToSpend == 0) return dictEmotions;
+        Debug.LogError("Points left not equal to zero");
+        Debug.LogError($"Points to spend : {maxPoints}");
+        foreach (var v in dictEmotions)
+        {
+            Debug.Log($"Emotion {v.Key}, Value {v.Value}");
+        }
+
+        return null;
     }
 }

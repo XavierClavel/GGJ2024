@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: DataManager
   m_EditorClassIdentifier: 
   recipeCsv: {fileID: 4900000, guid: 9531b94db839cf843ae18691e96785d9, type: 3}
+  waveDataCsv: {fileID: 4900000, guid: b7901c48404e4b646b5a1b7a63a2600e, type: 3}
