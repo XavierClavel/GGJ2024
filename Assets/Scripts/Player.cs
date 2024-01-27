@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     private static CardHolder lastSelectedCardHolder;
     public static Card[] placedCards = new Card[3];
     private static int health;
+    private static int maxHealth;
     private static int gold;
 
 
@@ -22,7 +23,8 @@ public class Player : MonoBehaviour
     [SerializeField] private Card cardPrefab;
     [SerializeField] private UpgradesManager upgradesPanel;
     [SerializeField] private RectTransform emptyGameObject;
-    
+
+    public static void IncreaseMaxHealth() => maxHealth += 2;
     
     public static Card getSelectedCard() => selectedCard;
     public static void setSelectedCard(Card card)
@@ -92,6 +94,7 @@ public class Player : MonoBehaviour
         lastSelectedCardHolder = null;
         placedCards = new Card[3];
         health = 5;
+        maxHealth = health;
         gold = 0;
         IncreaseGold(0);
         TakeDamage(0);
@@ -167,8 +170,7 @@ public class Player : MonoBehaviour
 
     private IEnumerator onWaveOver()
     {
-        yield return Helpers.getWait(3f);
-        instance.upgradesPanel.gameObject.SetActive(true);
+        yield return Helpers.getWait(1f);
         instance.upgradesPanel.DisplayUpgrades();
     }
 
@@ -176,7 +178,7 @@ public class Player : MonoBehaviour
     {
         health -= amount;
         if (health < 0) health = 0;
-        instance.healthDisplay.SetText(health.ToString());
+        instance.healthDisplay.SetText($"{health}/{maxHealth}");
         if (health <= 0) Death();
     }
 
