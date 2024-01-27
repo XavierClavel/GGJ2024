@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform cardsLayout;
     [SerializeField] private Card cardPrefab;
     [SerializeField] private UpgradesManager upgradesPanel;
+    [SerializeField] private RectTransform emptyGameObject;
     
     
     public static Card getSelectedCard() => selectedCard;
@@ -104,9 +105,18 @@ public class Player : MonoBehaviour
     private void NewTurn()
     {
         ResetSlots();
-        List<string> newCards = DeckManager.PickCards();
-        newCards.ForEach(key =>
-            Instantiate(cardPrefab, cardsLayout).setup(key, cardsLayout));
+        List<string> keys = DeckManager.PickCards();
+        List<Card> cards = new List<Card>();
+        foreach (var key in keys)
+        {
+            RectTransform go = Instantiate(emptyGameObject, cardsLayout);
+            cards.Add(Instantiate(cardPrefab, go).setup(key, go));
+        }
+        foreach (var card in cards)
+        {
+            card.Hide();
+        }
+        
     }
 
     
