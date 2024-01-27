@@ -102,6 +102,7 @@ public class Player : MonoBehaviour
     public void PrepareWave()
     {
         ResetSlots();
+        ResetHand();
         DeckManager.ResetPiles();
         NewTurn();
     }
@@ -116,6 +117,11 @@ public class Player : MonoBehaviour
             null,
             null
         };
+    }
+
+    private void ResetHand()
+    {
+        cardsLayout.KillAllChildren();
     }
 
     public static void WaveOver()
