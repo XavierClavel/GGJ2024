@@ -17,8 +17,6 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform cardsLayout;
     [SerializeField] private Card cardPrefab;
     [SerializeField] private UpgradesManager upgradesPanel;
-    [SerializeField] private RectTransform canvas;
-
     
     
     public static Card getSelectedCard() => selectedCard;
@@ -112,6 +110,7 @@ public class Player : MonoBehaviour
         ResetSlots();
         ResetHand();
         DeckManager.ResetPiles();
+        EnnemyManager.SpawnEnnemies();
         NewTurn();
     }
 
