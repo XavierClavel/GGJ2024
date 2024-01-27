@@ -8,6 +8,9 @@ public static class WaveManager
 
     public static void IncreaseWave() => currentWave++;
     public static void ResetWave() => currentWave = 0;
+    public static int getCurrentWave() => currentWave;
+
+    public static bool isWaveShop() => currentWave is 5 or 10 or 15;
 
     public static List<string> getAvailableCards()
     {
