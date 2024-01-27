@@ -127,6 +127,14 @@ public static class SingletonManager
 public static class Extensions
 {
     
+    public static void KillAllChildren(this Transform t)
+    {
+        foreach (Transform child in t)
+        {
+            Component.Destroy(child.gameObject);
+        }
+    }
+    
     private static System.Random rng = new System.Random();
 
     public static bool isEmpty<T>(this IList<T> list)
@@ -643,14 +651,6 @@ public class Helpers : MonoBehaviour
     public static void SetParent(Transform instance, GameObject parent)
     {
         SetParent(instance, parent.transform);
-    }
-
-    public static void KillAllChildren(Transform t)
-    {
-        foreach (Transform child in t)
-        {
-            Destroy(child.gameObject);
-        }
     }
 
     public static void printList<T>(List<T> list)

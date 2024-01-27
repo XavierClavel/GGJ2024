@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: Disgust
   m_EditorClassIdentifier: 
   key: Disgust
-  icon: {fileID: 0}
-  intonation: 0
+  icon: {fileID: 21300000, guid: bd41393228629bd4baaa9671443a2fce, type: 3}

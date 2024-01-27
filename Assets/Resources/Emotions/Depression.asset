@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: Depression
   m_EditorClassIdentifier: 
   key: Depression
-  icon: {fileID: 0}
-  intonation: 0
+  icon: {fileID: 21300000, guid: 4fb82ee5b10b34648a06e3063bf25053, type: 3}

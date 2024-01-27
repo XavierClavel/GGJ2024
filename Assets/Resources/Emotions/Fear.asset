@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: Fear
   m_EditorClassIdentifier: 
   key: Fear
-  icon: {fileID: 0}
-  intonation: 0
+  icon: {fileID: 21300000, guid: e9a8b486ab0b3cf408cefb70fdb10364, type: 3}
