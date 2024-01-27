@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     private static Card selectedCard;
     private static CardHolder selectedCardHolder;
     private static CardHolder lastSelectedCardHolder;
-    public static CardHandler[] placedCards = new CardHandler[3]; 
+    public static Card[] placedCards = new Card[3]; 
     public static Card getSelectedCard() => selectedCard;
     public static void setSelectedCard(Card card)
     {
@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     public static void placeCard()
     {
         if (getSelectedCardHolder() == null) return;
-        placedCards[getSelectedCardHolder().index] = getSelectedCard().getCardInfo();
+        placedCards[getSelectedCardHolder().index] = getSelectedCard();
     }
 
     public static void removeCard()
@@ -40,8 +40,8 @@ public class Player : MonoBehaviour
         foreach (var card in placedCards)
         {
             if (card == null) continue;
-            Debug.Log(card.getKey());
-            keys.Add(card.getKey());
+            Debug.Log(card.getCardInfo().getKey());
+            keys.Add(card.getCardInfo().getKey());
         }
 
         Recipe recipe = RecipeManager.getRecipe(keys);
@@ -50,18 +50,36 @@ public class Player : MonoBehaviour
             Debug.Log($"Emotion : {output.Key}, Value : {output.Value}");
         }
 
+        foreach (var ennemy in Ennemy.ennemiesList)
+        {
+            ennemy.ApplyEffect(recipe);
+        }
+
+        foreach (var card in placedCards)
+        {
+            if (card == null) continue;
+            Destroy(card.gameObject);
+        }
+        
+        ResetSlots();
+
 
     }
     private void Awake()
     {
-       setSelectedCard(null);
-       setSelectedCardHolder(null);
-       placedCards = new CardHandler[3]
-       {
-           null,
-           null,
-           null
-       };
+       ResetSlots();
+    }
+
+    private void ResetSlots()
+    {
+        setSelectedCard(null);
+        setSelectedCardHolder(null);
+        placedCards = new Card[3]
+        {
+            null,
+            null,
+            null
+        };
     }
 
 }
