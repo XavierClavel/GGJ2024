@@ -101,6 +101,8 @@ public class Ennemy : MonoBehaviour
         }
     }
 
+    public static bool isWaveOver() => ennemiesList.isEmpty();
+
     private void Cure()
     {
         Debug.Log("Patient is cured !");

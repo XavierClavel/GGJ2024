@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -18,6 +19,7 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     private Vector2 startPos;
     private CardHandler cardHandler;
     private int siblingIndex;
+    private float hiddenPos = -300f;
 
     public Card setup(string key, Transform slot)
     {
@@ -28,15 +30,19 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
         icon.sprite = cardHandler.getIcon();
         icon.color = cardHandler.getAccentColor();
         bandeau.color = cardHandler.getAccentColor();
+        rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, hiddenPos);
 
         return this;
     }
 
+    public void Show()
+    {
+        rectTransform.DOAnchorPosY(0f, 1f);
+    }
+
     public void Hide()
     {
-        Debug.Log(rectTransform.anchoredPosition);
-        //rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, -500f);
-        Debug.Log(rectTransform.anchoredPosition);
+        rectTransform.DOAnchorPosY(hiddenPos, 1f);
     }
 
 

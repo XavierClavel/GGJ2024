@@ -81,7 +81,22 @@ public class Player : MonoBehaviour
             if (card == null) continue;
             Destroy(card.gameObject);
         }
+
+        if (Ennemy.isWaveOver())
+        {
+            WaveOver();
+            return;
+        }
         NewTurn();
+    }
+
+    private IEnumerator HideCards(List<Card> cards)
+    {
+        foreach (var card in cards)
+        {
+            card.Hide();
+            yield return 0.2f;
+        }
     }
 
     private void Awake()
@@ -115,11 +130,18 @@ public class Player : MonoBehaviour
             RectTransform go = Instantiate(emptyGameObject, cardsLayout);
             cards.Add(Instantiate(cardPrefab, go).setup(key, go));
         }
+
+        StartCoroutine(nameof(DisplayCards), cards);
+
+    }
+
+    private IEnumerator DisplayCards(List<Card> cards)
+    {
         foreach (var card in cards)
         {
-            card.Hide();
-        }
-        
+            card.Show();
+            yield return Helpers.getWait(0.2f);
+        }   
     }
 
     
@@ -131,9 +153,8 @@ public class Player : MonoBehaviour
 
     private IEnumerator NewWave()
     {
-        WaveManager.IncreaseWave();
         ResetSlots();
-        ResetHand();
+        WaveManager.IncreaseWave();
         DeckManager.ResetPiles();
         WaveDisplay.instance.DisplayWaveIndicator(true);
         yield return Helpers.getWait(1f);
@@ -156,11 +177,7 @@ public class Player : MonoBehaviour
             null
         };
     }
-
-    private void ResetHand()
-    {
-        cardsLayout.KillAllChildren();
-    }
+    
 
     public static void WaveOver()
     {
@@ -170,7 +187,18 @@ public class Player : MonoBehaviour
 
     private IEnumerator onWaveOver()
     {
+        Card[] cards = cardsLayout.GetComponentsInChildren<Card>();
+        foreach (var card in cards)
+        {
+            card.Hide();
+            yield return Helpers.getWait(0.2f);
+        }
+
         yield return Helpers.getWait(1f);
+        foreach (var card in cards)
+        {
+            Destroy(card);
+        }
         instance.upgradesPanel.DisplayUpgrades();
     }
 
