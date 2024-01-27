@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0ea03bf686052046a2bd4e7bcfc36e1, type: 3}
-  m_Name: EmotionHandler
+  m_Script: {fileID: 11500000, guid: efdaf03016731d746ade365e9a2b936f, type: 3}
+  m_Name: Sing
   m_EditorClassIdentifier: 
-  key: Tristesse
+  key: Sing
   icon: {fileID: 0}
+  intonation: 0
