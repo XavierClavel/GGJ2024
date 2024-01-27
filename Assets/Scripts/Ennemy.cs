@@ -6,21 +6,38 @@ using UnityEngine;
 
 public class Ennemy : MonoBehaviour
 {
+    public static List<Ennemy> ennemiesList = new List<Ennemy>();
+    
     [SerializeField] private int patience;
     [SerializeField] private GameObject patiencePoint;
     [SerializeField] private Transform patienceLayout;
+    [SerializeField] private EmotionDisplay prefabEmotionDisplay;
+    [SerializeField] private Transform emotionLayout;
     private List<GameObject> patiencePoints = new List<GameObject>();
     private Dictionary<string, int> dictEmotions = new Dictionary<string, int>();
-    public static List<Ennemy> ennemiesList = new List<Ennemy>();
+
+    private Dictionary<string, EmotionDisplay> dictKeyToEmotionDisplay = new Dictionary<string, EmotionDisplay>();
+    
 
     private void Awake()
     {
         ennemiesList.Add(this);
-        dictEmotions["Sadness"] = 1;
+        dictEmotions["Sadness"] = 2;
+    }
+
+    private void Start()
+    {
         for (int i = 0; i < patience; i++)
         {
             GameObject go = Instantiate(patiencePoint, patienceLayout);
             patiencePoints.Add(go);
+        }
+
+        foreach (var value in dictEmotions)
+        {
+            EmotionDisplay emoDisplay = Instantiate(prefabEmotionDisplay, emotionLayout);
+            emoDisplay.setup(value.Key, value.Value);
+            dictKeyToEmotionDisplay[value.Key] = emoDisplay;
         }
     }
 
@@ -40,6 +57,7 @@ public class Ennemy : MonoBehaviour
         {
             if (!dictEmotions.ContainsKey(effet.Key)) continue;
             dictEmotions[effet.Key] -= effet.Value;
+            dictKeyToEmotionDisplay[effet.Key].setValue(dictEmotions[effet.Key]);
             if (dictEmotions[effet.Key] <= 0) dictEmotions.Remove(effet.Key);
         }
 

@@ -1355,6 +1355,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2985482481819060748, guid: c4bb90f5294548a4a871b5a71725cba5, type: 3}
+      propertyPath: emotionLayout
+      value: 
+      objectReference: {fileID: 5092283871977550310}
+    - target: {fileID: 2985482481819060748, guid: c4bb90f5294548a4a871b5a71725cba5, type: 3}
+      propertyPath: prefabEmotionDisplay
+      value: 
+      objectReference: {fileID: 4451440627850927412, guid: e7a8226c885c623459b0308c1c96f1c9, type: 3}
+    - target: {fileID: 3072525521632073831, guid: c4bb90f5294548a4a871b5a71725cba5, type: 3}
+      propertyPath: m_Spacing
+      value: -6.9
+      objectReference: {fileID: 0}
     - target: {fileID: 7067158917165547374, guid: c4bb90f5294548a4a871b5a71725cba5, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1380,6 +1392,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4bb90f5294548a4a871b5a71725cba5, type: 3}
+--- !u!224 &5092283871977550310 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2575588796989665201, guid: c4bb90f5294548a4a871b5a71725cba5, type: 3}
+  m_PrefabInstance: {fileID: 5092283871977550309}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8489432817505334764
 PrefabInstance:
   m_ObjectHideFlags: 0
