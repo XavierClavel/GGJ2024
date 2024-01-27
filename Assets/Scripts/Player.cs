@@ -24,8 +24,12 @@ public class Player : MonoBehaviour
     [SerializeField] private UpgradesManager upgradesPanel;
     [SerializeField] private RectTransform emptyGameObject;
 
-    public static void IncreaseMaxHealth() => maxHealth += 2;
-    
+    public static void IncreaseMaxHealth()
+    {
+        maxHealth += 2;
+        TakeDamage(0);
+    }
+
     public static Card getSelectedCard() => selectedCard;
     public static void setSelectedCard(Card card)
     {
