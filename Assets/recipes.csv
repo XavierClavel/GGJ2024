@@ -29,22 +29,21 @@ Tell;Playful;;;;;;;2
 Tell;Tell;;;;;;;2
 Tell;Tell;Playful;;;;;;4
 Tell;Tell;Tell;;;;;;3
-Sing;Joke;;2;;;;;2
-"Sing ";Joke;Loud;4;;;;;4
-Tell;Joke;;1;1;;;;1
-Tell;Joke;Loud;2;2;;;;2
+Sing;Joke;;2;;;2;;
+"Sing ";Joke;Loud;4;;;4;;
 Talk;Cuddle;;;2;2;;;
 Talk;Cuddle;Soft;;4;4;;;
-"Sing ";Cuddle;;;1;;1;;1
-Sing;Cuddle;Soft;;2;;2;;2
-Talk;Dance;;;1;1;;1;
-Talk;Dance;Playful;;2;2;;2;
 Tell;Dance;;;;;;2;2
 "Tell ";"Dance ";Playful;;;;;4;4
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
+Tell;Joke;;1;1;;;;1
+Tell;Joke;Loud;2;2;;;;2
+"Sing ";Cuddle;;;1;;1;;1
+Sing;Cuddle;Soft;;2;;2;;2
+Talk;Dance;;;;1;1;1;
+Talk;Dance;Playful;;;2;2;2;
+Cuddle;Tell;Joke;3;3;;;;3
+Talk;Sing;Dance;;;3;3;3;
+Talk;Sing;Talk;2;2;2;2;;
+"Dance ";Sing;Dance;;2;;2;2;2
+Tell;Joke;Joke;2;;2;;2;2
+Cuddle;Cuddle;Tell;;2;2;2;;2
