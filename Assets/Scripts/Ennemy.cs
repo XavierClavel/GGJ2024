@@ -20,21 +20,36 @@ public class Ennemy : MonoBehaviour
     private Dictionary<string, EmotionDisplay> dictKeyToEmotionDisplay = new Dictionary<string, EmotionDisplay>();
     private int damage;
 
-    private void Awake()
-    {
-        ennemiesList.Add(this);
-        dictEmotions["Sadness"] = 1;
-        damage = patience / 3 + 1;
-    }
-
     public void setup(float position, Dictionary<string, int> dictEmotions)
     {
+        ennemiesList.Add(this);
         rectTransform.anchoredPosition = 800f * Vector2.right;
         rectTransform.DOAnchorPosX(position, 2f).SetEase(Ease.OutQuad);
         this.dictEmotions = dictEmotions;
+        setPatience();
+        setDamage();
+        SetupDisplay();
     }
 
-    private void Start()
+    private void setPatience()
+    {
+        int total = 0;
+        foreach (var e in this.dictEmotions.Values)
+        {
+            total += e;
+        }
+        
+        patience = Mathf.Max(3,total / 2 + 1);
+    }
+
+    private void setDamage()
+    {
+        damage = patience / 3;
+    }
+    
+    
+
+    private void SetupDisplay()
     {
         for (int i = 0; i < patience; i++)
         {
