@@ -50,6 +50,11 @@ public class Player : MonoBehaviour
             Debug.Log($"Emotion : {output.Key}, Value : {output.Value}");
         }
 
+        foreach (var ennemy in Ennemy.ennemiesList)
+        {
+            ennemy.ApplyEffect(recipe);
+        }
+
         foreach (var card in placedCards)
         {
             if (card == null) continue;
