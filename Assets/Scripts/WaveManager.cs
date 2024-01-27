@@ -17,11 +17,13 @@ public static class WaveManager
     {
         List<string> availableEmotions = new List<string>
         {
-            "Sadness",
-            "Anger",
             "Fear",
+            "Anger",
+            "Sadness",
         };
-        if (currentWave >= 5) availableEmotions.Add("Disdain");
+        if (currentWave >= 4) availableEmotions.Add("Disdain");
+        if (currentWave >= 8) availableEmotions.Add("Disgust");
+        if (currentWave >= 12) availableEmotions.Add("Depression");
         return availableEmotions;
     }
 
@@ -29,13 +31,13 @@ public static class WaveManager
     {
         List<string> availableCards = new List<string>
         {
+            "Joke",
+            "Cuddle",
             "Talk",
-            "Sing",
-            "Dance",
         };
-        if (currentWave >= 4) availableCards.Add("jsp");
-        if (currentWave >= 8) availableCards.Add("jsp");
-        if (currentWave >= 12) availableCards.Add("jsp");
+        if (currentWave >= 2) availableCards.Add("Sing");
+        if (currentWave >= 6) availableCards.Add("Dance");
+        if (currentWave >= 10) availableCards.Add("Tell");
         return availableCards;
     }
 }
