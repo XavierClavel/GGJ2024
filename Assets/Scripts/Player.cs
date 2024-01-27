@@ -36,11 +36,21 @@ public class Player : MonoBehaviour
 
     public void ValidateCombination()
     {
+        List<string> keys = new List<string>();
         foreach (var card in placedCards)
         {
             if (card == null) continue;
             Debug.Log(card.getKey());
+            keys.Add(card.getKey());
         }
+
+        Recipe recipe = RecipeManager.getRecipe(keys);
+        foreach (var output in recipe.getOutput())
+        {
+            Debug.Log($"Emotion : {output.Key}, Value : {output.Value}");
+        }
+
+
     }
     private void Awake()
     {
