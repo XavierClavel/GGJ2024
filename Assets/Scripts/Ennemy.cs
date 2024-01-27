@@ -1,11 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Ennemy : MonoBehaviour
 {
     [SerializeField] private int patience;
+    [SerializeField] private GameObject patiencePoint;
+    [SerializeField] private Transform patienceLayout;
+    private List<GameObject> patiencePoints = new List<GameObject>();
     private Dictionary<string, int> dictEmotions = new Dictionary<string, int>();
     public static List<Ennemy> ennemiesList = new List<Ennemy>();
 
@@ -13,6 +17,11 @@ public class Ennemy : MonoBehaviour
     {
         ennemiesList.Add(this);
         dictEmotions["Sadness"] = 1;
+        for (int i = 0; i < patience; i++)
+        {
+            GameObject go = Instantiate(patiencePoint, patienceLayout);
+            patiencePoints.Add(go);
+        }
     }
 
     private void OnDestroy()
@@ -41,6 +50,9 @@ public class Ennemy : MonoBehaviour
         }
 
         patience--;
+        GameObject go = patiencePoints.Last();
+        patiencePoints.Remove(go);
+        go.SetActive(false);
         if (patience == 0)
         {
             Fail();
