@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11b433e6ade4a5d40aff05a92f7d4872, type: 3}
   m_Name: DataManager
   m_EditorClassIdentifier: 
-  recipeCsv: {fileID: 0}
+  recipeCsv: {fileID: 4900000, guid: 9531b94db839cf843ae18691e96785d9, type: 3}
