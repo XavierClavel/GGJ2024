@@ -142,6 +142,11 @@ public static class Extensions
     {
         return list.Count == 0;
     }
+    
+    public static List<T> getRandomList<T>(this IEnumerable<T> list, int size)
+    {
+        return list.OrderBy(x => rng.Next()).Take(size).ToList();
+    }
 
     public static void Shuffle<T>(this IList<T> list)  
     {  

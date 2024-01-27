@@ -27,10 +27,11 @@ public class Ennemy : MonoBehaviour
         damage = patience / 3 + 1;
     }
 
-    public void setup(float position)
+    public void setup(float position, Dictionary<string, int> dictEmotions)
     {
         rectTransform.anchoredPosition = 800f * Vector2.right;
         rectTransform.DOAnchorPosX(position, 2f).SetEase(Ease.OutQuad);
+        this.dictEmotions = dictEmotions;
     }
 
     private void Start()

@@ -6,8 +6,10 @@ using UnityEngine;
 public class DataManager : ScriptableObject
 {
     [SerializeField] private TextAsset recipeCsv;
+    [SerializeField] private TextAsset waveDataCsv;
     public static Dictionary<string, CardHandler> dictKeyToCard;
     public static Dictionary<string, EmotionHandler> dictKeyToEmotion;
+    public static Dictionary<int, WaveData> dictIndexToWaveData;
     public static List<Recipe> recipes;
 
     public void LoadData()
@@ -37,6 +39,10 @@ public class DataManager : ScriptableObject
         RecipeBuilder recipeBuilder = new RecipeBuilder();
         recipes = new List<Recipe>();
         recipeBuilder.loadText(recipeCsv, ref recipes, "Recipes");
+
+        WaveDataBuilder waveDataBuilder = new WaveDataBuilder();
+        dictIndexToWaveData = new Dictionary<int, WaveData>();
+        waveDataBuilder.loadText(waveDataCsv, ref dictIndexToWaveData, "Wave Data");
 
         foreach (var input in recipes[0].getInput())
         {
