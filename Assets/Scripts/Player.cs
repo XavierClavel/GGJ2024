@@ -83,6 +83,7 @@ public class Player : MonoBehaviour
     {
         instance = this;
         DeckManager.ResetDeck();
+        WaveManager.ResetWave();
         selectedCard = null;
         selectedCardHolder = null;
         lastSelectedCardHolder = null;
@@ -107,6 +108,7 @@ public class Player : MonoBehaviour
 
     public void PrepareWave()
     {
+        WaveManager.IncreaseWave();
         ResetSlots();
         ResetHand();
         DeckManager.ResetPiles();
