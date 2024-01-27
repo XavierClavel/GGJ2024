@@ -110,8 +110,8 @@ public class Player : MonoBehaviour
             string key = pickPile.popRandom();
             Debug.Log($"Picked {key}");
             hand.Add(key);
-            Card newCard = Instantiate(cardPrefab, canvas);
-            newCard.setup(key);
+            Card newCard = Instantiate(cardPrefab, cardsLayout);
+            newCard.setup(key, cardsLayout);
         }
     }
 
