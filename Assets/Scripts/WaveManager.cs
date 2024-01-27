@@ -8,6 +8,7 @@ public static class WaveManager
 
     public static void IncreaseWave() => currentWave++;
     public static void ResetWave() => currentWave = 0;
+    public static int getCurrentWave() => currentWave;
 
     public static List<string> getAvailableCards()
     {

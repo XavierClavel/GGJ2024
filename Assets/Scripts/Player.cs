@@ -106,10 +106,21 @@ public class Player : MonoBehaviour
 
     public void PrepareWave()
     {
+        StartCoroutine(nameof(NewWave));
+    }
+
+    private IEnumerator NewWave()
+    {
         WaveManager.IncreaseWave();
         ResetSlots();
         ResetHand();
         DeckManager.ResetPiles();
+        WaveDisplay.instance.DisplayWaveIndicator(true);
+        yield return Helpers.getWait(1f);
+        WaveDisplay.instance.MovePlayerIndicator();
+        yield return Helpers.getWait(1f);
+        WaveDisplay.instance.HideWaveIndicator();
+        yield return Helpers.getWait(1f);
         EnnemyManager.SpawnEnnemies();
         NewTurn();
     }

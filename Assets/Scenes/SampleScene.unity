@@ -327,9 +327,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 35142602}
+  - component: {fileID: 35142603}
   - component: {fileID: 35142605}
   - component: {fileID: 35142604}
-  - component: {fileID: 35142603}
   m_Layer: 5
   m_Name: Zone Wave Display
   m_TagString: Untagged
@@ -370,6 +370,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waveIndicator: {fileID: 1399790093}
+  playerIndicator: {fileID: 877947853}
+  layoutGroup: {fileID: 112422314}
+  waveItem: {fileID: 2139533477}
 --- !u!114 &35142604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2232,9 +2235,9 @@ RectTransform:
   m_Father: {fileID: 1399790093}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -595.47144, y: -88.489975}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 34.528564, y: -88.489975}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &877947854
