@@ -18,5 +18,16 @@ public class UpgradeButton : MonoBehaviour
         button.onClick.AddListener(UpgradesManager.CloseUpgradesPanel);
     }
 
+
+    public void Deactivate()
+    {
+        button.interactable = false;
+    }
+
+    public void Activate()
+    {
+        button.interactable = true;
+    }
+
     
 }
