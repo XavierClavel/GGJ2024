@@ -80,6 +80,7 @@ public class Ennemy : MonoBehaviour
     private void Cure()
     {
         Debug.Log("Patient is cured !");
+        ennemiesList.Remove(this);
         Destroy(gameObject);
     }
 
@@ -87,5 +88,11 @@ public class Ennemy : MonoBehaviour
     {
         Debug.Log("Ennemy has left");
         Destroy(gameObject);
+    }
+
+    private static void updateEnnemyList(Ennemy ennemy)
+    {
+        ennemiesList.Remove(ennemy);
+        if (ennemiesList.isEmpty()) Player.WaveOver();
     }
 }

@@ -2,17 +2,19 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class CardHolder : MonoBehaviour
+public class CardHolder : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    public RectTransform rectTransform;
     public int index;
-    private void OnMouseEnter()
+    public void OnPointerEnter(PointerEventData e)
     {
         Debug.Log("Mouse enter");
         Player.setSelectedCardHolder(this);
     }
 
-    private void OnMouseExit()
+    public void OnPointerExit(PointerEventData e)
     {
         Debug.Log("Mouse exit");
         if (Player.getSelectedCardHolder() == this) Player.setSelectedCardHolder(null);
@@ -20,7 +22,7 @@ public class CardHolder : MonoBehaviour
 
     public Vector3 getPosition()
     {
-        return transform.position;
+        return rectTransform.anchoredPosition;
     }
 
     private void OnMouseUp()

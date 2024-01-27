@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    private static Player instance;
     private static Card selectedCard;
     private static CardHolder selectedCardHolder;
     private static CardHolder lastSelectedCardHolder;
@@ -17,6 +18,8 @@ public class Player : MonoBehaviour
 
     [SerializeField] private Transform cardsLayout;
     [SerializeField] private Card cardPrefab;
+    [SerializeField] private GameObject upgradesPanel;
+    [SerializeField] private RectTransform canvas;
     
     public static Card getSelectedCard() => selectedCard;
     public static void setSelectedCard(Card card)
@@ -74,7 +77,12 @@ public class Player : MonoBehaviour
         }
         NewTurn();
     }
-    
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private void Start()
     {
        PrepareWave();
@@ -103,7 +111,7 @@ public class Player : MonoBehaviour
             Debug.Log($"Picked {key}");
             hand.Add(key);
             Card newCard = Instantiate(cardPrefab, cardsLayout);
-            newCard.setup(key);
+            newCard.setup(key, cardsLayout);
         }
     }
 
@@ -139,6 +147,11 @@ public class Player : MonoBehaviour
             null,
             null
         };
+    }
+
+    public static void WaveOver()
+    {
+        instance.upgradesPanel.SetActive(true);
     }
 
 }
