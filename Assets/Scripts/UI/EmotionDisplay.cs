@@ -19,7 +19,7 @@ public class EmotionDisplay : MonoBehaviour
 
     public EmotionDisplay setValue(int value)
     {
-        if (value < 0)
+        if (value <= 0)
         {
             gameObject.SetActive(false);
             return null;

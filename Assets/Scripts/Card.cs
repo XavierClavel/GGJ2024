@@ -16,6 +16,7 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     private Transform cardsLayout;
     private Vector2 startPos;
     private CardHandler cardHandler;
+    private int siblingIndex;
 
     public void setup(string key, Transform cardsLayout)
     {
@@ -40,6 +41,7 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
         image.raycastTarget = false;
         Debug.Log("Pointer down");
         Player.setSelectedCard(this);
+        siblingIndex = transform.GetSiblingIndex();
     }
 
     public void OnDrag(PointerEventData data)
@@ -56,7 +58,10 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
         if (cardHolder == null)
         {
             rectTransform.SetParent(cardsLayout);
+            rectTransform.anchorMin = Vector2.zero;
+            rectTransform.anchorMax = Vector2.one;
             rectTransform.anchoredPosition = startPos;
+            transform.SetSiblingIndex(siblingIndex);
             Player.removeCard();
         }
         else
