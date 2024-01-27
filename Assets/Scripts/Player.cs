@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     private static CardHolder selectedCardHolder;
     private static CardHolder lastSelectedCardHolder;
     public static Card[] placedCards = new Card[3];
+    private static int health;
     
 
     [SerializeField] private Transform cardsLayout;
@@ -82,6 +83,11 @@ public class Player : MonoBehaviour
     {
         instance = this;
         DeckManager.ResetDeck();
+        selectedCard = null;
+        selectedCardHolder = null;
+        lastSelectedCardHolder = null;
+        placedCards = new Card[3];
+        health = 5;
     }
 
     private void Start()
@@ -129,6 +135,17 @@ public class Player : MonoBehaviour
         Debug.Log("Wave Over");
         instance.upgradesPanel.gameObject.SetActive(true);
         instance.upgradesPanel.DisplayUpgrades();
+    }
+
+    public static void TakeDamage(int amount)
+    {
+        health -= amount;
+        if (health <= 0) Death();
+    }
+
+    private static void Death()
+    {
+        Helpers.ReloadScene();
     }
 
 }

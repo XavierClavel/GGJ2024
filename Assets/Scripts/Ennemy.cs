@@ -17,12 +17,13 @@ public class Ennemy : MonoBehaviour
     private Dictionary<string, int> dictEmotions = new Dictionary<string, int>();
 
     private Dictionary<string, EmotionDisplay> dictKeyToEmotionDisplay = new Dictionary<string, EmotionDisplay>();
-    
+    private int damage;
 
     private void Awake()
     {
         ennemiesList.Add(this);
         dictEmotions["Sadness"] = 1;
+        damage = patience / 3 + 1;
     }
 
     private void Start()
@@ -87,6 +88,7 @@ public class Ennemy : MonoBehaviour
     private void Fail()
     {
         Debug.Log("Ennemy has left");
+        Player.TakeDamage(damage);
         updateEnnemyList(this);
         Destroy(gameObject);
     }
