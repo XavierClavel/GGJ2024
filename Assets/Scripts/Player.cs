@@ -72,8 +72,7 @@ public class Player : MonoBehaviour
             if (card == null) continue;
             Destroy(card.gameObject);
         }
-        
-        ResetSlots();
+        NewTurn();
     }
     
     private void Start()
@@ -81,10 +80,25 @@ public class Player : MonoBehaviour
        PrepareWave();
     }
 
+    private void NewTurn()
+    {
+        ResetSlots();
+        PickCards();
+    }
+
     private void PickCards()
     {
         while (hand.Count < handSize)
         {
+            if (pickPile.isEmpty())
+            {
+                foreach (var discardedCard in discardPile)
+                {
+                    pickPile.Add(discardedCard);
+                }
+
+                discardPile = new List<string>();
+            }
             string key = pickPile.popRandom();
             Debug.Log($"Picked {key}");
             hand.Add(key);
@@ -100,6 +114,8 @@ public class Player : MonoBehaviour
             "Talk",
             "Tell",
             "Talk",
+            "Sing",
+            "Dance",
         };
         ResetSlots();
         hand = new List<string>();

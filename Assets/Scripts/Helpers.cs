@@ -127,7 +127,12 @@ public static class SingletonManager
 public static class Extensions
 {
     
-    private static System.Random rng = new System.Random();  
+    private static System.Random rng = new System.Random();
+
+    public static bool isEmpty<T>(this IList<T> list)
+    {
+        return list.Count == 0;
+    }
 
     public static void Shuffle<T>(this IList<T> list)  
     {  
