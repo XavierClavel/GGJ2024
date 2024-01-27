@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -13,20 +14,29 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     [SerializeField] private Image image;
     [SerializeField] private Image icon;
     [SerializeField] private Image bandeau;
-    private Transform cardsLayout;
+    private Transform slot;
     private Vector2 startPos;
     private CardHandler cardHandler;
     private int siblingIndex;
 
-    public void setup(string key, Transform cardsLayout)
+    public Card setup(string key, Transform slot)
     {
         cardHandler = DataManager.dictKeyToCard[key];
         titleDisplay.SetText(cardHandler.getKey());
-        this.cardsLayout = cardsLayout;
+        this.slot = slot;
         startPos = rectTransform.anchoredPosition;
         icon.sprite = cardHandler.getIcon();
         icon.color = cardHandler.getAccentColor();
         bandeau.color = cardHandler.getAccentColor();
+
+        return this;
+    }
+
+    public void Hide()
+    {
+        Debug.Log(rectTransform.anchoredPosition);
+        //rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, -500f);
+        Debug.Log(rectTransform.anchoredPosition);
     }
 
 
@@ -57,9 +67,9 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
         Debug.Log(cardHolder);
         if (cardHolder == null)
         {
-            rectTransform.SetParent(cardsLayout);
-            rectTransform.anchorMin = Vector2.zero;
-            rectTransform.anchorMax = Vector2.one;
+            rectTransform.SetParent(slot);
+            rectTransform.anchorMin = 0.5f * Vector2.one;
+            rectTransform.anchorMax = 0.5f * Vector2.one;
             rectTransform.anchoredPosition = startPos;
             transform.SetSiblingIndex(siblingIndex);
             Player.removeCard();
@@ -73,6 +83,11 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
             Player.placeCard();
         }
         if (Player.getSelectedCard() == this) Player.setSelectedCard(null);
+    }
+
+    private void OnDestroy()
+    {
+        Destroy(slot.gameObject);
     }
 }
  
