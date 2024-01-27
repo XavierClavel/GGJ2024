@@ -22,7 +22,7 @@ public class Ennemy : MonoBehaviour
     private void Awake()
     {
         ennemiesList.Add(this);
-        dictEmotions["Sadness"] = 2;
+        dictEmotions["Sadness"] = 1;
     }
 
     private void Start()
@@ -80,13 +80,14 @@ public class Ennemy : MonoBehaviour
     private void Cure()
     {
         Debug.Log("Patient is cured !");
-        ennemiesList.Remove(this);
+        updateEnnemyList(this);
         Destroy(gameObject);
     }
 
     private void Fail()
     {
         Debug.Log("Ennemy has left");
+        updateEnnemyList(this);
         Destroy(gameObject);
     }
 

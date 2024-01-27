@@ -3,23 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Player : MonoBehaviour
 {
-    private static Player instance;
+    public static Player instance;
     private static Card selectedCard;
     private static CardHolder selectedCardHolder;
     private static CardHolder lastSelectedCardHolder;
     public static Card[] placedCards = new Card[3];
-    private static int handSize = 3;
-    private static List<string> deck;
-    private static List<string> pickPile;
-    private static List<string> discardPile;
-    private static List<string> hand;
+    
 
     [SerializeField] private Transform cardsLayout;
     [SerializeField] private Card cardPrefab;
-    [SerializeField] private GameObject upgradesPanel;
+    [SerializeField] private UpgradesManager upgradesPanel;
     [SerializeField] private RectTransform canvas;
+
+    
     
     public static Card getSelectedCard() => selectedCard;
     public static void setSelectedCard(Card card)
@@ -55,8 +54,7 @@ public class Player : MonoBehaviour
             string key = card.getCardInfo().getKey();
             Debug.Log(key);
             keys.Add(key);
-            hand.Remove(key);
-            discardPile.Add(key);
+            DeckManager.UseCard(key);
         }
 
         Recipe recipe = RecipeManager.getRecipe(keys);
@@ -65,7 +63,9 @@ public class Player : MonoBehaviour
             Debug.Log($"Emotion : {output.Key}, Value : {output.Value}");
         }
 
-        foreach (var ennemy in Ennemy.ennemiesList)
+        Ennemy[] ennemies = new Ennemy[Ennemy.ennemiesList.Count];
+        Ennemy.ennemiesList.CopyTo(ennemies);
+        foreach (var ennemy in ennemies)
         {
             ennemy.ApplyEffect(recipe);
         }
@@ -81,6 +81,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        DeckManager.ResetDeck();
     }
 
     private void Start()
@@ -91,50 +92,18 @@ public class Player : MonoBehaviour
     private void NewTurn()
     {
         ResetSlots();
-        PickCards();
+        List<string> newCards = DeckManager.PickCards();
+        newCards.ForEach(key =>
+            Instantiate(cardPrefab, cardsLayout).setup(key, cardsLayout));
     }
 
-    private void PickCards()
-    {
-        while (hand.Count < handSize)
-        {
-            if (pickPile.isEmpty())
-            {
-                foreach (var discardedCard in discardPile)
-                {
-                    pickPile.Add(discardedCard);
-                }
+    
 
-                discardPile = new List<string>();
-            }
-            string key = pickPile.popRandom();
-            Debug.Log($"Picked {key}");
-            hand.Add(key);
-            Card newCard = Instantiate(cardPrefab, cardsLayout);
-            newCard.setup(key, cardsLayout);
-        }
-    }
-
-    private void PrepareWave()
+    public void PrepareWave()
     {
-        deck = new List<string>
-        {
-            "Talk",
-            "Tell",
-            "Talk",
-            "Sing",
-            "Dance",
-        };
         ResetSlots();
-        hand = new List<string>();
-        pickPile = new List<string>();
-        discardPile = new List<string>();
-        foreach (var key in deck)
-        {
-            pickPile.Add(key);
-        }
-        pickPile.Shuffle();
-        PickCards();
+        DeckManager.ResetPiles();
+        NewTurn();
     }
 
     private void ResetSlots()
@@ -151,7 +120,9 @@ public class Player : MonoBehaviour
 
     public static void WaveOver()
     {
-        instance.upgradesPanel.SetActive(true);
+        Debug.Log("Wave Over");
+        instance.upgradesPanel.gameObject.SetActive(true);
+        instance.upgradesPanel.DisplayUpgrades();
     }
 
 }
