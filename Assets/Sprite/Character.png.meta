@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2b40320c8a9fcbb4bbab72d9e2d5bdd2
+guid: b0750a62c6c74c94e83d14187e0a1288
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Plan de travail 2_0
+      name: Character_0
       rect:
         serializedVersion: 2
         x: 0
@@ -131,20 +131,20 @@ TextureImporter:
         width: 250
         height: 250
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f189fe0278671c42b3f669ada8efd73
-      internalID: -370743451
+      spriteID: caa0edbe4eb92db4daad13739ee7c045
+      internalID: 1773396408
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plan de travail 2_1
+      name: Character_1
       rect:
         serializedVersion: 2
         x: 250
@@ -152,20 +152,20 @@ TextureImporter:
         width: 250
         height: 250
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db6a1a77b8c265a418a06cba4c255306
-      internalID: -64213589
+      spriteID: d39695f3db84bca429e4e555a00ae6bb
+      internalID: 1636983940
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plan de travail 2_2
+      name: Character_2
       rect:
         serializedVersion: 2
         x: 500
@@ -173,20 +173,20 @@ TextureImporter:
         width: 250
         height: 250
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 145c652ad1db0f14abba227d5064423d
-      internalID: -2117806041
+      spriteID: c86001b1926d5a743915b38bec571326
+      internalID: 1468904692
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plan de travail 2_3
+      name: Character_3
       rect:
         serializedVersion: 2
         x: 750
@@ -194,20 +194,20 @@ TextureImporter:
         width: 250
         height: 250
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0982beebc482e3e44b30d5c223d84cf8
-      internalID: 976001738
+      spriteID: b4b20b12df4e43f4393971fc5956c455
+      internalID: -1938514736
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plan de travail 2_4
+      name: Character_4
       rect:
         serializedVersion: 2
         x: 1000
@@ -215,20 +215,20 @@ TextureImporter:
         width: 250
         height: 250
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 430081b15c4ad8c4c82148cabe13811c
-      internalID: 1741952262
+      spriteID: db2dce7d196f7114a9ddcbb7d917540b
+      internalID: 307028823
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plan de travail 2_5
+      name: Character_5
       rect:
         serializedVersion: 2
         x: 1250
@@ -236,20 +236,20 @@ TextureImporter:
         width: 250
         height: 250
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f711384a3fa5f574abd84484a56c37ee
-      internalID: -329880536
+      spriteID: 8d52e02cc0b1e194ab8016a0cb31c05d
+      internalID: -2006915590
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plan de travail 2_6
+      name: Character_6
       rect:
         serializedVersion: 2
         x: 1500
@@ -257,20 +257,20 @@ TextureImporter:
         width: 250
         height: 250
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a7c3a0f1573bbe7489629e756896750d
-      internalID: 1693446305
+      spriteID: 83629ede301953647874495aa6b21a43
+      internalID: -1441200302
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plan de travail 2_7
+      name: Character_7
       rect:
         serializedVersion: 2
         x: 1750
@@ -278,20 +278,20 @@ TextureImporter:
         width: 250
         height: 250
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 163ef3ece33d75743ab1f6954c014186
-      internalID: -531154752
+      spriteID: 9b15bbb189b6d6f429b33ed554294160
+      internalID: -608156662
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plan de travail 2_8
+      name: Character_8
       rect:
         serializedVersion: 2
         x: 0
@@ -299,20 +299,20 @@ TextureImporter:
         width: 250
         height: 250
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d23085093f3c07c408234cb942d649a7
-      internalID: 651627502
+      spriteID: 136efa89d4c7c684f9d6b952db813aa6
+      internalID: 844996766
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plan de travail 2_9
+      name: Character_9
       rect:
         serializedVersion: 2
         x: 250
@@ -320,20 +320,20 @@ TextureImporter:
         width: 250
         height: 250
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 74a535b5c5ad92b4b98ef51805ebb42b
-      internalID: -866471728
+      spriteID: 615866ebca58e2249a38cac49f8bb131
+      internalID: -1858637506
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plan de travail 2_10
+      name: Character_10
       rect:
         serializedVersion: 2
         x: 500
@@ -341,20 +341,20 @@ TextureImporter:
         width: 250
         height: 250
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d0480c4ac7b48544bb42165d1074e373
-      internalID: -1328767645
+      spriteID: 6f9d764241a311e49b9b80cb4e3dd581
+      internalID: 1113327483
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plan de travail 2_11
+      name: Character_11
       rect:
         serializedVersion: 2
         x: 750
@@ -362,20 +362,20 @@ TextureImporter:
         width: 250
         height: 250
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a3ce91b443414c419d63b5ac986b49d
-      internalID: 458155531
+      spriteID: b4a467efcff009846abbabf338dd142c
+      internalID: -1498004098
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plan de travail 2_12
+      name: Character_12
       rect:
         serializedVersion: 2
         x: 1000
@@ -383,20 +383,20 @@ TextureImporter:
         width: 250
         height: 250
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 96e3e70418a490e4c8c5e8d3289b6ba2
-      internalID: -1174548566
+      spriteID: 88b5a7f3b44bf7d49b3d96dab300028f
+      internalID: 75635037
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plan de travail 2_13
+      name: Character_13
       rect:
         serializedVersion: 2
         x: 1250
@@ -404,20 +404,20 @@ TextureImporter:
         width: 250
         height: 250
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 138fe7d074e1d0545a755b08def7a6a7
-      internalID: -1831084922
+      spriteID: 0683d1550e55d914eb3c11425d60671d
+      internalID: -1620798861
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plan de travail 2_14
+      name: Character_14
       rect:
         serializedVersion: 2
         x: 1500
@@ -425,14 +425,14 @@ TextureImporter:
         width: 250
         height: 250
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 717d6f24d5f4f1144be34379a662bc34
-      internalID: -1247495384
+      spriteID: 9fe5298ece73e2a469ee21b6ad89dd7d
+      internalID: 403616413
       vertices: []
       indices: 
       edges: []
@@ -448,23 +448,24 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Plan de travail 2_0: -370743451
-      Plan de travail 2_1: -64213589
-      Plan de travail 2_10: -1328767645
-      Plan de travail 2_11: 458155531
-      Plan de travail 2_12: -1174548566
-      Plan de travail 2_13: -1831084922
-      Plan de travail 2_14: -1247495384
-      Plan de travail 2_15: 208758129
-      Plan de travail 2_16: -426582856
-      Plan de travail 2_2: -2117806041
-      Plan de travail 2_3: 976001738
-      Plan de travail 2_4: 1741952262
-      Plan de travail 2_5: -329880536
-      Plan de travail 2_6: 1693446305
-      Plan de travail 2_7: -531154752
-      Plan de travail 2_8: 651627502
-      Plan de travail 2_9: -866471728
+      Character_0: 1773396408
+      Character_1: 1636983940
+      Character_10: 1113327483
+      Character_11: -1498004098
+      Character_12: 75635037
+      Character_13: -1620798861
+      Character_14: 403616413
+      Character_15: 1902649836
+      Character_16: -1276393122
+      Character_17: -1578851389
+      Character_2: 1468904692
+      Character_3: -1938514736
+      Character_4: 307028823
+      Character_5: -2006915590
+      Character_6: -1441200302
+      Character_7: -608156662
+      Character_8: 844996766
+      Character_9: -1858637506
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
