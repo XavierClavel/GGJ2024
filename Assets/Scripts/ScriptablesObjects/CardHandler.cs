@@ -6,9 +6,11 @@ public class ObjectHandler : ScriptableObject
 {
     [SerializeField] protected string key;
     [SerializeField] protected Sprite icon;
+    [SerializeField] protected Color accentColor;
 
     public string getKey() => key.Trim();
     public Sprite getIcon() => icon;
+    public Color getAccentColor() => accentColor;
     public virtual bool isIntonation() => false;
 }
 

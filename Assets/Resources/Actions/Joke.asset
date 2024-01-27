@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: Joke
   m_EditorClassIdentifier: 
   key: Joke
-  icon: {fileID: 0}
-  intonation: 0
+  icon: {fileID: 2059374252, guid: b9e4e2513c2a6444fa39d10b5b9ee025, type: 3}

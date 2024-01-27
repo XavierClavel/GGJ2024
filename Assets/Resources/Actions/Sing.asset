@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: Sing
   m_EditorClassIdentifier: 
   key: Sing
-  icon: {fileID: 0}
-  intonation: 0
+  icon: {fileID: 706565553, guid: b9e4e2513c2a6444fa39d10b5b9ee025, type: 3}

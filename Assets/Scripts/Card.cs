@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -12,6 +11,8 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     [SerializeField] private RectTransform rectTransform;
     [SerializeField] private TextMeshProUGUI titleDisplay;
     [SerializeField] private Image image;
+    [SerializeField] private Image icon;
+    [SerializeField] private Image bandeau;
     private Transform cardsLayout;
     private Vector2 startPos;
     private CardHandler cardHandler;
@@ -22,6 +23,9 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
         titleDisplay.SetText(cardHandler.getKey());
         this.cardsLayout = cardsLayout;
         startPos = rectTransform.anchoredPosition;
+        icon.sprite = cardHandler.getIcon();
+        icon.color = cardHandler.getAccentColor();
+        bandeau.color = cardHandler.getAccentColor();
     }
 
 
