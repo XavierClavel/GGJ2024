@@ -9,9 +9,12 @@ public class UpgradeButton : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI textDisplay;
     [SerializeField] private Button button;
+    [SerializeField] private Image icon;
 
-    public void Setup(string text, UnityAction action)
+    public void Setup(string text, UnityAction action, Sprite sprite, Color color)
     {
+        icon.sprite = sprite;
+        icon.color = color;
         textDisplay.SetText(text);
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(action);

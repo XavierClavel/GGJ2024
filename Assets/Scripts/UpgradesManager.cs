@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -14,6 +15,8 @@ public class UpgradesManager : MonoBehaviour
     private static UpgradesManager instance;
     private float visiblePos = -475.28f;
     private float hiddenPos = 500f;
+    [SerializeField] private Sprite upgradeHearts;
+    [SerializeField] private Sprite upgradeHand;
 
 
     public void DisplayUpgrades()
@@ -25,6 +28,7 @@ public class UpgradesManager : MonoBehaviour
         foreach (var upgradeButton in upgradeButtons)
         {
             GenerateUpgrade(upgradeButton);
+            upgradeButton.transform.eulerAngles = Random.Range(-5f, 5f) * Vector3.forward;
         }
     }
 
@@ -34,21 +38,23 @@ public class UpgradesManager : MonoBehaviour
         float value = Random.Range(0f,1f);
         if (value < 0.33f)
         {
-            upgrade.Setup("Increase hand size", DeckManager.IncreaseHandSize);
+            upgrade.Setup("Increase hand size", DeckManager.IncreaseHandSize, upgradeHand, Color.white);
             return;
         }
 
         if (value < 0.50f)
         {
-            upgrade.Setup("More health", Player.IncreaseMaxHealth);
+            upgrade.Setup("More health", Player.IncreaseMaxHealth, upgradeHearts, Color.white);
             return;
         }
         string key = WaveManager.getAvailableCards().getRandom();
         Debug.Log($"Selected new card {key}");
-        upgrade.Setup($"Add {key} card to deck", delegate
+        upgrade.Setup($"Add to deck", delegate
         {
             DeckManager.AddCardToDeck(key);
-        });
+        }, DataManager.dictKeyToCard[key].getIcon(), 
+            DataManager.dictKeyToCard[key].getAccentColor()
+            );
     }
     
     public static void CloseUpgradesPanel()
