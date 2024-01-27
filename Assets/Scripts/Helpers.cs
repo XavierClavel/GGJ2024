@@ -10,6 +10,7 @@ using System.Globalization;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class Counter
 {
@@ -594,6 +595,11 @@ public class Helpers : MonoBehaviour
     private static Dictionary<int, TextMeshProUGUI> dictDebugDisplays = new Dictionary<int, TextMeshProUGUI>();
     [SerializeField] GameObject debugDisplayPrefab;
     static bool? platformAndroidValue = null;
+
+    public static void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 
     public static WaitForFixedUpdate getWaitFixed()
     {
