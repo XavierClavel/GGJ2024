@@ -13,7 +13,9 @@ public class Recipe
     }
     public void addOutput(string key, int amount)
     {
-        if (amount > 0) emotions[key] = amount;
+        if (amount <= 0) return;
+        emotions.TryAdd(key, 0);
+        emotions[key] += amount;
     }
 
     public void addOutput(Recipe other)
