@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2382074558724749145}
   - component: {fileID: 3927441565319853249}
   - component: {fileID: 4667797141059461060}
+  - component: {fileID: 6376535932212783245}
   m_Layer: 0
   m_Name: Ennemy
   m_TagString: Untagged
@@ -97,6 +98,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &6376535932212783245
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148678028345907158}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 43f7aa8509aea524a9fd88cb857fb89e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4953600531983041640
 GameObject:
   m_ObjectHideFlags: 0
