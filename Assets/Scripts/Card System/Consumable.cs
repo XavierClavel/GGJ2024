@@ -18,11 +18,17 @@ public class Consumable : Draggable<string>
         return this;
     }
 
-    public void setup(Sprite sprite, UnityAction action)
+    public Consumable setup(Sprite sprite, UnityAction action)
     {
         this.action = action;
         icon.sprite = sprite;
         if (Player.getGold() < cost) canBeDragged = false;
+        return this;
+    }
+
+    public void setCost(int cost)
+    {
+        this.cost = cost;
     }
 
     public void Consume()
