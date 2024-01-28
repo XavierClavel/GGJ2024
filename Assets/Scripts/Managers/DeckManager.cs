@@ -66,10 +66,11 @@ public static class DeckManager
         deck = new List<string>
         {
             "Cuddle",
-            "Tell",
+            "Cuddle",
+            "Joke",
+            "Joke",
             "Talk",
-            "Sing",
-            "Dance",
+            "Talk",
         };
     }
 }
