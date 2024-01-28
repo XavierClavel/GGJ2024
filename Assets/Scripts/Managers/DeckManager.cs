@@ -85,5 +85,6 @@ public static class DeckManager
             "Talk",
             "Talk",
         };
+        handSize = 3;
     }
 }
