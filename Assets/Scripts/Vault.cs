@@ -18,6 +18,13 @@ public static class Vault
         public const string Disdain = "Disdain";
         public const string Disgust = "Disgust";
     }
+
+    public static class action
+    {
+        public const string Sing = "Sing";
+        public const string Dance = "Dance";
+        public const string Tell = "Tell";
+    }
     
     public static class other
     {

@@ -25,10 +25,39 @@ public class UpgradesManager : MonoBehaviour
         rectTransform.DOAnchorPosY(visiblePos, 1f).SetEase(Ease.InOutQuad);
         upgradeButtons.ForEach(it => it.Activate());
         upgradeButtons.Shuffle();
-        foreach (var upgradeButton in upgradeButtons)
+        List<UpgradeButton> buttons = new List<UpgradeButton>()
+        {
+            upgradeButtons[0],
+            upgradeButtons[1],
+            upgradeButtons[2]
+        };
+        GenerateMandatoryUpgrade(buttons);
+        foreach (var upgradeButton in buttons)
         {
             GenerateUpgrade(upgradeButton);
             upgradeButton.transform.eulerAngles = Random.Range(-5f, 5f) * Vector3.forward;
+        }
+    }
+
+    private void GenerateMandatoryUpgrade(List<UpgradeButton> upgradeButtons)
+    {
+        switch (WaveManager.getCurrentWave())
+        {
+            case 2 or 3:
+                setAddCardToDeckUpgrade(upgradeButtons[0], Vault.action.Sing);
+                upgradeButtons.RemoveAt(0);
+                break;
+             
+            case 6 or 7:
+                setAddCardToDeckUpgrade(upgradeButtons[0], Vault.action.Dance);
+                upgradeButtons.RemoveAt(0);
+                break;
+                
+            case 10 or 11:
+                setAddCardToDeckUpgrade(upgradeButtons[0], Vault.action.Tell);
+                upgradeButtons.RemoveAt(0);
+                break;
+            
         }
     }
 
@@ -49,12 +78,17 @@ public class UpgradesManager : MonoBehaviour
         }
         string key = WaveManager.getAvailableCards().getRandom();
         Debug.Log($"Selected new card {key}");
-        upgrade.Setup($"Add to deck", delegate
-        {
-            DeckManager.AddCardToDeck(key);
-        }, DataManager.dictKeyToCard[key].getIcon(), 
+        setAddCardToDeckUpgrade(upgrade, key);
+    }
+
+    private void setAddCardToDeckUpgrade(UpgradeButton upgradeButton, string key)
+    {
+        upgradeButton.Setup($"Add to deck", delegate
+            {
+                DeckManager.AddCardToDeck(key);
+            }, DataManager.dictKeyToCard[key].getIcon(), 
             DataManager.dictKeyToCard[key].getAccentColor()
-            );
+        );
     }
     
     public static void CloseUpgradesPanel()
