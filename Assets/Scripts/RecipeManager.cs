@@ -28,6 +28,7 @@ public static class RecipeManager
          if (!uncoveredRecipes.Contains(recipeIndex))
          {
             uncoveredRecipes.Add(recipeIndex);
+                AudioManager.PlaySfx("New");
             Notebook.instance.dictIndexToRecipeDisplay[recipeIndex].DisplayRecipe(recipe, recipeIndex);
             Player.ShowRecipePanel();
             Player.instance.RecipeDisplay.DisplayRecipe(recipe, recipeIndex);

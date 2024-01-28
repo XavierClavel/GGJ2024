@@ -59,6 +59,7 @@ public class Ennemy : MonoBehaviour
     {
         foreach (var ennemy in ennemiesList)
         {
+            AudioManager.PlaySfx("Harp");
             ennemy.patience++;
             GameObject go = Instantiate(ennemy.patiencePoint, ennemy.patienceLayout);
             ennemy.patiencePoints.Add(go);
@@ -67,6 +68,7 @@ public class Ennemy : MonoBehaviour
 
     public static void ReduceEmotions()
     {
+        AudioManager.PlaySfx("Luth");
         Dictionary<string, int> dictEffects = new Dictionary<string, int>
         {
             { Vault.emotion.Sadness, 1 },

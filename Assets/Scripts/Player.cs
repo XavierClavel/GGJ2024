@@ -38,6 +38,7 @@ public class Player : MonoBehaviour
 
     public static void Heal()
     {
+        AudioManager.PlaySfx("Apple");
         health = maxHealth;
         TakeDamage(0);
     }
