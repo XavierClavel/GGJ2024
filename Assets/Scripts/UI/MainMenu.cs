@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
+    public void Resume()
+    {
+
+    }
+
     public void Play()
     {
         TransitionManager.TransitionToScene("SampleScene");
