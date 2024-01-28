@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
@@ -23,6 +24,8 @@ public class Player : MonoBehaviour
     [SerializeField] private Card cardPrefab;
     [SerializeField] private UpgradesManager upgradesPanel;
     [SerializeField] private RectTransform emptyGameObject;
+    [SerializeField] private RectTransform pauseMenu;
+    private bool isPauseMenuActive = false;
 
     public static void Heal()
     {
@@ -125,6 +128,25 @@ public class Player : MonoBehaviour
     private void Start()
     {
        PrepareWave();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isPauseMenuActive)
+            {
+                pauseMenu.DOAnchorPosY(UpgradesManager.hiddenPos, 1f)
+                    .SetEase(Ease.InOutQuad);
+            }
+            else
+            {
+                pauseMenu.DOAnchorPosY(UpgradesManager.visiblePos, 1f)
+                    .SetEase(Ease.InOutQuad);
+            }
+
+            isPauseMenuActive = !isPauseMenuActive;
+        }
     }
 
     private void ShowShop()

@@ -9,6 +9,11 @@ public class MainMenu : MonoBehaviour
         TransitionManager.TransitionToScene("SampleScene");
     }
 
+    public void ToMainMenu()
+    {
+        TransitionManager.TransitionToScene("MainMenu");
+    }
+
     public void Quit()
     {
         TransitionManager.Quit();

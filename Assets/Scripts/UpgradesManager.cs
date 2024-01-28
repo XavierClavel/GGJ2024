@@ -13,8 +13,8 @@ public class UpgradesManager : MonoBehaviour
     [SerializeField] private RectTransform rectTransform;
     [SerializeField] private List<UpgradeButton> upgradeButtons;
     private static UpgradesManager instance;
-    private float visiblePos = -475.28f;
-    private float hiddenPos = 500f;
+    public static float visiblePos = -475.28f;
+    public static float hiddenPos = 500f;
     [SerializeField] private Sprite upgradeHearts;
     [SerializeField] private Sprite upgradeHand;
 
@@ -60,7 +60,7 @@ public class UpgradesManager : MonoBehaviour
     public static void CloseUpgradesPanel()
     {
         instance.upgradeButtons.ForEach(it => it.Deactivate());
-        instance.rectTransform.DOAnchorPosY(instance.hiddenPos, 1f)
+        instance.rectTransform.DOAnchorPosY(hiddenPos, 1f)
             .SetEase(Ease.InOutQuad)
             .OnComplete(Player.instance.PrepareWave);
     }
