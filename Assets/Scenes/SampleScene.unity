@@ -10269,6 +10269,24 @@ MonoBehaviour:
   ennemyPrefab: {fileID: 2382074558724749145, guid: c4bb90f5294548a4a871b5a71725cba5, type: 3}
   ennemiesLayout: {fileID: 1279865092}
   canvas: {fileID: 109644415}
+  spritesPaysans:
+  - {fileID: 1636983940, guid: b0750a62c6c74c94e83d14187e0a1288, type: 3}
+  - {fileID: 1468904692, guid: b0750a62c6c74c94e83d14187e0a1288, type: 3}
+  - {fileID: -1938514736, guid: b0750a62c6c74c94e83d14187e0a1288, type: 3}
+  - {fileID: 307028823, guid: b0750a62c6c74c94e83d14187e0a1288, type: 3}
+  spritesBasic:
+  - {fileID: -2006915590, guid: b0750a62c6c74c94e83d14187e0a1288, type: 3}
+  - {fileID: -1441200302, guid: b0750a62c6c74c94e83d14187e0a1288, type: 3}
+  - {fileID: -608156662, guid: b0750a62c6c74c94e83d14187e0a1288, type: 3}
+  - {fileID: 844996766, guid: b0750a62c6c74c94e83d14187e0a1288, type: 3}
+  spritesNobles:
+  - {fileID: -1858637506, guid: b0750a62c6c74c94e83d14187e0a1288, type: 3}
+  - {fileID: 1113327483, guid: b0750a62c6c74c94e83d14187e0a1288, type: 3}
+  - {fileID: -1498004098, guid: b0750a62c6c74c94e83d14187e0a1288, type: 3}
+  - {fileID: 75635037, guid: b0750a62c6c74c94e83d14187e0a1288, type: 3}
+  spritesKings:
+  - {fileID: -1620798861, guid: b0750a62c6c74c94e83d14187e0a1288, type: 3}
+  - {fileID: 403616413, guid: b0750a62c6c74c94e83d14187e0a1288, type: 3}
 --- !u!224 &1308818656 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5142991207456058890, guid: 31af827b300b78347bbd4d4d8d6bffd0, type: 3}
