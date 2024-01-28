@@ -60,45 +60,8 @@ public class Card : Draggable<CardHandler>
 
     protected override void onEndDrag()
     {
-        Debug.Log("Pointer up");
-        if (hoverDraggableHolder == null)
-        {
-            AttachToSlot();
-        } else if (!hoverDraggableHolder.isFree(this))
-        {
-            AttachToSlot();
-            hoverDraggableHolder.hoverDraggable = null;
-            hoverDraggableHolder = null;
-        }
-        else
-        {
-            if (selectedDraggableHolder != null && selectedDraggableHolder != hoverDraggableHolder)
-            {
-                selectedDraggableHolder.selectedDraggable = null;
-                selectedDraggableHolder = null;
-            }
-            AttachToDraggableHolder(hoverDraggableHolder);
-            selectedDraggableHolder = hoverDraggableHolder;
-            selectedDraggableHolder.selectedDraggable = this;
-            hoverDraggableHolder.hoverDraggable = null;
-            hoverDraggableHolder = null;
-        }
         Player.setSelectedCard(null);
     }
-
-    private void AttachToSlot()
-    {
-        if (selectedDraggableHolder != null)
-        {
-            selectedDraggableHolder.selectedDraggable = null;
-            selectedDraggableHolder = null;
-        }
-        rectTransform.SetParent(slot);
-        rectTransform.anchorMin = 0.5f * Vector2.one;
-        rectTransform.anchorMax = 0.5f * Vector2.one;
-        rectTransform.anchoredPosition = startPos;
-    }
-
     
 
     private void OnDestroy()

@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
 {
     public static Player instance;
     private static Card selectedCard;
+    private static Consumable selectedConsumable;
     [SerializeField] private List<CardHolder> cardHolders;
     private static int health;
     private static int maxHealth;
@@ -49,6 +50,13 @@ public class Player : MonoBehaviour
     public static void setSelectedCard(Card card)
     {
         selectedCard = card;
+    }
+
+    public static Consumable getSelectedConsumable() => selectedConsumable;
+
+    public static void setSelectedConsumable(Consumable consumable)
+    {
+        selectedConsumable = consumable;
     }
 
     public void ValidateCombination()
@@ -105,6 +113,7 @@ public class Player : MonoBehaviour
         DeckManager.ResetDeck();
         WaveManager.ResetWave();
         selectedCard = null;
+        selectedConsumable = null;
         cardHolders.ForEach(it => it.UseDraggable());
         health = 5;
         maxHealth = health;
@@ -116,6 +125,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
        PrepareWave();
+       Merchant.instance.SpawnShop();
     }
 
     private void NewTurn()
@@ -210,6 +220,14 @@ public class Player : MonoBehaviour
     public static void IncreaseGold(int amount)
     {
         gold += amount;
+        instance.goldDisplay.SetText(gold.ToString());
+    }
+
+    public static int getGold() => gold;
+
+    public static void SpendGold(int amount)
+    {
+        gold -= amount;
         instance.goldDisplay.SetText(gold.ToString());
     }
 
