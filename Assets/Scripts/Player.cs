@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
@@ -9,20 +10,38 @@ public class Player : MonoBehaviour
 {
     public static Player instance;
     private static Card selectedCard;
-    private static CardHolder selectedCardHolder;
-    private static CardHolder lastSelectedCardHolder;
-    public static Card[] placedCards = new Card[3];
+    private static Consumable selectedConsumable;
+    [SerializeField] private List<CardHolder> cardHolders;
     private static int health;
     private static int maxHealth;
     private static int gold;
 
-
+    [SerializeField] private TextMeshProUGUI pickPileDisplay;
+    [SerializeField] private TextMeshProUGUI discardPileDisplay;
     [SerializeField] private TextMeshProUGUI goldDisplay;
     [SerializeField] private TextMeshProUGUI healthDisplay;
     [SerializeField] private Transform cardsLayout;
     [SerializeField] private Card cardPrefab;
     [SerializeField] private UpgradesManager upgradesPanel;
     [SerializeField] private RectTransform emptyGameObject;
+    [SerializeField] private RectTransform pauseMenu;
+    private bool isPauseMenuActive = false;
+
+    public static void Heal()
+    {
+        health = maxHealth;
+        TakeDamage(0);
+    }
+    
+    public static void setPickPileAmount(int amount)
+    {
+        instance.pickPileDisplay.SetText($"{amount}x");
+    }
+
+    public static void setDiscardPileAmount(int amount)
+    {
+        instance.discardPileDisplay.SetText($"{amount}x");
+    }
 
     public static void IncreaseMaxHealth()
     {
@@ -36,30 +55,19 @@ public class Player : MonoBehaviour
         selectedCard = card;
     }
 
-    public static void placeCard()
-    {
-        if (getSelectedCardHolder() == null) return;
-        placedCards[getSelectedCardHolder().index] = getSelectedCard();
-    }
+    public static Consumable getSelectedConsumable() => selectedConsumable;
 
-    public static void removeCard()
+    public static void setSelectedConsumable(Consumable consumable)
     {
-        if (lastSelectedCardHolder == null) return;
-        placedCards[lastSelectedCardHolder.index] = null;
-    }
-
-    public static CardHolder getSelectedCardHolder() => selectedCardHolder;
-    public static void setSelectedCardHolder(CardHolder cardHolder)
-    {
-        selectedCardHolder = cardHolder;
-        if (cardHolder != null) lastSelectedCardHolder = cardHolder;
+        selectedConsumable = consumable;
     }
 
     public void ValidateCombination()
     {
         List<string> keys = new List<string>();
-        foreach (var card in placedCards)
+        foreach (var cardHolder in cardHolders)
         {
+            Card card = (Card)cardHolder.selectedDraggable;
             if (card == null) continue;
             string key = card.getCardInfo().getKey();
             Debug.Log(key);
@@ -80,10 +88,9 @@ public class Player : MonoBehaviour
             ennemy.ApplyEffect(recipe);
         }
 
-        foreach (var card in placedCards)
+        foreach (var cardHolder in cardHolders)
         {
-            if (card == null) continue;
-            Destroy(card.gameObject);
+            cardHolder.UseDraggable();
         }
 
         if (Ennemy.isWaveOver())
@@ -109,9 +116,8 @@ public class Player : MonoBehaviour
         DeckManager.ResetDeck();
         WaveManager.ResetWave();
         selectedCard = null;
-        selectedCardHolder = null;
-        lastSelectedCardHolder = null;
-        placedCards = new Card[3];
+        selectedConsumable = null;
+        cardHolders.ForEach(it => it.UseDraggable());
         health = 5;
         maxHealth = health;
         gold = 0;
@@ -122,6 +128,58 @@ public class Player : MonoBehaviour
     private void Start()
     {
        PrepareWave();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isPauseMenuActive)
+            {
+                pauseMenu.DOAnchorPosY(UpgradesManager.hiddenPos, 1f)
+                    .SetEase(Ease.InOutQuad);
+            }
+            else
+            {
+                pauseMenu.DOAnchorPosY(UpgradesManager.visiblePos, 1f)
+                    .SetEase(Ease.InOutQuad);
+            }
+
+            isPauseMenuActive = !isPauseMenuActive;
+        }
+    }
+
+    private void ShowShop()
+    {
+        StartCoroutine(nameof(showShop));
+    }
+
+    public void HideShop()
+    {
+        StartCoroutine(nameof(hideShop));
+    }
+
+    private IEnumerator showShop()
+    {
+        
+        WaveDisplay.instance.DisplayWaveIndicator(true);
+        yield return Helpers.getWait(1f);
+        WaveDisplay.instance.MovePlayerIndicator();
+        yield return Helpers.getWait(1f);
+        WaveDisplay.instance.HideWaveIndicator();
+        yield return Helpers.getWait(1f);
+        Merchant.instance.Show();
+        yield return Helpers.getWait(1.5f);
+        Merchant.instance.SpawnShop();
+    }
+
+    private IEnumerator hideShop()
+    {
+        Merchant.instance.DespawnShop();
+        yield return Helpers.getWait(0.5f);
+        Merchant.instance.Hide();
+        yield return Helpers.getWait(1.5f);
+        WaveOver();
     }
 
     private void NewTurn()
@@ -152,14 +210,17 @@ public class Player : MonoBehaviour
 
     public void PrepareWave()
     {
-        StartCoroutine(nameof(NewWave));
+        ResetSlots();
+        DeckManager.ResetPiles();
+        WaveManager.IncreaseWave();
+        if (WaveManager.isWaveShop())
+        {
+            ShowShop();
+        } else StartCoroutine(nameof(NewWave));
     }
 
     private IEnumerator NewWave()
     {
-        ResetSlots();
-        WaveManager.IncreaseWave();
-        DeckManager.ResetPiles();
         WaveDisplay.instance.DisplayWaveIndicator(true);
         yield return Helpers.getWait(1f);
         WaveDisplay.instance.MovePlayerIndicator();
@@ -173,13 +234,7 @@ public class Player : MonoBehaviour
     private void ResetSlots()
     {
         setSelectedCard(null);
-        setSelectedCardHolder(null);
-        placedCards = new Card[3]
-        {
-            null,
-            null,
-            null
-        };
+        cardHolders.ForEach(it => it.UseDraggable());
     }
     
 
@@ -222,6 +277,14 @@ public class Player : MonoBehaviour
     public static void IncreaseGold(int amount)
     {
         gold += amount;
+        instance.goldDisplay.SetText(gold.ToString());
+    }
+
+    public static int getGold() => gold;
+
+    public static void SpendGold(int amount)
+    {
+        gold -= amount;
         instance.goldDisplay.SetText(gold.ToString());
     }
 

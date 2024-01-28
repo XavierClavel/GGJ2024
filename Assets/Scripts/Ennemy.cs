@@ -20,6 +20,35 @@ public class Ennemy : MonoBehaviour
     private Dictionary<string, EmotionDisplay> dictKeyToEmotionDisplay = new Dictionary<string, EmotionDisplay>();
     private int damage;
 
+    public static void IncreasePatience()
+    {
+        foreach (var ennemy in ennemiesList)
+        {
+            ennemy.patience++;
+            GameObject go = Instantiate(ennemy.patiencePoint, ennemy.patienceLayout);
+            ennemy.patiencePoints.Add(go);
+        }
+    }
+
+    public static void ReduceEmotions()
+    {
+        Dictionary<string, int> dictEffects = new Dictionary<string, int>
+        {
+            { Vault.emotion.Sadness, 1 },
+            { Vault.emotion.Fear, 1 },
+            { Vault.emotion.Depression, 1 },
+            { Vault.emotion.Disdain, 1 },
+            { Vault.emotion.Anger, 1},
+            { Vault.emotion.Disgust, 1}
+        };
+        Ennemy[] ennemies = new Ennemy[ennemiesList.Count];
+        ennemiesList.CopyTo(ennemies);
+        foreach (var ennemy in ennemies)
+        {
+            ennemy.ApplyEffect(dictEffects);
+        }
+    }
+
     public void setup(float position, Dictionary<string, int> dictEmotions)
     {
         ennemiesList.Add(this);

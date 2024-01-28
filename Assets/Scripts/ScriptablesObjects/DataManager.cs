@@ -21,8 +21,8 @@ public class DataManager : ScriptableObject
             Debug.Log(cardHandler.getKey());
             dictKeyToCard[cardHandler.getKey()] = cardHandler;
         }
-        cardHandlers = Resources.LoadAll<CardHandler>("Intonations/");
-        foreach (var cardHandler in cardHandlers)
+        IntonationHandler[] intonationHandlers = Resources.LoadAll<IntonationHandler>("Intonations/");
+        foreach (var cardHandler in intonationHandlers)
         {
             Debug.Log(cardHandler.getKey());
             dictKeyToCard[cardHandler.getKey()] = cardHandler;
