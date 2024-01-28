@@ -6760,6 +6760,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorial: {fileID: 1276981435}
+  buttons: {fileID: 0}
+  title: {fileID: 0}
 --- !u!114 &843982798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8941,7 +8943,7 @@ MonoBehaviour:
   infoPanel: {fileID: 1803100513}
   infoText: {fileID: 1183124715}
   recipePanel: {fileID: 300923742}
-  RecipeDisplay: {fileID: 766516271}
+  recipeDisplay: {fileID: 766516271}
   pickPileDisplay: {fileID: 3222467894037676699}
   discardPileDisplay: {fileID: 3010518311031877205}
   goldDisplay: {fileID: 967667313}

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 
@@ -23,7 +24,7 @@ public class Player : MonoBehaviour
     public TextMeshProUGUI infoText;
 
     public RectTransform recipePanel;
-    public RecipeDisplay RecipeDisplay;
+    public RecipeDisplay recipeDisplay;
 
     [SerializeField] private TextMeshProUGUI pickPileDisplay;
     [SerializeField] private TextMeshProUGUI discardPileDisplay;
