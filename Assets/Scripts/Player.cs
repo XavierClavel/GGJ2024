@@ -16,6 +16,14 @@ public class Player : MonoBehaviour
     private static int health;
     private static int maxHealth;
     private static int gold;
+    public static float infoPanelPosVisible = 450f;
+    public static float infoPanelPosHidden = 900f;
+
+    public RectTransform infoPanel;
+    public TextMeshProUGUI infoText;
+
+    public RectTransform recipePanel;
+    public RecipeDisplay RecipeDisplay;
 
     [SerializeField] private TextMeshProUGUI pickPileDisplay;
     [SerializeField] private TextMeshProUGUI discardPileDisplay;
@@ -33,6 +41,28 @@ public class Player : MonoBehaviour
         health = maxHealth;
         TakeDamage(0);
     }
+
+    public static void ShowInfoPanel()
+    {
+        instance.infoText.SetText("");
+        instance.infoPanel.DOAnchorPosY(infoPanelPosVisible, 1f).SetEase(Ease.InOutQuad);
+    }
+    
+    public static void HideInfoPanel()
+    {
+        instance.infoPanel.DOAnchorPosY(infoPanelPosHidden, 1f).SetEase(Ease.InOutQuad);
+    }
+    
+    public static void ShowRecipePanel()
+    {
+        instance.recipePanel.DOAnchorPosY(infoPanelPosVisible, 1f).SetEase(Ease.InOutQuad);
+    }
+    
+    public static void HideRecipePanel()
+    {
+        instance.recipePanel.DOAnchorPosY(infoPanelPosHidden, 1f).SetEase(Ease.InOutQuad);
+    }
+
     
     public static void setPickPileAmount(int amount)
     {
@@ -177,6 +207,7 @@ public class Player : MonoBehaviour
         yield return Helpers.getWait(1f);
         WaveDisplay.instance.HideWaveIndicator();
         yield return Helpers.getWait(1f);
+        ShowInfoPanel();
         Merchant.instance.Show();
         yield return Helpers.getWait(1.5f);
         Merchant.instance.SpawnShop();
@@ -187,6 +218,8 @@ public class Player : MonoBehaviour
         Merchant.instance.DespawnShop();
         yield return Helpers.getWait(0.5f);
         Merchant.instance.Hide();
+        yield return Helpers.getWait(0.5f);
+        HideInfoPanel();
         yield return Helpers.getWait(1.5f);
         WaveOver();
     }

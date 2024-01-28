@@ -67,28 +67,32 @@ public class Merchant : MonoBehaviour
     {
         setupConsumable()
             .setup(healSprite, Player.Heal)
-            .setCost(50);
+            .setCost(50)
+            .setText("Restore max health.");
     }
 
     void SetupHarpConsumable()
     {
         setupConsumable()
             .setup(harpSprite, Ennemy.IncreasePatience)
-            .setCost(50);
+            .setCost(50)
+            .setText("Increase patients of everyone by one.");
     }
 
     void SetupMandolinConsumable()
     {
         setupConsumable()
             .setup(mandolinSprite, Ennemy.ReduceEmotions)
-            .setCost(50);
+            .setCost(50)
+            .setText("Reduce emotions of everyone by one.");
     }
 
     void SetupTambourinConsumable()
     {
         setupConsumable()
             .setup(tambourinSprite, delegate {  })
-            .setCost(50);
+            .setCost(50)
+            .setText("+2 emotion for closest people, -2 for farthest people.");
     }
 
     public void Buy(Consumable consumable)
