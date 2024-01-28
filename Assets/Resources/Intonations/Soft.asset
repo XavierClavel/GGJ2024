@@ -15,4 +15,4 @@ MonoBehaviour:
   key: Soft
   icon: {fileID: -168114382, guid: b9e4e2513c2a6444fa39d10b5b9ee025, type: 3}
   accentColor: {r: 0.2, g: 0.20784314, b: 0.2, a: 1}
-  backgroundColor: {r: 0.74509805, g: 0.72156864, b: 0.6509804, a: 0}
+  backgroundColor: {r: 0.74509805, g: 0.72156864, b: 0.6509804, a: 1}

@@ -76,7 +76,7 @@ public class Merchant : MonoBehaviour
         setupConsumable()
             .setup(harpSprite, Ennemy.IncreasePatience)
             .setCost(7)
-            .setText("Increase patients of everyone by one.");
+            .setText("Increase patience of everyone by one.");
     }
 
     void SetupMandolinConsumable()
