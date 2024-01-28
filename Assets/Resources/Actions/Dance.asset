@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: Dance
   icon: {fileID: -404174697, guid: b9e4e2513c2a6444fa39d10b5b9ee025, type: 3}
-  accentColor: {r: 1, g: 0.7260653, b: 0, a: 1}
+  accentColor: {r: 0.92156863, g: 0.62352943, b: 0.015686275, a: 1}

@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: Talk
   icon: {fileID: 2030328587, guid: b9e4e2513c2a6444fa39d10b5b9ee025, type: 3}
-  accentColor: {r: 0, g: 0.52040744, b: 1, a: 1}
+  accentColor: {r: 0.16470589, g: 0.6156863, b: 0.56078434, a: 1}

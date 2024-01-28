@@ -36,8 +36,11 @@ public static class WaveManager
             "Talk",
         };
         if (currentWave >= 2) availableCards.Add("Sing");
+        if (currentWave >= 4) availableCards.Add("Soft");
         if (currentWave >= 6) availableCards.Add("Dance");
+        if (currentWave >= 8) availableCards.Add("Loud");
         if (currentWave >= 10) availableCards.Add("Tell");
+        if (currentWave >= 12) availableCards.Add("Playful");
         return availableCards;
     }
 }

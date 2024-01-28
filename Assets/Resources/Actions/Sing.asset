@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: Sing
   icon: {fileID: 706565553, guid: b9e4e2513c2a6444fa39d10b5b9ee025, type: 3}
-  accentColor: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 1}
+  accentColor: {r: 0.9137255, g: 0.76862746, b: 0.41568628, a: 1}
