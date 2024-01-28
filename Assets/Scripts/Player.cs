@@ -23,6 +23,12 @@ public class Player : MonoBehaviour
     [SerializeField] private UpgradesManager upgradesPanel;
     [SerializeField] private RectTransform emptyGameObject;
 
+    public static void Heal()
+    {
+        health = maxHealth;
+        TakeDamage(0);
+    }
+    
     public static void setPickPileAmount(int amount)
     {
         instance.pickPileDisplay.SetText($"{amount}x");

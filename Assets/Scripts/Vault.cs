@@ -8,6 +8,17 @@ public static class Vault
     {
         public const string Key = "Key";
     }
+
+    public static class emotion
+    {
+        public const string Anger = "Anger";
+        public const string Fear = "Fear";
+        public const string Sadness = "Sadness";
+        public const string Depression = "Depression";
+        public const string Disdain = "Disdain";
+        public const string Disgust = "Disgust";
+    }
+    
     public static class other
     {
         public const string scriptableObjectMenu = "GGJ2024/";
