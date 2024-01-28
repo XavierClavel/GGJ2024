@@ -62,22 +62,30 @@ public class Merchant : MonoBehaviour
 
     void SetupHealConsumable()
     {
-        setupConsumable().setup(healSprite, Player.Heal);
+        setupConsumable()
+            .setup(healSprite, Player.Heal)
+            .setCost(50);
     }
 
     void SetupHarpConsumable()
     {
-        setupConsumable().setup(harpSprite, Ennemy.IncreasePatience);
+        setupConsumable()
+            .setup(harpSprite, Ennemy.IncreasePatience)
+            .setCost(50);
     }
 
     void SetupMandolinConsumable()
     {
-        setupConsumable().setup(mandolinSprite, Ennemy.ReduceEmotions);
+        setupConsumable()
+            .setup(mandolinSprite, Ennemy.ReduceEmotions)
+            .setCost(50);
     }
 
     void SetupTambourinConsumable()
     {
-        setupConsumable().setup(tambourinSprite, delegate {  });
+        setupConsumable()
+            .setup(tambourinSprite, delegate {  })
+            .setCost(50);
     }
     
 }
