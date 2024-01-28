@@ -6,8 +6,8 @@ using UnityEngine;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private RectTransform tutorial;
-    private static float tutoPosVisible = 450f;
-    private static float tutoPosHidden = 900f;
+    private static float tutoPosVisible = 75f;
+    private static float tutoPosHidden = 1100;
     public void Resume()
     {
         Player.instance.PauseUnpause();
