@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +17,7 @@ public class Ennemy : MonoBehaviour
     [SerializeField] private Transform patienceLayout;
     [SerializeField] private EmotionDisplay prefabEmotionDisplay;
     [SerializeField] private Transform emotionLayout;
+    [SerializeField] private TextMeshProUGUI damageDisplay;
     private List<GameObject> patiencePoints = new List<GameObject>();
     private Dictionary<string, int> dictEmotions = new Dictionary<string, int>();
     private bool isKing = false;
@@ -92,6 +94,7 @@ public class Ennemy : MonoBehaviour
     private void setDamage()
     {
         damage = patience / 3;
+        damageDisplay.SetText(damage.ToString());
     }
     
     
