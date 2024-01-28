@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: Joke
   icon: {fileID: 2059374252, guid: b9e4e2513c2a6444fa39d10b5b9ee025, type: 3}
-  accentColor: {r: 0.39376354, g: 1, b: 0, a: 1}
+  accentColor: {r: 0.54509807, g: 0.64705884, b: 0.011764706, a: 1}

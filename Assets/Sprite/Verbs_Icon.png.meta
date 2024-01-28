@@ -248,6 +248,69 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Verbs_Icon_6
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 1
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1c32c35a7edf9541a92f492b61c7dd6
+      internalID: 929111717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Verbs_Icon_7
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 1
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b64df08b752e324ca400c2c16c92bec
+      internalID: -683277885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Verbs_Icon_8
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 1
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9949ff15879ef6d4cb3e7a9735def578
+      internalID: -168114382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -265,6 +328,9 @@ TextureImporter:
       Verbs_Icon_3: 706565553
       Verbs_Icon_4: -404174697
       Verbs_Icon_5: 1260980355
+      Verbs_Icon_6: 929111717
+      Verbs_Icon_7: -683277885
+      Verbs_Icon_8: -168114382
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
