@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -7,7 +8,8 @@ using UnityEngine.UI;
 public class Consumable : Draggable<string>
 {
     [SerializeField] private Image icon;
-    [SerializeField] private int cost;
+    private int cost;
+    [SerializeField] private TextMeshProUGUI costDisplay;
     [SerializeField] private string text;
     private UnityAction action;
     private bool bought = false;
@@ -22,13 +24,19 @@ public class Consumable : Draggable<string>
     {
         this.action = action;
         icon.sprite = sprite;
-        if (Player.getGold() < cost) canBeDragged = false;
         return this;
     }
 
     public void setCost(int cost)
     {
         this.cost = cost;
+        if (Player.getGold() < cost) canBeDragged = false;
+        costDisplay.SetText(cost.ToString());
+    }
+
+    public void updateCanBeDragged()
+    {
+        if (Player.getGold() < cost) canBeDragged = false;
     }
 
     public void Consume()
@@ -38,17 +46,22 @@ public class Consumable : Draggable<string>
 
     protected override void onBeginDrag()
     {
+        if (!bought) costDisplay.gameObject.SetActive(false);
         Player.setSelectedConsumable(this);
     }
 
     protected override void onEndDrag()
     {
+        if (!bought) costDisplay.gameObject.SetActive(true);
         Player.setSelectedConsumable(null);
     }
 
     protected override void onPlaced()
     {
+        Player.SpendGold(cost);
         bought = true;
+        Merchant.instance.Buy(this);
+        Destroy(costDisplay.gameObject);
     }
 
     protected override bool onDrop()
