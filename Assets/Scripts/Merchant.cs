@@ -14,6 +14,7 @@ public class Merchant : MonoBehaviour
     [SerializeField] private RectTransform emptyGameObject;
     [SerializeField] private RectTransform consumablesLayout;
     [SerializeField] private RectTransform merchantTransform;
+    private List<Consumable> consumables;
     public static Merchant instance;
     private float posHidden = 1100f;
     private float posVisible = 650f;
@@ -35,6 +36,7 @@ public class Merchant : MonoBehaviour
 
     public void SpawnShop()
     {
+        consumables = new List<Consumable>();
         SetupHealConsumable();
         SetupHarpConsumable();
         SetupMandolinConsumable();
@@ -57,6 +59,7 @@ public class Merchant : MonoBehaviour
         RectTransform go = Instantiate(emptyGameObject, consumablesLayout);
         Consumable consumable = Instantiate(prefabConsumable, go);
         consumable.setSlot(go);
+        consumables.Add(consumable);
         return consumable;
     }
 
@@ -86,6 +89,12 @@ public class Merchant : MonoBehaviour
         setupConsumable()
             .setup(tambourinSprite, delegate {  })
             .setCost(50);
+    }
+
+    public void Buy(Consumable consumable)
+    {
+        consumables.Remove(consumable);
+        consumables.ForEach(it => it.updateCanBeDragged());
     }
     
 }

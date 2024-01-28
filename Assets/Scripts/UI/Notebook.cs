@@ -15,11 +15,13 @@ public class Notebook : MonoBehaviour
 
     public void Hide()
     {
+        AudioManager.PlaySfx("CloseBook");
         rectTransform.DOAnchorPos(posHidden, 1f).SetEase(Ease.InOutQuad);
     }
 
     public void Show()
     {
+        AudioManager.PlaySfx("OpenBook");
         rectTransform.DOAnchorPos(posDisplayed, 1f).SetEase(Ease.InOutQuad);
     }
 
@@ -45,6 +47,7 @@ public class Notebook : MonoBehaviour
         if (currentPage == pages.Count-1) return;
         pages[currentPage].gameObject.SetActive(false);
         currentPage++;
+        AudioManager.PlaySfx("FlipPage");
         pages[currentPage].gameObject.SetActive(true);
     }
     
@@ -53,6 +56,7 @@ public class Notebook : MonoBehaviour
         if (currentPage == 0) return;
         pages[currentPage].gameObject.SetActive(false);
         currentPage--;
+        AudioManager.PlaySfx("FlipPage");
         pages[currentPage].gameObject.SetActive(true);
     }
 
