@@ -67,7 +67,7 @@ public class Merchant : MonoBehaviour
     {
         setupConsumable()
             .setup(healSprite, Player.Heal)
-            .setCost(50)
+            .setCost(5)
             .setText("Restore max health.");
     }
 
@@ -75,7 +75,7 @@ public class Merchant : MonoBehaviour
     {
         setupConsumable()
             .setup(harpSprite, Ennemy.IncreasePatience)
-            .setCost(50)
+            .setCost(7)
             .setText("Increase patients of everyone by one.");
     }
 
@@ -83,7 +83,7 @@ public class Merchant : MonoBehaviour
     {
         setupConsumable()
             .setup(mandolinSprite, Ennemy.ReduceEmotions)
-            .setCost(50)
+            .setCost(6)
             .setText("Reduce emotions of everyone by one.");
     }
 
@@ -91,7 +91,7 @@ public class Merchant : MonoBehaviour
     {
         setupConsumable()
             .setup(tambourinSprite, Ennemy.ApplyTambourin)
-            .setCost(50)
+            .setCost(8)
             .setText("+2 emotion for closest people, -2 for farthest people.");
     }
 

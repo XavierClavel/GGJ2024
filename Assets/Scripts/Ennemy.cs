@@ -191,6 +191,7 @@ public class Ennemy : MonoBehaviour
     private void Cure()
     {
         Debug.Log("Patient is cured !");
+        AudioManager.PlaySfx("Cure");
         Player.IncreaseGold(patience);
         updateEnnemyList(this);
         Leave();
@@ -199,6 +200,7 @@ public class Ennemy : MonoBehaviour
     protected virtual void Fail()
     {
         Debug.Log("Ennemy has left");
+        AudioManager.PlaySfx("Fail");
         Player.TakeDamage(damage);
         Leave();
     }
