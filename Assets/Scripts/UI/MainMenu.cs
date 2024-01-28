@@ -6,7 +6,7 @@ public class MainMenu : MonoBehaviour
 {
     public void Resume()
     {
-
+        Player.instance.PauseUnpause();
     }
 
     public void Play()

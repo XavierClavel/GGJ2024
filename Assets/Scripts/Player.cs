@@ -138,19 +138,24 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (isPauseMenuActive)
-            {
-                pauseMenu.DOAnchorPosY(UpgradesManager.hiddenPos, 1f)
-                    .SetEase(Ease.InOutQuad);
-            }
-            else
-            {
-                pauseMenu.DOAnchorPosY(UpgradesManager.visiblePos, 1f)
-                    .SetEase(Ease.InOutQuad);
-            }
-
-            isPauseMenuActive = !isPauseMenuActive;
+            PauseUnpause();
         }
+    }
+
+    public void PauseUnpause()
+    {
+        if (isPauseMenuActive)
+        {
+            pauseMenu.DOAnchorPosY(UpgradesManager.hiddenPos, 1f)
+                .SetEase(Ease.InOutQuad);
+        }
+        else
+        {
+            pauseMenu.DOAnchorPosY(UpgradesManager.visiblePos, 1f)
+                .SetEase(Ease.InOutQuad);
+        }
+
+        isPauseMenuActive = !isPauseMenuActive;
     }
 
     private void ShowShop()
