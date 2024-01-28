@@ -10,6 +10,7 @@ public class DataManager : ScriptableObject
     public static Dictionary<string, CardHandler> dictKeyToCard;
     public static Dictionary<string, EmotionHandler> dictKeyToEmotion;
     public static Dictionary<int, WaveData> dictIndexToWaveData;
+    public static Dictionary<string, Sfx> dictKeyToSfx;
     public static List<Recipe> recipes;
 
     public void LoadData()
@@ -34,6 +35,13 @@ public class DataManager : ScriptableObject
         {
             Debug.Log(emotionHandler.getKey());
             dictKeyToEmotion[emotionHandler.getKey()] = emotionHandler;
+        }
+
+        dictKeyToSfx = new Dictionary<string, Sfx>();
+        Sfx[] sfxs = Resources.LoadAll<Sfx>("Sfx/");
+        foreach (var sfx in sfxs)
+        {
+            dictKeyToSfx[sfx.getKey()] = sfx;
         }
         
         RecipeBuilder recipeBuilder = new RecipeBuilder();

@@ -32,6 +32,7 @@ public class Card : Draggable<CardHandler>, IPointerEnterHandler, IPointerExitHa
         icon.sprite = cardHandler.getIcon();
         icon.color = cardHandler.getAccentColor();
         bandeau.color = cardHandler.getAccentColor();
+        image.color = cardHandler.getBackgroundColor();
         rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, hiddenPos);
 
         gameObject.name = key;
