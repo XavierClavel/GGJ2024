@@ -7,31 +7,41 @@ using UnityEngine.EventSystems;
 
 public class CardHolder : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    [HideInInspector] public Card hoverCard;
+    [HideInInspector] public Card selectedCard;
     public RectTransform rectTransform;
-    public int index;
+    
     public void OnPointerEnter(PointerEventData e)
     {
         Debug.Log("Mouse enter");
-        Player.setSelectedCardHolder(this);
-        Player.getSelectedCard()?.rectTransform.DOScale(0.7f, 0.5f).SetEase(Ease.InOutQuad);
+        Card card = Player.getSelectedCard();
+        if (card == null) return;
+        hoverCard = card;
+        hoverCard.hoverCardHolder = this;
+        if(selectedCard == null || hoverCard == selectedCard) hoverCard.rectTransform.DOScale(0.7f, 0.5f).SetEase(Ease.InOutQuad);
+        //Player.setSelectedCardHolder(this);
     }
 
     public void OnPointerExit(PointerEventData e)
     {
+        if (hoverCard == null) return;
+        if (selectedCard == null || selectedCard == hoverCard) hoverCard.rectTransform.DOScale(1f, 0.5f).SetEase(Ease.InOutQuad);
+        hoverCard.hoverCardHolder = null;
+        hoverCard = null;
         Debug.Log("Mouse exit");
-        Player.getSelectedCard()?.rectTransform.DOScale(1f, 0.5f).SetEase(Ease.InOutQuad);
-        if (Player.getSelectedCardHolder() == this) Player.setSelectedCardHolder(null);
+        //if (Player.getSelectedCardHolder() == this) Player.setSelectedCardHolder(null);
     }
 
-    public Vector3 getPosition()
+    public void UseCard()
     {
-        return rectTransform.anchoredPosition;
+        if (selectedCard == null) return;
+        Destroy(selectedCard.gameObject);
+        selectedCard = null;
     }
 
-    private void OnMouseUp()
+    public bool isFree(Card card)
     {
-        Debug.Log("Mouse Up");
-        
+        return selectedCard == null || selectedCard == card;
     }
 
 }

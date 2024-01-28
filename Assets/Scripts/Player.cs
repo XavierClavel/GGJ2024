@@ -9,9 +9,7 @@ public class Player : MonoBehaviour
 {
     public static Player instance;
     private static Card selectedCard;
-    private static CardHolder selectedCardHolder;
-    private static CardHolder lastSelectedCardHolder;
-    public static Card[] placedCards = new Card[3];
+    [SerializeField] private List<CardHolder> cardHolders;
     private static int health;
     private static int maxHealth;
     private static int gold;
@@ -47,30 +45,12 @@ public class Player : MonoBehaviour
         selectedCard = card;
     }
 
-    public static void placeCard()
-    {
-        if (getSelectedCardHolder() == null) return;
-        placedCards[getSelectedCardHolder().index] = getSelectedCard();
-    }
-
-    public static void removeCard()
-    {
-        if (lastSelectedCardHolder == null) return;
-        placedCards[lastSelectedCardHolder.index] = null;
-    }
-
-    public static CardHolder getSelectedCardHolder() => selectedCardHolder;
-    public static void setSelectedCardHolder(CardHolder cardHolder)
-    {
-        selectedCardHolder = cardHolder;
-        if (cardHolder != null) lastSelectedCardHolder = cardHolder;
-    }
-
     public void ValidateCombination()
     {
         List<string> keys = new List<string>();
-        foreach (var card in placedCards)
+        foreach (var cardHolder in cardHolders)
         {
+            Card card = cardHolder.selectedCard;
             if (card == null) continue;
             string key = card.getCardInfo().getKey();
             Debug.Log(key);
@@ -91,10 +71,9 @@ public class Player : MonoBehaviour
             ennemy.ApplyEffect(recipe);
         }
 
-        foreach (var card in placedCards)
+        foreach (var cardHolder in cardHolders)
         {
-            if (card == null) continue;
-            Destroy(card.gameObject);
+            cardHolder.UseCard();
         }
 
         if (Ennemy.isWaveOver())
@@ -120,9 +99,7 @@ public class Player : MonoBehaviour
         DeckManager.ResetDeck();
         WaveManager.ResetWave();
         selectedCard = null;
-        selectedCardHolder = null;
-        lastSelectedCardHolder = null;
-        placedCards = new Card[3];
+        cardHolders.ForEach(it => it.UseCard());
         health = 5;
         maxHealth = health;
         gold = 0;
@@ -184,13 +161,7 @@ public class Player : MonoBehaviour
     private void ResetSlots()
     {
         setSelectedCard(null);
-        setSelectedCardHolder(null);
-        placedCards = new Card[3]
-        {
-            null,
-            null,
-            null
-        };
+        cardHolders.ForEach(it => it.UseCard());
     }
     
 

@@ -10,6 +10,8 @@ using UnityEngine.UI;
 
 public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
+    [HideInInspector] public CardHolder hoverCardHolder = null;
+    [HideInInspector] public CardHolder selectedCardHolder = null;
     public RectTransform rectTransform;
     [SerializeField] private TextMeshProUGUI titleDisplay;
     [SerializeField] private Image image;
@@ -59,6 +61,7 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
         image.raycastTarget = false;
         Debug.Log("Pointer down");
         Player.setSelectedCard(this);
+        transform.SetParent(EnnemyManager.instance.canvas);
     }
 
     public void OnDrag(PointerEventData data)
@@ -68,29 +71,41 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        
         image.raycastTarget = true;
         Debug.Log("Pointer up");
-        CardHolder cardHolder = Player.getSelectedCardHolder();
-        Debug.Log(cardHolder);
-        Debug.Log(Player.placedCards[cardHolder.index]);
-        if (cardHolder == null)
+        if (hoverCardHolder == null)
         {
             AttachToSlot();
-            Player.removeCard();
-        } else if (Player.placedCards[cardHolder.index] != null)
+        } else if (!hoverCardHolder.isFree(this))
         {
             AttachToSlot();
+            hoverCardHolder.hoverCard = null;
+            hoverCardHolder = null;
         }
         else
         {
-            AttachToCardHolder(cardHolder);
-            Player.placeCard();
+            if (selectedCardHolder != null && selectedCardHolder != hoverCardHolder)
+            {
+                selectedCardHolder.selectedCard = null;
+                selectedCardHolder = null;
+            }
+            AttachToCardHolder(hoverCardHolder);
+            selectedCardHolder = hoverCardHolder;
+            selectedCardHolder.selectedCard = this;
+            hoverCardHolder.hoverCard = null;
+            hoverCardHolder = null;
         }
-        if (Player.getSelectedCard() == this) Player.setSelectedCard(null);
+        Player.setSelectedCard(null);
     }
 
     private void AttachToSlot()
     {
+        if (selectedCardHolder != null)
+        {
+            selectedCardHolder.selectedCard = null;
+            selectedCardHolder = null;
+        }
         rectTransform.SetParent(slot);
         rectTransform.anchorMin = 0.5f * Vector2.one;
         rectTransform.anchorMax = 0.5f * Vector2.one;
@@ -107,7 +122,7 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
 
     private void OnDestroy()
     {
-        Destroy(slot.gameObject);
+        if(slot != null) Destroy(slot.gameObject);
     }
 }
  
