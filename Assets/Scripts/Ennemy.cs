@@ -18,6 +18,7 @@ public class Ennemy : MonoBehaviour
     [SerializeField] private Transform emotionLayout;
     private List<GameObject> patiencePoints = new List<GameObject>();
     private Dictionary<string, int> dictEmotions = new Dictionary<string, int>();
+    private bool isKing = false;
 
     private Dictionary<string, EmotionDisplay> dictKeyToEmotionDisplay = new Dictionary<string, EmotionDisplay>();
     protected int damage;
@@ -66,6 +67,12 @@ public class Ennemy : MonoBehaviour
     public Ennemy setSprite(Sprite sprite)
     {
         image.sprite = sprite;
+        return this;
+    }
+
+    public Ennemy setKing(bool king = false)
+    {
+        isKing = king;
         return this;
     }
     
