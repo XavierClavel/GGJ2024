@@ -11,7 +11,7 @@ public class ObjectHandler : ScriptableObject
     public string getKey() => key.Trim();
     public Sprite getIcon() => icon;
     public Color getAccentColor() => accentColor;
-    public virtual Color getBackgroundColor() => Color.white;
+    public virtual Color getBackgroundColor() => new Color32(244, 235, 212, 255);
     public virtual bool isIntonation() => false;
 }
 
