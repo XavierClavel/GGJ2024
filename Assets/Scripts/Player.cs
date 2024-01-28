@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
     [SerializeField] private UpgradesManager upgradesPanel;
     [SerializeField] private RectTransform emptyGameObject;
     [SerializeField] private RectTransform pauseMenu;
+    [SerializeField] private RectTransform winScreen;
     private bool isPauseMenuActive = false;
 
     public static void Heal()
@@ -304,7 +305,9 @@ public class Player : MonoBehaviour
         {
             Destroy(card);
         }
-        instance.upgradesPanel.DisplayUpgrades();
+        Debug.Log(WaveManager.getCurrentWave());
+        if (WaveManager.getCurrentWave() == 20) Win();
+        else instance.upgradesPanel.DisplayUpgrades();
     }
 
     public static void TakeDamage(int amount)
@@ -332,6 +335,11 @@ public class Player : MonoBehaviour
     {
         gold -= amount;
         instance.goldDisplay.SetText(gold.ToString());
+    }
+
+    public void Win()
+    {
+        winScreen.DOAnchorPosY(0f, 1f).SetEase(Ease.InOutQuad);
     }
 
 }
