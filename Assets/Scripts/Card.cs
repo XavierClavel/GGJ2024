@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
-    [SerializeField] private RectTransform rectTransform;
+    public RectTransform rectTransform;
     [SerializeField] private TextMeshProUGUI titleDisplay;
     [SerializeField] private Image image;
     [SerializeField] private Image icon;
@@ -19,6 +19,7 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     private Vector2 startPos;
     private CardHandler cardHandler;
     private float hiddenPos = -300f;
+    private float inHolderScale = 0.7f;
 
     public Card setup(string key, Transform slot)
     {

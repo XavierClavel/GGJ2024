@@ -16,13 +16,24 @@ public class Player : MonoBehaviour
     private static int maxHealth;
     private static int gold;
 
-
+    [SerializeField] private TextMeshProUGUI pickPileDisplay;
+    [SerializeField] private TextMeshProUGUI discardPileDisplay;
     [SerializeField] private TextMeshProUGUI goldDisplay;
     [SerializeField] private TextMeshProUGUI healthDisplay;
     [SerializeField] private Transform cardsLayout;
     [SerializeField] private Card cardPrefab;
     [SerializeField] private UpgradesManager upgradesPanel;
     [SerializeField] private RectTransform emptyGameObject;
+
+    public static void setPickPileAmount(int amount)
+    {
+        instance.pickPileDisplay.SetText($"{amount}x");
+    }
+
+    public static void setDiscardPileAmount(int amount)
+    {
+        instance.discardPileDisplay.SetText($"{amount}x");
+    }
 
     public static void IncreaseMaxHealth()
     {

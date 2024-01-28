@@ -24,6 +24,7 @@ public static class DeckManager
     {
         hand.Remove(key);
         discardPile.Add(key);
+        UpdateDeckDisplay();
     }
     
     public static List<string> PickCards()
@@ -45,6 +46,8 @@ public static class DeckManager
             hand.Add(key);
             newCards.Add(key);
         }
+        
+        UpdateDeckDisplay();
 
         return newCards;
     }
@@ -59,6 +62,14 @@ public static class DeckManager
             pickPile.Add(key);
         }
         pickPile.Shuffle();
+        
+        UpdateDeckDisplay();
+    }
+
+    private static void UpdateDeckDisplay()
+    {
+        Player.setDiscardPileAmount(discardPile.Count);
+        Player.setPickPileAmount(pickPile.Count);
     }
 
     public static void ResetDeck()
