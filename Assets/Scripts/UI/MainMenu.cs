@@ -1,12 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField] private RectTransform tutorial;
+    private static float tutoPosVisible = 450f;
+    private static float tutoPosHidden = 900f;
     public void Resume()
     {
         Player.instance.PauseUnpause();
+    }
+
+    public void ShowTutorial()
+    {
+        tutorial.DOAnchorPosY(tutoPosVisible, 1f).SetEase(Ease.InOutQuad);
+    }
+
+    public void HideTutorial()
+    {
+        tutorial.DOAnchorPosY(tutoPosHidden, 1f).SetEase(Ease.InOutQuad);
     }
 
     public void Play()
