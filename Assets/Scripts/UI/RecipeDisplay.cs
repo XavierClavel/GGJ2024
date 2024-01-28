@@ -9,31 +9,32 @@ public class RecipeDisplay : MonoBehaviour
 {
     [SerializeField] private List<Image> images;
     [SerializeField] private List<TextMeshProUGUI> texts;
-    [SerializeField] private Sprite plusIcon;
-    [SerializeField] private Sprite equalsIcon;
+    private int recipeIndex;
 
-    public void DisplayRecipe(Recipe recipe)
+    public void DisplayRecipe(Recipe recipe, int recipeIndex)
     {
+        this.recipeIndex = recipeIndex;
+        bool isRecipeUncovered = RecipeManager.isRecipeUncovered(recipeIndex);
         int index = 0;
         foreach (var key in recipe.getInput())
         {
-            images[index].sprite = DataManager.dictKeyToCard[key].getIcon();
-            images[index].color = DataManager.dictKeyToCard[key].getAccentColor();
+            images[index].sprite = isRecipeUncovered ? DataManager.dictKeyToCard[key].getIcon() : Notebook.instance.unknownIcon;
+            images[index].color = isRecipeUncovered ? DataManager.dictKeyToCard[key].getAccentColor() : Color.white;
 
             index++;
 
-            images[index].sprite = plusIcon;
+            images[index].sprite = Notebook.instance.plusIcon;
             index++;
         }
 
-        for (int i = index; i < 5; i++)
+        for (int i = index - 1; i < 5; i++)
         {
             images[i].gameObject.SetActive(false);
         }
 
         index = 5;
 
-        images[index].sprite = equalsIcon;
+        images[index].sprite = Notebook.instance.equalsIcon;
 
         int textIndex = -1;
 
@@ -43,8 +44,10 @@ public class RecipeDisplay : MonoBehaviour
             index++;
             textIndex++;
             
-            images[index].sprite = DataManager.dictKeyToEmotion[emotion.Key].getIcon();
-            texts[textIndex].SetText(emotion.Value.ToString());
+            images[index].sprite = isRecipeUncovered ? DataManager.dictKeyToEmotion[emotion.Key].getIcon() : Notebook.instance.unknownIcon;
+            if (!isRecipeUncovered) texts[textIndex].SetText("");
+            else if (emotion.Value == 1) texts[textIndex].SetText("");
+            else texts[textIndex].SetText(emotion.Value.ToString());
         }
 
         index++;

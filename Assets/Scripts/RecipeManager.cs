@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public static class RecipeManager
 {
+   private static List<int> uncoveredRecipes = new List<int>();
+
+   public static bool isRecipeUncovered(int index) => uncoveredRecipes.Contains(index);
 
    public static Recipe findRecipe(string key)
    {
@@ -20,7 +23,18 @@ public static class RecipeManager
       //Look for exact recipe
       foreach (var recipe in DataManager.recipes)
       {
-         if (recipe.matchesInput(cardKeys)) return recipe;
+         if (!recipe.matchesInput(cardKeys)) continue;
+         int recipeIndex = DataManager.recipes.IndexOf(recipe);
+         if (!uncoveredRecipes.Contains(recipeIndex))
+         {
+            uncoveredRecipes.Add(recipeIndex);
+            Notebook.instance.dictIndexToRecipeDisplay[recipeIndex].DisplayRecipe(recipe, recipeIndex);
+            Player.ShowRecipePanel();
+            Player.instance.RecipeDisplay.DisplayRecipe(recipe, recipeIndex);
+            
+         }
+         return recipe;
+            
       }
       
       //If one card is intonation => fail

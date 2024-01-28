@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: OpenBook
   m_EditorClassIdentifier: 
   key: OpenBook
-  clip: {fileID: 8300000, guid: 7dcc83d9aa9c2944a90b5b0fc981a564, type: 3}
+  clip: {fileID: 8300000, guid: a158d1cbe56c7d343bb18b733ccce952, type: 3}
   volume: 1

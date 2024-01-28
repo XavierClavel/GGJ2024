@@ -14,7 +14,11 @@ public class NotebookPage : MonoBehaviour
         for (int i = 0; i < recipeDisplays.Count; i++)
         {
             if (DataManager.recipes.Count <= startIndex + i) recipeDisplays[i].gameObject.SetActive(false);
-            else recipeDisplays[i].DisplayRecipe(DataManager.recipes[startIndex + i]);
+            else
+            {
+                recipeDisplays[i].DisplayRecipe(DataManager.recipes[startIndex + i], startIndex+i);
+                Notebook.instance.dictIndexToRecipeDisplay[startIndex + i] = recipeDisplays[i];
+            }
         }
     }
 

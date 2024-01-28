@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Consumable : Draggable<string>
+public class Consumable : Draggable<string>, IPointerEnterHandler
 {
     [SerializeField] private Image icon;
     private int cost;
@@ -20,6 +21,12 @@ public class Consumable : Draggable<string>
         return this;
     }
 
+    public Consumable setText(string text)
+    {
+        this.text = text;
+        return this;
+    }
+
     public Consumable setup(Sprite sprite, UnityAction action)
     {
         this.action = action;
@@ -27,11 +34,12 @@ public class Consumable : Draggable<string>
         return this;
     }
 
-    public void setCost(int cost)
+    public Consumable setCost(int cost)
     {
         this.cost = cost;
         if (Player.getGold() < cost) canBeDragged = false;
         costDisplay.SetText(cost.ToString());
+        return this;
     }
 
     public void updateCanBeDragged()
@@ -70,5 +78,10 @@ public class Consumable : Draggable<string>
         Consume();
         Destroy(gameObject);
         return false;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        Player.instance.infoText.SetText(text);
     }
 }

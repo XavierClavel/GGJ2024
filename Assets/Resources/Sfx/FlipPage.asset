@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: FlipPage
   m_EditorClassIdentifier: 
   key: FlipPage
-  clip: {fileID: 8300000, guid: 2d921c88f1b9f274c955ebcfd16312c0, type: 3}
+  clip: {fileID: 8300000, guid: 02860e74511f8ce4a9e26623e9874a76, type: 3}
   volume: 1

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Tambour
   m_EditorClassIdentifier: 
   key: Tambour
-  clip: {fileID: 8300000, guid: 82169c1c1d72c8e4080ccd3e47e2b628, type: 3}
+  clip: {fileID: 8300000, guid: 6cf2951c49fffa5448e95648394b1b3e, type: 3}
   volume: 1

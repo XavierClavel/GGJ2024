@@ -32,14 +32,14 @@ public class EnnemyManager : MonoBehaviour
         int ennemiesAmount = waveData.ennemies.getRandom();
         for (int i = 0; i < ennemiesAmount; i++)
         {
-            instance.SpawnEnnemy(spawnPos.popRandom(), waveData);   
+            instance.SpawnEnnemy(spawnPos.popRandom(), waveData, WaveManager.getCurrentWave() == 20);   
         }
     }
     
 
-    private void SpawnEnnemy(float position, WaveData waveData)
+    private void SpawnEnnemy(float position, WaveData waveData, bool king = false)
     {
-        Ennemy ennemy = Instantiate(ennemyPrefab, ennemiesLayout);
+        Ennemy ennemy = Instantiate(ennemyPrefab, ennemiesLayout, king);
         int maxPoints = waveData.emotionsPoints.getRandom();
         ennemy
             .setup(position, GenerateDictEmotions(waveData, maxPoints))
@@ -51,14 +51,17 @@ public class EnnemyManager : MonoBehaviour
     {
         switch (maxPoints)
         {
-            case <5:
+            case <=6:
                 return spritesPaysans.getRandom();
             
-            case <10:
+            case <=13:
                 return spritesBasic.getRandom();
             
-            case <15:
+            case <=19:
                 return spritesNobles.getRandom();
+            
+            case 20:
+                return spritesKings.popRandom();
             
            default:
                return spritesPaysans.getRandom();
