@@ -1407,7 +1407,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 678.0001, y: -196.99997}
+  m_AnchoredPosition: {x: 1102.41, y: -196.99997}
   m_SizeDelta: {x: 251, y: 251}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &311073045
@@ -1467,6 +1467,7 @@ MonoBehaviour:
   prefabConsumable: {fileID: 5374594011583137401, guid: 6699407aeb5d5584b9ec824a1e2b38d0, type: 3}
   emptyGameObject: {fileID: 7830224266651012849, guid: c73c4ea8f91e3ed4ab913f44d5b9365c, type: 3}
   consumablesLayout: {fileID: 898884100}
+  merchantTransform: {fileID: 311073044}
 --- !u!1 &381119053
 GameObject:
   m_ObjectHideFlags: 0
@@ -1780,7 +1781,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 311073047}
         m_TargetAssemblyTypeName: Merchant, Assembly-CSharp
-        m_MethodName: DespawnShop
+        m_MethodName: HideShop
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

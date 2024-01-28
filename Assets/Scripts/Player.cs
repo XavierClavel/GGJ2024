@@ -125,7 +125,39 @@ public class Player : MonoBehaviour
     private void Start()
     {
        PrepareWave();
-       Merchant.instance.SpawnShop();
+    }
+
+    private void ShowShop()
+    {
+        StartCoroutine(nameof(showShop));
+    }
+
+    public void HideShop()
+    {
+        StartCoroutine(nameof(hideShop));
+    }
+
+    private IEnumerator showShop()
+    {
+        
+        WaveDisplay.instance.DisplayWaveIndicator(true);
+        yield return Helpers.getWait(1f);
+        WaveDisplay.instance.MovePlayerIndicator();
+        yield return Helpers.getWait(1f);
+        WaveDisplay.instance.HideWaveIndicator();
+        yield return Helpers.getWait(1f);
+        Merchant.instance.Show();
+        yield return Helpers.getWait(1.5f);
+        Merchant.instance.SpawnShop();
+    }
+
+    private IEnumerator hideShop()
+    {
+        Merchant.instance.DespawnShop();
+        yield return Helpers.getWait(0.5f);
+        Merchant.instance.Hide();
+        yield return Helpers.getWait(1.5f);
+        WaveOver();
     }
 
     private void NewTurn()
@@ -156,14 +188,17 @@ public class Player : MonoBehaviour
 
     public void PrepareWave()
     {
-        StartCoroutine(nameof(NewWave));
+        ResetSlots();
+        DeckManager.ResetPiles();
+        WaveManager.IncreaseWave();
+        if (WaveManager.isWaveShop())
+        {
+            ShowShop();
+        } else StartCoroutine(nameof(NewWave));
     }
 
     private IEnumerator NewWave()
     {
-        ResetSlots();
-        WaveManager.IncreaseWave();
-        DeckManager.ResetPiles();
         WaveDisplay.instance.DisplayWaveIndicator(true);
         yield return Helpers.getWait(1f);
         WaveDisplay.instance.MovePlayerIndicator();
