@@ -39,10 +39,10 @@ public class EnnemyManager : MonoBehaviour
 
     private Ennemy SpawnEnnemy(float position, WaveData waveData, bool king = false)
     {
-        Ennemy ennemy = Instantiate(ennemyPrefab, ennemiesLayout, king);
+        Ennemy ennemy = Instantiate(ennemyPrefab, ennemiesLayout);
         int maxPoints = waveData.emotionsPoints.getRandom();
         ennemy
-            .setup(position, GenerateDictEmotions(waveData, maxPoints))
+            .setup(position, GenerateDictEmotions(waveData, maxPoints), king)
             .setSprite(getSprite(maxPoints))
             ;
         return ennemy;

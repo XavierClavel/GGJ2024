@@ -86,8 +86,9 @@ public class Ennemy : MonoBehaviour
         }
     }
 
-    public Ennemy setup(float position, Dictionary<string, int> dictEmotions)
+    public Ennemy setup(float position, Dictionary<string, int> dictEmotions, bool king = false)
     {
+        isKing = king;
         ennemiesList.Add(this);
         rectTransform.anchoredPosition = 800f * Vector2.right;
         rectTransform.DOAnchorPosX(position, 2f).SetEase(Ease.OutQuad);
@@ -117,6 +118,11 @@ public class Ennemy : MonoBehaviour
 
     private void setPatience()
     {
+        if (isKing)
+        {
+            patience = 3; 
+            return;
+        }
         int total = 0;
         foreach (var e in this.dictEmotions.Values)
         {
@@ -199,10 +205,21 @@ public class Ennemy : MonoBehaviour
 
     protected virtual void Fail()
     {
+
         Debug.Log("Ennemy has left");
         AudioManager.PlaySfx("Fail");
         Player.TakeDamage(damage);
-        Leave();
+        if (!isKing)
+        {
+            Leave();
+            return;
+        }
+        patience = 3;
+        for (int i = 0; i < patience; i++)
+        {
+            GameObject go = Instantiate(patiencePoint, patienceLayout);
+            patiencePoints.Add(go);
+        }
     }
 
     private void Leave()

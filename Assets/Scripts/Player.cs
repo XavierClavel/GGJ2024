@@ -316,7 +316,7 @@ public class Player : MonoBehaviour
 
     private static void Death()
     {
-        Helpers.ReloadScene();
+        TransitionManager.TransitionToScene("SampleScene");
     }
 
     public static void IncreaseGold(int amount)
