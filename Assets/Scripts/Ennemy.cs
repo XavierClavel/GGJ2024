@@ -24,6 +24,36 @@ public class Ennemy : MonoBehaviour
 
     private Dictionary<string, EmotionDisplay> dictKeyToEmotionDisplay = new Dictionary<string, EmotionDisplay>();
     protected int damage;
+    private int ennemyIndex = 0;
+
+    public void setIndex(int value)
+    {
+        ennemyIndex = value;
+    }
+    
+    public static void ApplyTambourin()
+    {
+        Ennemy[] ennemies = new Ennemy[ennemiesList.Count];
+        ennemiesList.CopyTo(ennemies);
+        foreach (var ennemy in ennemies)
+        {
+            ennemy.Tambourin();
+        }
+    }
+
+    public void Tambourin()
+    {
+        if (ennemyIndex == 1) return;
+        List<string> keys = dictEmotions.Keys.ToList();
+        foreach (var key in keys)
+        {
+            if (ennemyIndex == 0) dictEmotions[key] += 2;
+            if (ennemyIndex == 2) dictEmotions[key] -= 2;
+            dictKeyToEmotionDisplay[key].setValue(dictEmotions[key]);
+            if (dictEmotions[key] <= 0) dictEmotions.Remove(key);
+        }
+        
+    }
 
     public static void IncreasePatience()
     {
@@ -61,6 +91,9 @@ public class Ennemy : MonoBehaviour
         ennemiesList.Add(this);
         rectTransform.anchoredPosition = 800f * Vector2.right;
         rectTransform.DOAnchorPosX(position, 2f).SetEase(Ease.OutQuad);
+        if (position < -50f) ennemyIndex = 0;
+        else if (position < 50f) ennemyIndex = 1;
+        else ennemyIndex = 2;
         this.dictEmotions = dictEmotions;
         setPatience();
         setDamage();

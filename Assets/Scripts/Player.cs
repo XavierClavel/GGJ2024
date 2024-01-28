@@ -156,7 +156,7 @@ public class Player : MonoBehaviour
         cardHolders.ForEach(it => it.UseDraggable());
         health = 5;
         maxHealth = health;
-        gold = 51;
+        gold = 0;
         IncreaseGold(0);
         TakeDamage(0);
     }
