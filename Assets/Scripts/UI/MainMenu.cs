@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
@@ -11,6 +12,14 @@ public class MainMenu : MonoBehaviour
     private static float tutoPosHidden = 1100;
     public RectTransform buttons;
     public RectTransform title;
+
+    private void Awake()
+    {
+        if (title == null) return;
+        buttons.DOAnchorPosY(90, 1f).SetEase(Ease.InOutQuad);
+        title.DOAnchorPosX(-400f,1.2f).SetEase(Ease.InOutQuad);
+    }
+
     public void Resume()
     {
         Player.instance.PauseUnpause();
@@ -40,7 +49,8 @@ public class MainMenu : MonoBehaviour
 
     public void Quit()
     {
-        TransitionManager.Quit();
+        if (title == null) TransitionManager.Quit();
+        else Application.Quit();
     }
 
     IEnumerator WaitBeforePlay()
