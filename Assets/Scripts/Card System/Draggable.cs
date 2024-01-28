@@ -59,9 +59,15 @@ public abstract class Draggable<T> : MonoBehaviour, IDragHandler, IBeginDragHand
             selectedDraggableHolder.selectedDraggable = this;
             hoverDraggableHolder.hoverDraggable = null;
             hoverDraggableHolder = null;
+            onPlaced();
         }
         
         onEndDrag();
+    }
+
+    protected virtual void onPlaced()
+    {
+        
     }
 
     protected virtual void onEndDrag()
@@ -78,6 +84,7 @@ public abstract class Draggable<T> : MonoBehaviour, IDragHandler, IBeginDragHand
     
     protected void AttachToSlot()
     {
+        if (!onDrop()) return;
         if (selectedDraggableHolder != null)
         {
             selectedDraggableHolder.selectedDraggable = null;
@@ -87,5 +94,10 @@ public abstract class Draggable<T> : MonoBehaviour, IDragHandler, IBeginDragHand
         rectTransform.anchorMin = 0.5f * Vector2.one;
         rectTransform.anchorMax = 0.5f * Vector2.one;
         rectTransform.anchoredPosition = Vector2.zero;
+    }
+
+    protected virtual bool onDrop()
+    {
+        return true;
     }
 }

@@ -10,6 +10,7 @@ public class Consumable : Draggable<string>
     [SerializeField] private int cost;
     [SerializeField] private string text;
     private UnityAction action;
+    private bool bought = false;
 
     public Consumable setSlot(Transform slot)
     {
@@ -37,5 +38,18 @@ public class Consumable : Draggable<string>
     protected override void onEndDrag()
     {
         Player.setSelectedConsumable(null);
+    }
+
+    protected override void onPlaced()
+    {
+        bought = true;
+    }
+
+    protected override bool onDrop()
+    {
+        if (!bought) return true;
+        Consume();
+        Destroy(gameObject);
+        return false;
     }
 }
