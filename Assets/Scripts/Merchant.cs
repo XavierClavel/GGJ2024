@@ -90,7 +90,7 @@ public class Merchant : MonoBehaviour
     void SetupTambourinConsumable()
     {
         setupConsumable()
-            .setup(tambourinSprite, delegate {  })
+            .setup(tambourinSprite, Ennemy.ApplyTambourin)
             .setCost(50)
             .setText("+2 emotion for closest people, -2 for farthest people.");
     }
