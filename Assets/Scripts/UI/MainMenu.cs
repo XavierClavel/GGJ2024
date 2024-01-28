@@ -55,6 +55,7 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator WaitBeforePlay()
     {
+        AudioManager.PlaySfx("New");
         buttons.DOAnchorPosY(1100f, 1f).SetEase(Ease.InOutQuad);
         title.DOAnchorPosX(-1600f,1f).SetEase(Ease.InOutQuad);
         yield return Helpers.getWait(1.5f);
