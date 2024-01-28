@@ -10,6 +10,10 @@ public class EnnemyManager : MonoBehaviour
     [SerializeField] private Transform ennemiesLayout;
     public RectTransform canvas;
     public static EnnemyManager instance;
+    [SerializeField] private List<Sprite> spritesPaysans;
+    [SerializeField] private List<Sprite> spritesBasic;
+    [SerializeField] private List<Sprite> spritesNobles;
+    [SerializeField] private List<Sprite> spritesKings;
 
     private void Awake()
     {
@@ -36,16 +40,37 @@ public class EnnemyManager : MonoBehaviour
     private void SpawnEnnemy(float position, WaveData waveData)
     {
         Ennemy ennemy = Instantiate(ennemyPrefab, ennemiesLayout);
-        ennemy.setup(position, GenerateDictEmotions(waveData));
+        int maxPoints = waveData.emotionsPoints.getRandom();
+        ennemy
+            .setup(position, GenerateDictEmotions(waveData, maxPoints))
+            .setSprite(getSprite(maxPoints))
+            ;
     }
 
-    private Dictionary<string, int> GenerateDictEmotions(WaveData waveData)
+    private Sprite getSprite(int maxPoints)
+    {
+        switch (maxPoints)
+        {
+            case <5:
+                return spritesPaysans.getRandom();
+            
+            case <10:
+                return spritesBasic.getRandom();
+            
+            case <15:
+                return spritesNobles.getRandom();
+            
+           default:
+               return spritesPaysans.getRandom();
+        }
+    }
+
+    private Dictionary<string, int> GenerateDictEmotions(WaveData waveData, int maxPoints)
     {
         Dictionary<string, int> dictEmotions = new Dictionary<string, int>();
         
         List<string> emotions = WaveManager.getAvailableEmotions().getRandomList(waveData.emotionsAmount.getRandom());
         
-        int maxPoints = waveData.emotionsPoints.getRandom();
         int pointsToSpend = maxPoints;
         int maxPerEmotion = emotions.Count == 1 ? maxPoints : maxPoints / 2 + 1;
         

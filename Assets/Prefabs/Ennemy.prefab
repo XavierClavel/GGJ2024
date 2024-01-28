@@ -54,6 +54,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa04f15c995bc764fa4ecf0882533c68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  image: {fileID: 4667797141059461060}
   rectTransform: {fileID: 6210210046622702595}
   patience: 5
   patiencePoint: {fileID: 459228835185921572, guid: 20c4fbcadfdb21a4caccb0c2aa9a61df, type: 3}

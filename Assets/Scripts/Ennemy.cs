@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Ennemy : MonoBehaviour
 {
+    [SerializeField] private Image image;
     public static List<Ennemy> ennemiesList = new List<Ennemy>();
     [SerializeField] private RectTransform rectTransform;
-    [SerializeField] private int patience;
+    [SerializeField] protected int patience;
     [SerializeField] private GameObject patiencePoint;
     [SerializeField] private Transform patienceLayout;
     [SerializeField] private EmotionDisplay prefabEmotionDisplay;
@@ -18,7 +20,7 @@ public class Ennemy : MonoBehaviour
     private Dictionary<string, int> dictEmotions = new Dictionary<string, int>();
 
     private Dictionary<string, EmotionDisplay> dictKeyToEmotionDisplay = new Dictionary<string, EmotionDisplay>();
-    private int damage;
+    protected int damage;
 
     public static void IncreasePatience()
     {
@@ -49,7 +51,7 @@ public class Ennemy : MonoBehaviour
         }
     }
 
-    public void setup(float position, Dictionary<string, int> dictEmotions)
+    public Ennemy setup(float position, Dictionary<string, int> dictEmotions)
     {
         ennemiesList.Add(this);
         rectTransform.anchoredPosition = 800f * Vector2.right;
@@ -58,7 +60,16 @@ public class Ennemy : MonoBehaviour
         setPatience();
         setDamage();
         SetupDisplay();
+        return this;
     }
+
+    public Ennemy setSprite(Sprite sprite)
+    {
+        image.sprite = sprite;
+        return this;
+    }
+    
+    
 
     private void setPatience()
     {
@@ -140,7 +151,7 @@ public class Ennemy : MonoBehaviour
         Leave();
     }
 
-    private void Fail()
+    protected virtual void Fail()
     {
         Debug.Log("Ennemy has left");
         Player.TakeDamage(damage);

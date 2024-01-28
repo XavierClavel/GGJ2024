@@ -47,6 +47,7 @@ public class Player : MonoBehaviour
     public static void IncreaseMaxHealth()
     {
         maxHealth += 2;
+        health += 2;
         TakeDamage(0);
     }
 
@@ -75,6 +76,8 @@ public class Player : MonoBehaviour
             keys.Add(key);
             DeckManager.UseCard(key);
         }
+
+        if (keys.isEmpty()) return;
 
         Recipe recipe = RecipeManager.getRecipe(keys);
         foreach (var output in recipe.getOutput())
