@@ -9,6 +9,8 @@ public static class DeckManager
     private static List<string> pickPile;
     private static List<string> discardPile;
     private static List<string> hand;
+
+    public static int getHandSize() => handSize;
     
     public static void IncreaseHandSize()
     {

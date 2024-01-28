@@ -64,14 +64,13 @@ public class UpgradesManager : MonoBehaviour
 
     private void GenerateUpgrade(UpgradeButton upgrade)
     {
-        float value = Random.Range(0f,1f);
-        if (value < 0.33f)
+        if (DeckManager.getHandSize() < 5 && Helpers.ProbabilisticBool(0.15f))
         {
             upgrade.Setup("Increase hand size", DeckManager.IncreaseHandSize, upgradeHand, Color.white);
             return;
         }
 
-        if (value < 0.50f)
+        if (Helpers.ProbabilisticBool(0.5f))
         {
             upgrade.Setup("More health", Player.IncreaseMaxHealth, upgradeHearts, Color.white);
             return;
