@@ -234,7 +234,7 @@ public class Player : MonoBehaviour
         foreach (var key in keys)
         {
             RectTransform go = Instantiate(emptyGameObject, cardsLayout);
-            go.eulerAngles = Random.Range(-5f, 5f) * Vector3.forward;
+            //go.eulerAngles = Random.Range(-5f, 5f) * Vector3.forward;
             cards.Add(Instantiate(cardPrefab, go).setup(key, go));
         }
 
