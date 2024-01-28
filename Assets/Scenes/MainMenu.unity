@@ -561,8 +561,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Play
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 0c2609e652bcd104fa86cda18baed693, type: 2}
-  m_sharedMaterial: {fileID: 6484850973047223637, guid: 0c2609e652bcd104fa86cda18baed693, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 337e6833d36d77a4eb45d2c95e3d6656, type: 2}
+  m_sharedMaterial: {fileID: 7635577906036268653, guid: 337e6833d36d77a4eb45d2c95e3d6656, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -931,7 +931,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 418, y: 64}
+  m_AnchoredPosition: {x: 475, y: 64}
   m_SizeDelta: {x: 605, y: 959}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &542499906
@@ -1007,7 +1007,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 224}
+  m_AnchoredPosition: {x: -311, y: 222}
   m_SizeDelta: {x: 1171.13, y: 150.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &572878447
@@ -1032,8 +1032,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Troubadour Therapy
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 0c2609e652bcd104fa86cda18baed693, type: 2}
-  m_sharedMaterial: {fileID: 6484850973047223637, guid: 0c2609e652bcd104fa86cda18baed693, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 337e6833d36d77a4eb45d2c95e3d6656, type: 2}
+  m_sharedMaterial: {fileID: 7635577906036268653, guid: 337e6833d36d77a4eb45d2c95e3d6656, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1093,7 +1093,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: -550.3008}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2130,10 +2130,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tutoriel
+  m_text: Tutorial
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 0c2609e652bcd104fa86cda18baed693, type: 2}
-  m_sharedMaterial: {fileID: 6484850973047223637, guid: 0c2609e652bcd104fa86cda18baed693, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 337e6833d36d77a4eb45d2c95e3d6656, type: 2}
+  m_sharedMaterial: {fileID: 7635577906036268653, guid: 337e6833d36d77a4eb45d2c95e3d6656, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2267,8 +2267,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Quit
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 0c2609e652bcd104fa86cda18baed693, type: 2}
-  m_sharedMaterial: {fileID: 6484850973047223637, guid: 0c2609e652bcd104fa86cda18baed693, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 337e6833d36d77a4eb45d2c95e3d6656, type: 2}
+  m_sharedMaterial: {fileID: 7635577906036268653, guid: 337e6833d36d77a4eb45d2c95e3d6656, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2431,7 +2431,7 @@ GameObject:
   - component: {fileID: 2110064055}
   - component: {fileID: 2110064054}
   m_Layer: 5
-  m_Name: Tutoriel
+  m_Name: Tutorial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
