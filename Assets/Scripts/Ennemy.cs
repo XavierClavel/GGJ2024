@@ -41,7 +41,12 @@ public class Ennemy : MonoBehaviour
             { Vault.emotion.Anger, 1},
             { Vault.emotion.Disgust, 1}
         };
-        ennemiesList.ForEach(it => it.ApplyEffect(dictEffects));
+        Ennemy[] ennemies = new Ennemy[ennemiesList.Count];
+        ennemiesList.CopyTo(ennemies);
+        foreach (var ennemy in ennemies)
+        {
+            ennemy.ApplyEffect(dictEffects);
+        }
     }
 
     public void setup(float position, Dictionary<string, int> dictEmotions)

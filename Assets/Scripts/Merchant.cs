@@ -21,30 +21,44 @@ public class Merchant : MonoBehaviour
 
     public void SpawnShop()
     {
+        SetupHealConsumable();
+        SetupHarpConsumable();
+        SetupMandolinConsumable();
+        SetupTambourinConsumable();
+    }
+
+    public void DespawnShop()
+    {
+        Debug.Log("Despawn shop");
+        consumablesLayout.KillAllChildren();
+    }
+
+    Consumable setupConsumable()
+    {
         RectTransform go = Instantiate(emptyGameObject, consumablesLayout);
         Consumable consumable = Instantiate(prefabConsumable, go);
-        SetupHealConsumable(consumable);
         consumable.setSlot(go);
+        return consumable;
     }
 
-    void SetupHealConsumable(Consumable consumable)
+    void SetupHealConsumable()
     {
-        consumable.setup(healSprite, Player.Heal);
+        setupConsumable().setup(healSprite, Player.Heal);
     }
 
-    void SetupHarpConsumable(Consumable consumable)
+    void SetupHarpConsumable()
     {
-        consumable.setup(harpSprite, Ennemy.IncreasePatience);
+        setupConsumable().setup(harpSprite, Ennemy.IncreasePatience);
     }
 
-    void SetupMandolinConsumable(Consumable consumable)
+    void SetupMandolinConsumable()
     {
-        consumable.setup(mandolinSprite, Ennemy.ReduceEmotions);
+        setupConsumable().setup(mandolinSprite, Ennemy.ReduceEmotions);
     }
 
-    void SetupTambourinConsumable(Consumable consumable)
+    void SetupTambourinConsumable()
     {
-        consumable.setup(tambourinSprite, delegate {  });
+        setupConsumable().setup(tambourinSprite, delegate {  });
     }
     
 }
