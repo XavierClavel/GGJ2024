@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
         List<string> keys = new List<string>();
         foreach (var cardHolder in cardHolders)
         {
-            Card card = cardHolder.selectedCard;
+            Card card = (Card)cardHolder.selectedDraggable;
             if (card == null) continue;
             string key = card.getCardInfo().getKey();
             Debug.Log(key);
@@ -79,7 +79,7 @@ public class Player : MonoBehaviour
 
         foreach (var cardHolder in cardHolders)
         {
-            cardHolder.UseCard();
+            cardHolder.UseDraggable();
         }
 
         if (Ennemy.isWaveOver())
@@ -105,7 +105,7 @@ public class Player : MonoBehaviour
         DeckManager.ResetDeck();
         WaveManager.ResetWave();
         selectedCard = null;
-        cardHolders.ForEach(it => it.UseCard());
+        cardHolders.ForEach(it => it.UseDraggable());
         health = 5;
         maxHealth = health;
         gold = 0;
@@ -167,7 +167,7 @@ public class Player : MonoBehaviour
     private void ResetSlots()
     {
         setSelectedCard(null);
-        cardHolders.ForEach(it => it.UseCard());
+        cardHolders.ForEach(it => it.UseDraggable());
     }
     
 

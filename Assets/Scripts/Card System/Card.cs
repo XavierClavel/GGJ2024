@@ -8,20 +8,17 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
+public class Card : Draggable<CardHandler>
 {
-    [HideInInspector] public CardHolder hoverCardHolder = null;
-    [HideInInspector] public CardHolder selectedCardHolder = null;
-    public RectTransform rectTransform;
+    
     [SerializeField] private TextMeshProUGUI titleDisplay;
-    [SerializeField] private Image image;
     [SerializeField] private Image icon;
     [SerializeField] private Image bandeau;
-    private Transform slot;
     private Vector2 startPos;
     private CardHandler cardHandler;
     private float hiddenPos = -300f;
     private float inHolderScale = 0.7f;
+    
 
     public Card setup(string key, Transform slot)
     {
@@ -56,55 +53,45 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     }
 
     
-    public void OnBeginDrag(PointerEventData data)
+    protected override void onBeginDrag()
     {
-        image.raycastTarget = false;
-        Debug.Log("Pointer down");
         Player.setSelectedCard(this);
-        transform.SetParent(EnnemyManager.instance.canvas);
     }
 
-    public void OnDrag(PointerEventData data)
+    protected override void onEndDrag()
     {
-        transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + Vector3.forward;
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        
-        image.raycastTarget = true;
         Debug.Log("Pointer up");
-        if (hoverCardHolder == null)
+        if (hoverDraggableHolder == null)
         {
             AttachToSlot();
-        } else if (!hoverCardHolder.isFree(this))
+        } else if (!hoverDraggableHolder.isFree(this))
         {
             AttachToSlot();
-            hoverCardHolder.hoverCard = null;
-            hoverCardHolder = null;
+            hoverDraggableHolder.hoverDraggable = null;
+            hoverDraggableHolder = null;
         }
         else
         {
-            if (selectedCardHolder != null && selectedCardHolder != hoverCardHolder)
+            if (selectedDraggableHolder != null && selectedDraggableHolder != hoverDraggableHolder)
             {
-                selectedCardHolder.selectedCard = null;
-                selectedCardHolder = null;
+                selectedDraggableHolder.selectedDraggable = null;
+                selectedDraggableHolder = null;
             }
-            AttachToCardHolder(hoverCardHolder);
-            selectedCardHolder = hoverCardHolder;
-            selectedCardHolder.selectedCard = this;
-            hoverCardHolder.hoverCard = null;
-            hoverCardHolder = null;
+            AttachToDraggableHolder(hoverDraggableHolder);
+            selectedDraggableHolder = hoverDraggableHolder;
+            selectedDraggableHolder.selectedDraggable = this;
+            hoverDraggableHolder.hoverDraggable = null;
+            hoverDraggableHolder = null;
         }
         Player.setSelectedCard(null);
     }
 
     private void AttachToSlot()
     {
-        if (selectedCardHolder != null)
+        if (selectedDraggableHolder != null)
         {
-            selectedCardHolder.selectedCard = null;
-            selectedCardHolder = null;
+            selectedDraggableHolder.selectedDraggable = null;
+            selectedDraggableHolder = null;
         }
         rectTransform.SetParent(slot);
         rectTransform.anchorMin = 0.5f * Vector2.one;
@@ -112,13 +99,7 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
         rectTransform.anchoredPosition = startPos;
     }
 
-    private void AttachToCardHolder(CardHolder cardHolder)
-    {
-        rectTransform.SetParent(cardHolder.rectTransform);
-        rectTransform.anchorMin = 0.5f * Vector2.one;
-        rectTransform.anchorMax = 0.5f * Vector2.one;
-        rectTransform.anchoredPosition = Vector2.zero;
-    }
+    
 
     private void OnDestroy()
     {
