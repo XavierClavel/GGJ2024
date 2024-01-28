@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Loud
   m_EditorClassIdentifier: 
   key: Loud
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 48ad8973d34fe99419b47997a6edafb7, type: 3}
+  accentColor: {r: 1, g: 1, b: 1, a: 1}
