@@ -2469,7 +2469,7 @@ RectTransform:
   m_GameObject: {fileID: 5441738652838191252}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2273610753393058866}
@@ -2477,7 +2477,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -229, y: -357}
+  m_AnchoredPosition: {x: -229, y: -323.19995}
   m_SizeDelta: {x: 148, y: 656}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4121511262053433117
@@ -2767,7 +2767,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -310}
+  m_AnchoredPosition: {x: 0, y: -278.2}
   m_SizeDelta: {x: 1079.41, y: 463.98}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &821208892981059370
@@ -2800,7 +2800,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "You can use the coins you've earned to buy items from the merchant. \r\nTo
     buy an item, click and drag the item to one of the slots to the left of your
-    character.\r\n\n\n\n\n\n\nEach item can be used once during a performance. "
+    character.\r\n\n\n\n\n\nEach item can be used once during a performance. "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 337e6833d36d77a4eb45d2c95e3d6656, type: 2}
   m_sharedMaterial: {fileID: 7635577906036268653, guid: 337e6833d36d77a4eb45d2c95e3d6656, type: 2}
@@ -3631,7 +3631,7 @@ RectTransform:
   m_GameObject: {fileID: 8702495326059246118}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2273610753393058866}
@@ -3639,7 +3639,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 219, y: -357}
+  m_AnchoredPosition: {x: 219, y: -323.2}
   m_SizeDelta: {x: 815, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5609523062212085756

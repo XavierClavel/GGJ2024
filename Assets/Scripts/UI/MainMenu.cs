@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private RectTransform tutorial;
     private static float tutoPosVisible = 75f;
     private static float tutoPosHidden = 1100;
+    public RectTransform buttons;
+    public RectTransform title;
     public void Resume()
     {
         Player.instance.PauseUnpause();
@@ -25,7 +28,9 @@ public class MainMenu : MonoBehaviour
 
     public void Play()
     {
-        TransitionManager.TransitionToScene("SampleScene");
+        StartCoroutine(nameof(WaitBeforePlay));
+        
+        //TransitionManager.TransitionToScene("SampleScene");
     }
 
     public void ToMainMenu()
@@ -36,5 +41,13 @@ public class MainMenu : MonoBehaviour
     public void Quit()
     {
         TransitionManager.Quit();
+    }
+
+    IEnumerator WaitBeforePlay()
+    {
+        buttons.DOAnchorPosY(1100f, 1f).SetEase(Ease.InOutQuad);
+        title.DOAnchorPosX(-1600f,1f).SetEase(Ease.InOutQuad);
+        yield return Helpers.getWait(1.5f);
+        SceneManager.LoadScene("SampleScene");
     }
 }
