@@ -234,6 +234,7 @@ public class Ennemy : MonoBehaviour
     private static void updateEnnemyList(Ennemy ennemy)
     {
         ennemiesList.Remove(ennemy);
-        if (ennemiesList.isEmpty()) Player.WaveOver();
+        if (!ennemiesList.isEmpty()) return;
+        Player.WaveOver();
     }
 }

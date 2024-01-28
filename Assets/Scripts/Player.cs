@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 
@@ -23,7 +24,7 @@ public class Player : MonoBehaviour
     public TextMeshProUGUI infoText;
 
     public RectTransform recipePanel;
-    public RecipeDisplay RecipeDisplay;
+    public RecipeDisplay recipeDisplay;
 
     [SerializeField] private TextMeshProUGUI pickPileDisplay;
     [SerializeField] private TextMeshProUGUI discardPileDisplay;
@@ -34,6 +35,7 @@ public class Player : MonoBehaviour
     [SerializeField] private UpgradesManager upgradesPanel;
     [SerializeField] private RectTransform emptyGameObject;
     [SerializeField] private RectTransform pauseMenu;
+    [SerializeField] private RectTransform winScreen;
     private bool isPauseMenuActive = false;
 
     public static void Heal()
@@ -303,7 +305,9 @@ public class Player : MonoBehaviour
         {
             Destroy(card);
         }
-        instance.upgradesPanel.DisplayUpgrades();
+        Debug.Log(WaveManager.getCurrentWave());
+        if (WaveManager.getCurrentWave() == 20) Win();
+        else instance.upgradesPanel.DisplayUpgrades();
     }
 
     public static void TakeDamage(int amount)
@@ -331,6 +335,11 @@ public class Player : MonoBehaviour
     {
         gold -= amount;
         instance.goldDisplay.SetText(gold.ToString());
+    }
+
+    public void Win()
+    {
+        winScreen.DOAnchorPosY(0f, 1f).SetEase(Ease.InOutQuad);
     }
 
 }

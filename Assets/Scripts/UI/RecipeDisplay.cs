@@ -13,6 +13,16 @@ public class RecipeDisplay : MonoBehaviour
 
     public void DisplayRecipe(Recipe recipe, int recipeIndex)
     {
+        for (int i = 0; i < images.Count; i++)
+        {
+            images[i].gameObject.SetActive(true);
+        }
+        
+        for (int i = 0; i < texts.Count; i++)
+        {
+            texts[i].gameObject.SetActive(true);
+        }
+        
         this.recipeIndex = recipeIndex;
         bool isRecipeUncovered = RecipeManager.isRecipeUncovered(recipeIndex);
         int index = 0;
@@ -20,9 +30,7 @@ public class RecipeDisplay : MonoBehaviour
         {
             images[index].sprite = isRecipeUncovered ? DataManager.dictKeyToCard[key].getIcon() : Notebook.instance.unknownIcon;
             images[index].color = isRecipeUncovered ? DataManager.dictKeyToCard[key].getAccentColor() : Color.white;
-
             index++;
-
             images[index].sprite = Notebook.instance.plusIcon;
             index++;
         }

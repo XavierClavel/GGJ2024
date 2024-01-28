@@ -31,8 +31,7 @@ public static class RecipeManager
                 AudioManager.PlaySfx("New");
             Notebook.instance.dictIndexToRecipeDisplay[recipeIndex].DisplayRecipe(recipe, recipeIndex);
             Player.ShowRecipePanel();
-            Player.instance.RecipeDisplay.DisplayRecipe(recipe, recipeIndex);
-            
+            Player.instance.recipeDisplay.DisplayRecipe(recipe, recipeIndex);
          }
          return recipe;
             
