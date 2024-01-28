@@ -12,7 +12,11 @@ public class Notebook : MonoBehaviour
     private static Vector2 posDisplayed = Vector2.zero;
     private static Vector2 posHidden = new Vector2(-1100f, -850f);
     [SerializeField] private RectTransform rectTransform;
-
+    public Dictionary<int, RecipeDisplay> dictIndexToRecipeDisplay = new Dictionary<int, RecipeDisplay>();
+    public Sprite plusIcon;
+    public Sprite equalsIcon;
+    public Sprite unknownIcon;
+    
     public void Hide()
     {
         AudioManager.PlaySfx("CloseBook");

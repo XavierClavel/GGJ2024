@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PoseCard
   m_EditorClassIdentifier: 
   key: PoseCard
-  clip: {fileID: 8300000, guid: 02824534920270d4ba9bb3b087093fe5, type: 3}
+  clip: {fileID: 8300000, guid: fb5a8a83d7f292742977c0e91030bd39, type: 3}
   volume: 1

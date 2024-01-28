@@ -6862,6 +6862,9 @@ MonoBehaviour:
   - {fileID: 1514319811}
   - {fileID: 547409699}
   rectTransform: {fileID: 866811364}
+  plusIcon: {fileID: 716764593, guid: 2090c582c4fc60346b13a66e60999db7, type: 3}
+  equalsIcon: {fileID: -410136312, guid: 2090c582c4fc60346b13a66e60999db7, type: 3}
+  unknownIcon: {fileID: 45909528, guid: 2090c582c4fc60346b13a66e60999db7, type: 3}
 --- !u!1 &877947852
 GameObject:
   m_ObjectHideFlags: 0

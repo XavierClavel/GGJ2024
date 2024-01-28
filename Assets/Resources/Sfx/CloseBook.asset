@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CloseBook
   m_EditorClassIdentifier: 
   key: CloseBook
-  clip: {fileID: 8300000, guid: 2dc09a95943bfa847852616cc6340680, type: 3}
+  clip: {fileID: 8300000, guid: d175439fb26868e48950122187a42fcf, type: 3}
   volume: 1
