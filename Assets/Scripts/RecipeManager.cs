@@ -29,6 +29,9 @@ public static class RecipeManager
          {
             uncoveredRecipes.Add(recipeIndex);
             Notebook.instance.dictIndexToRecipeDisplay[recipeIndex].DisplayRecipe(recipe, recipeIndex);
+            Player.ShowRecipePanel();
+            Player.instance.RecipeDisplay.DisplayRecipe(recipe, recipeIndex);
+            
          }
          return recipe;
             

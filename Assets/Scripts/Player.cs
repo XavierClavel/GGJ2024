@@ -56,13 +56,14 @@ public class Player : MonoBehaviour
     public static void ShowRecipePanel()
     {
         instance.recipePanel.DOAnchorPosY(infoPanelPosVisible, 1f).SetEase(Ease.InOutQuad);
-    }
-    
-    public static void HideRecipePanel()
-    {
-        instance.recipePanel.DOAnchorPosY(infoPanelPosHidden, 1f).SetEase(Ease.InOutQuad);
+        instance.StartCoroutine(nameof(hideRecipePanel));
     }
 
+    private IEnumerator hideRecipePanel()
+    {
+        yield return Helpers.getWait(3f);
+        instance.recipePanel.DOAnchorPosY(infoPanelPosHidden, 1f).SetEase(Ease.InOutQuad);
+    }
     
     public static void setPickPileAmount(int amount)
     {

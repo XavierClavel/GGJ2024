@@ -45,7 +45,9 @@ public class RecipeDisplay : MonoBehaviour
             textIndex++;
             
             images[index].sprite = isRecipeUncovered ? DataManager.dictKeyToEmotion[emotion.Key].getIcon() : Notebook.instance.unknownIcon;
-            texts[textIndex].SetText(isRecipeUncovered ? emotion.Value.ToString() : "");
+            if (!isRecipeUncovered) texts[textIndex].SetText("");
+            else if (emotion.Value == 1) texts[textIndex].SetText("");
+            else texts[textIndex].SetText(emotion.Value.ToString());
         }
 
         index++;

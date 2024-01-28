@@ -22,7 +22,7 @@ public class UpgradesManager : MonoBehaviour
     public void DisplayUpgrades()
     {
         instance = this;
-        rectTransform.DOAnchorPosY(visiblePos, 1f).SetEase(Ease.InOutQuad);
+        rectTransform.DOAnchorPosY(visiblePos, 1f).SetEase(Ease.InOutQuad).SetDelay(0.5f);
         upgradeButtons.ForEach(it => it.Activate());
         upgradeButtons.Shuffle();
         List<UpgradeButton> buttons = new List<UpgradeButton>()
