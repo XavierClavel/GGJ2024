@@ -31,6 +31,7 @@ public static class DeckManager
     
     public static List<string> PickCards()
     {
+        AudioManager.PlaySfx("Shuffle");
         List<string> newCards = new List<string>();
         while (hand.Count < handSize)
         {

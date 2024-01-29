@@ -69,6 +69,7 @@ public class Card : Draggable<CardHandler>, IPointerEnterHandler, IPointerExitHa
     {
         dragged = false;
         Player.setSelectedCard(null);
+        AudioManager.PlaySfx("PoseCard");
     }
     
 

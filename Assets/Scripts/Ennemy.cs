@@ -33,6 +33,7 @@ public class Ennemy : MonoBehaviour
     
     public static void ApplyTambourin()
     {
+        AudioManager.PlaySfx("Tambour");
         Ennemy[] ennemies = new Ennemy[ennemiesList.Count];
         ennemiesList.CopyTo(ennemies);
         foreach (var ennemy in ennemies)
