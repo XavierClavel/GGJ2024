@@ -6,6 +6,8 @@ public static class RecipeManager
 {
    private static List<int> uncoveredRecipes = new List<int>();
 
+   public static void uncoverRecipe(int index) => uncoveredRecipes.TryAdd(index);
+
    public static bool isRecipeUncovered(int index) => uncoveredRecipes.Contains(index);
 
    public static Recipe findRecipe(string key)
@@ -18,6 +20,16 @@ public static class RecipeManager
       return null;
    }
 
+   private static void UncoverRecipe(Recipe recipe, int recipeIndex)
+   {
+      uncoveredRecipes.Add(recipeIndex);
+      AudioManager.PlaySfx("New");
+      Notebook.instance.dictIndexToRecipeDisplay[recipeIndex].DisplayRecipe(recipe, recipeIndex);
+      Player.ShowRecipePanel();
+      Player.instance.recipeDisplay.DisplayRecipe(recipe, recipeIndex);
+      SaveManager.Save();
+   }
+
    public static Recipe getRecipe(List<string> cardKeys)
    {
       //Look for exact recipe
@@ -25,16 +37,8 @@ public static class RecipeManager
       {
          if (!recipe.matchesInput(cardKeys)) continue;
          int recipeIndex = DataManager.recipes.IndexOf(recipe);
-         if (!uncoveredRecipes.Contains(recipeIndex))
-         {
-            uncoveredRecipes.Add(recipeIndex);
-                AudioManager.PlaySfx("New");
-            Notebook.instance.dictIndexToRecipeDisplay[recipeIndex].DisplayRecipe(recipe, recipeIndex);
-            Player.ShowRecipePanel();
-            Player.instance.recipeDisplay.DisplayRecipe(recipe, recipeIndex);
-         }
+         if (!uncoveredRecipes.Contains(recipeIndex)) UncoverRecipe(recipe, recipeIndex);
          return recipe;
-            
       }
       
       //If one card is intonation => fail

@@ -52,14 +52,6 @@ public class DataManager : ScriptableObject
         dictIndexToWaveData = new Dictionary<int, WaveData>();
         waveDataBuilder.loadText(waveDataCsv, ref dictIndexToWaveData, "Wave Data");
 
-        foreach (var input in recipes[0].getInput())
-        {
-            Debug.Log($"input : {input}");
-        }
-        
-        foreach (var output in recipes[0].getOutput())
-        {
-            Debug.Log($"output : {output.Key}, amount : {output.Value}");
-        }
+        SaveManager.Load();
     }
 }

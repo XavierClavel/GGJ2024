@@ -127,6 +127,18 @@ public static class SingletonManager
 
 public static class Extensions
 {
+
+    public static string toBase64String(this BitArray b)
+    {
+        return Convert.ToBase64String(b.toByteArray());
+    }
+
+    public static Byte[] toByteArray(this BitArray b)
+    {
+        Byte[] e = new Byte[(b.Length / 8 + (b.Length % 8 == 0 ? 0 : 1))];
+        b.CopyTo(e, 0);
+        return e;
+    }
     
     public static void KillAllChildren(this Transform t)
     {
