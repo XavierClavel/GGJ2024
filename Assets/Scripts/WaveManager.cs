@@ -7,7 +7,7 @@ public static class WaveManager
     private static int currentWave = 0;
 
     public static void IncreaseWave() => currentWave++;
-    public static void ResetWave() => currentWave = 4;
+    public static void ResetWave() => currentWave = 0;
     public static int getCurrentWave() => currentWave;
     public static WaveData getWaveData() => DataManager.dictIndexToWaveData[getCurrentWave()];
 

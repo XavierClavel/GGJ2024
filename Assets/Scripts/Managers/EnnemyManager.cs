@@ -52,16 +52,16 @@ public class EnnemyManager : MonoBehaviour
     {
         switch (maxPoints)
         {
-            case <=6:
+            case <5:
                 return spritesPaysans.getRandom();
             
-            case <=13:
+            case <10:
                 return spritesBasic.getRandom();
             
-            case <=19:
+            case <15:
                 return spritesNobles.getRandom();
             
-            case 20:
+            case 15:
                 return spritesKings.popRandom();
             
            default:
@@ -76,7 +76,7 @@ public class EnnemyManager : MonoBehaviour
         List<string> emotions = WaveManager.getAvailableEmotions().getRandomList(waveData.emotionsAmount.getRandom());
         
         int pointsToSpend = maxPoints;
-        int maxPerEmotion = emotions.Count == 1 ? maxPoints : maxPoints / 2 + 1;
+        int maxPerEmotion = 5;
         
         for (int i = 0; i < emotions.Count; i++)
         {
@@ -94,12 +94,6 @@ public class EnnemyManager : MonoBehaviour
         }
 
         if (pointsToSpend == 0) return dictEmotions;
-        Debug.LogError("Points left not equal to zero");
-        Debug.LogError($"Points to spend : {maxPoints}");
-        foreach (var v in dictEmotions)
-        {
-            Debug.Log($"Emotion {v.Key}, Value {v.Value}");
-        }
 
         return null;
     }
