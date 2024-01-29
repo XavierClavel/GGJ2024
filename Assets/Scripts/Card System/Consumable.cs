@@ -66,6 +66,7 @@ public class Consumable : Draggable<string>, IPointerEnterHandler
 
     protected override void onPlaced()
     {
+        if (bought) return;
         Player.SpendGold(cost);
         bought = true;
         Merchant.instance.Buy(this);

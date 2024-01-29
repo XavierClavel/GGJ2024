@@ -58,15 +58,13 @@ public class Player : MonoBehaviour
     
     public static void ShowRecipePanel()
     {
-        instance.recipePanel.DOAnchorPosY(infoPanelPosVisible, 1f).SetEase(Ease.InOutQuad);
-        instance.StartCoroutine(nameof(hideRecipePanel));
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(instance.recipePanel.DOAnchorPosY(infoPanelPosVisible, 1f).SetEase(Ease.InOutQuad));
+        sequence.AppendInterval(2f);
+        sequence.Append(instance.recipePanel.DOAnchorPosY(infoPanelPosHidden, 1f).SetEase(Ease.InOutQuad));
+        sequence.Play();
     }
 
-    private IEnumerator hideRecipePanel()
-    {
-        yield return Helpers.getWait(3f);
-        instance.recipePanel.DOAnchorPosY(infoPanelPosHidden, 1f).SetEase(Ease.InOutQuad);
-    }
     
     public static void setPickPileAmount(int amount)
     {
@@ -106,18 +104,15 @@ public class Player : MonoBehaviour
             Card card = (Card)cardHolder.selectedDraggable;
             if (card == null) continue;
             string key = card.getCardInfo().getKey();
-            Debug.Log(key);
             keys.Add(key);
-            DeckManager.UseCard(key);
         }
 
         if (keys.isEmpty()) return;
 
         Recipe recipe = RecipeManager.getRecipe(keys);
-        foreach (var output in recipe.getOutput())
-        {
-            Debug.Log($"Emotion : {output.Key}, Value : {output.Value}");
-        }
+        if (recipe == null) return;
+        
+        keys.ForEach(DeckManager.UseCard);
 
         Ennemy[] ennemies = new Ennemy[Ennemy.ennemiesList.Count];
         Ennemy.ennemiesList.CopyTo(ennemies);

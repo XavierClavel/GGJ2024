@@ -83,7 +83,7 @@ public class Ennemy : MonoBehaviour
         ennemiesList.CopyTo(ennemies);
         foreach (var ennemy in ennemies)
         {
-            ennemy.ApplyEffect(dictEffects);
+            ennemy.ApplyEffect(dictEffects, false);
         }
     }
 
@@ -167,7 +167,7 @@ public class Ennemy : MonoBehaviour
         ApplyEffect(recipe.getOutput());
     }
 
-    public void ApplyEffect(Dictionary<string, int> input)
+    public void ApplyEffect(Dictionary<string, int> input, bool endTurn = true)
     {
         foreach (var effet in input)
         {
@@ -182,6 +182,8 @@ public class Ennemy : MonoBehaviour
             Cure();
             return;
         }
+
+        if (!endTurn) return;
 
         patience--;
         GameObject go = patiencePoints.Last();
