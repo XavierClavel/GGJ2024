@@ -11,7 +11,6 @@ public abstract class DraggableHolder<T> : MonoBehaviour, IPointerEnterHandler, 
     
     public void OnPointerEnter(PointerEventData e)
     {
-        Debug.Log("Mouse enter");
         Draggable<T> draggable = getSelectedDraggable();
         if (draggable == null) return;
         hoverDraggable = draggable;
@@ -27,8 +26,6 @@ public abstract class DraggableHolder<T> : MonoBehaviour, IPointerEnterHandler, 
         onPointerExit();
         hoverDraggable.hoverDraggableHolder = null;
         hoverDraggable = null;
-        Debug.Log("Mouse exit");
-        //if (Player.getSelectedCardHolder() == this) Player.setSelectedCardHolder(null);
     }
 
     protected virtual void onPointerEnter()

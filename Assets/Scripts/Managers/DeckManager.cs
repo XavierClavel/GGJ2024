@@ -44,7 +44,6 @@ public static class DeckManager
                 discardPile = new List<string>();
             }
             string key = pickPile.popRandom();
-            Debug.Log($"Picked {key}");
             hand.Add(key);
             newCards.Add(key);
         }

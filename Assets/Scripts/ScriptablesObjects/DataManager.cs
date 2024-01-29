@@ -19,13 +19,11 @@ public class DataManager : ScriptableObject
         CardHandler[] cardHandlers = Resources.LoadAll<CardHandler>("Actions/");
         foreach (var cardHandler in cardHandlers)
         {
-            Debug.Log(cardHandler.getKey());
             dictKeyToCard[cardHandler.getKey()] = cardHandler;
         }
         IntonationHandler[] intonationHandlers = Resources.LoadAll<IntonationHandler>("Intonations/");
         foreach (var cardHandler in intonationHandlers)
         {
-            Debug.Log(cardHandler.getKey());
             dictKeyToCard[cardHandler.getKey()] = cardHandler;
         }
         
@@ -33,7 +31,6 @@ public class DataManager : ScriptableObject
         EmotionHandler[] emotionHandlers = Resources.LoadAll<EmotionHandler>("Emotions/");
         foreach (var emotionHandler in emotionHandlers)
         {
-            Debug.Log(emotionHandler.getKey());
             dictKeyToEmotion[emotionHandler.getKey()] = emotionHandler;
         }
 
