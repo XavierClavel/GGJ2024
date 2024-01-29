@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
 
     public static void ShowInfoPanel()
     {
-        instance.infoText.SetText("");
+        instance.infoText.SetText("Welcome to the shop !");
         instance.infoPanel.DOAnchorPosY(infoPanelPosVisible, 1f).SetEase(Ease.InOutQuad);
     }
     
@@ -134,14 +134,6 @@ public class Player : MonoBehaviour
         NewTurn();
     }
 
-    private IEnumerator HideCards(List<Card> cards)
-    {
-        foreach (var card in cards)
-        {
-            card.Hide();
-            yield return 0.2f;
-        }
-    }
 
     private void Awake()
     {
@@ -189,38 +181,60 @@ public class Player : MonoBehaviour
 
     private void ShowShop()
     {
-        StartCoroutine(nameof(showShop));
+        Merchant.instance.isShopActive = true;
+        Sequence sequence = DOTween.Sequence();
+        sequence.AppendCallback(delegate { WaveDisplay.instance.DisplayWaveIndicator(true); });
+        sequence.AppendInterval(1f);
+        sequence.AppendCallback(WaveDisplay.instance.MovePlayerIndicator);
+        sequence.AppendInterval(1f);
+        sequence.AppendCallback(WaveDisplay.instance.HideWaveIndicator);
+        sequence.AppendCallback(Merchant.instance.Show);
+        sequence.AppendInterval(1.5f);
+        sequence.AppendCallback(Merchant.instance.SpawnShop);
+        sequence.AppendCallback(delegate
+        {
+            Sequence objSequence = DOTween.Sequence();
+            foreach (var consumable in Merchant.instance.consumables)
+            {
+                consumable.rectTransform.anchoredPosition += 800f * Vector2.up;
+                objSequence.AppendCallback(delegate
+                {
+                    consumable.rectTransform.DOAnchorPosY(0f, 1f).SetEase(Ease.InOutQuad);
+                });
+                objSequence.AppendInterval(0.2f);
+            }
+
+            objSequence.Play();
+        });
+        sequence.AppendInterval(1f);
+        sequence.AppendCallback(ShowInfoPanel);
+        sequence.AppendInterval(0.5f);
+        sequence.Append(Merchant.instance.buttonTransform.DOAnchorPosX(Merchant.instance.posVisible, 1f)
+            .SetEase(Ease.InOutQuad));
+        sequence.Play();
     }
 
     public void HideShop()
     {
-        StartCoroutine(nameof(hideShop));
-    }
-
-    private IEnumerator showShop()
-    {
-        
-        WaveDisplay.instance.DisplayWaveIndicator(true);
-        yield return Helpers.getWait(1f);
-        WaveDisplay.instance.MovePlayerIndicator();
-        yield return Helpers.getWait(1f);
-        WaveDisplay.instance.HideWaveIndicator();
-        yield return Helpers.getWait(1f);
-        ShowInfoPanel();
-        Merchant.instance.Show();
-        yield return Helpers.getWait(1.5f);
-        Merchant.instance.SpawnShop();
-    }
-
-    private IEnumerator hideShop()
-    {
-        Merchant.instance.DespawnShop();
-        yield return Helpers.getWait(0.5f);
-        Merchant.instance.Hide();
-        yield return Helpers.getWait(0.5f);
-        HideInfoPanel();
-        yield return Helpers.getWait(1.5f);
-        WaveOver();
+        Sequence s = DOTween.Sequence();
+        s.Append(Merchant.instance.buttonTransform.DOAnchorPosX(Merchant.instance.posHidden, 1f)
+            .SetEase(Ease.InOutQuad));
+        s.AppendCallback(HideInfoPanel);
+        s.AppendInterval(0.5f);
+        foreach (var consumable in Merchant.instance.consumables)
+        {
+            s.AppendCallback(delegate
+            {
+                consumable.rectTransform.DOAnchorPosY(800f, 1f);
+            });
+            s.AppendInterval(0.2f);
+        }
+        s.AppendInterval(0.5f);
+        s.AppendCallback(Merchant.instance.Hide);
+        s.AppendInterval(0.5f);
+        s.AppendCallback(Merchant.instance.DespawnShop);
+        s.AppendCallback(WaveOver);
+        s.Play();
     }
 
     private void NewTurn()

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Merchant : MonoBehaviour
 {
@@ -13,11 +14,13 @@ public class Merchant : MonoBehaviour
     [SerializeField] private Consumable prefabConsumable;
     [SerializeField] private RectTransform emptyGameObject;
     [SerializeField] private RectTransform consumablesLayout;
-    [SerializeField] private RectTransform merchantTransform;
-    private List<Consumable> consumables;
+    public RectTransform merchantTransform;
+    public RectTransform buttonTransform;
+    [HideInInspector] public List<Consumable> consumables;
     public static Merchant instance;
-    private float posHidden = 1100f;
-    private float posVisible = 650f;
+    [HideInInspector] public float posHidden = 1100f;
+    [HideInInspector] public float posVisible = 650f;
+    [HideInInspector] public bool isShopActive = false;
 
     private void Awake()
     {
@@ -41,16 +44,18 @@ public class Merchant : MonoBehaviour
         SetupHarpConsumable();
         SetupMandolinConsumable();
         SetupTambourinConsumable();
+        
     }
 
     public void HideShop()
     {
+        if (!isShopActive) return;
+        isShopActive = false;
         Player.instance.HideShop();
     }
 
     public void DespawnShop()
     {
-        Debug.Log("Despawn shop");
         consumablesLayout.KillAllChildren();
     }
 
