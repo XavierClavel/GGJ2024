@@ -53,6 +53,12 @@ public class MainMenu : MonoBehaviour
         else Application.Quit();
     }
 
+    public void EraseData()
+    {
+        SaveManager.Erase();
+        TransitionManager.TransitionToScene("SampleScene");
+    }
+
     IEnumerator WaitBeforePlay()
     {
         AudioManager.PlaySfx("New");

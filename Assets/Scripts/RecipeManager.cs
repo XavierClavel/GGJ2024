@@ -6,6 +6,7 @@ public static class RecipeManager
 {
    private static List<int> uncoveredRecipes = new List<int>();
 
+   public static void eraseRecipes() => uncoveredRecipes = new List<int>();
    public static void uncoverRecipe(int index) => uncoveredRecipes.TryAdd(index);
 
    public static bool isRecipeUncovered(int index) => uncoveredRecipes.Contains(index);

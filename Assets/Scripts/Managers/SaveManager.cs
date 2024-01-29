@@ -35,4 +35,10 @@ public static class SaveManager
             Debug.Log($"{i}");
         }
     }
+
+    public static void Erase()
+    {
+        RecipeManager.eraseRecipes();
+        Save();
+    }
 }
