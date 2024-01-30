@@ -37,9 +37,7 @@ public class MainMenu : MonoBehaviour
 
     public void Play()
     {
-        StartCoroutine(nameof(WaitBeforePlay));
-        
-        //TransitionManager.TransitionToScene("SampleScene");
+        StartCoroutine(nameof(WaitBeforePlay), "SampleScene");
     }
 
     public void ToMainMenu()
@@ -58,15 +56,15 @@ public class MainMenu : MonoBehaviour
     {
         SaveManager.Erase();
         if (AudioManager.playingBossMusic) AudioManager.playMainMusic();
-        TransitionManager.TransitionToScene("SampleScene");
+        StartCoroutine(nameof(WaitBeforePlay), "MainMenu");
     }
 
-    IEnumerator WaitBeforePlay()
+    IEnumerator WaitBeforePlay(string scene)
     {
         AudioManager.PlaySfx("New");
-        buttons.DOAnchorPosY(1100f, 1f).SetEase(Ease.InOutQuad);
+        buttons.DOAnchorPosY(1200f, 1f).SetEase(Ease.InOutQuad);
         title.DOAnchorPosX(-1600f,1f).SetEase(Ease.InOutQuad);
         yield return Helpers.getWait(1.5f);
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene(scene);
     }
 }
