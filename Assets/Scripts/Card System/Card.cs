@@ -21,6 +21,7 @@ public class Card : Draggable<CardHandler>, IPointerEnterHandler, IPointerExitHa
     private float hiddenPos = -300f;
     private float inHolderScale = 0.7f;
     private bool dragged = false;
+    private Tween tween;
     
 
     public Card setup(string key, Transform slot)
@@ -61,7 +62,7 @@ public class Card : Draggable<CardHandler>, IPointerEnterHandler, IPointerExitHa
     protected override void onBeginDrag()
     {
         dragged = true;
-        DOTween.KillAll();
+        tween?.Kill();
         Player.setSelectedCard(this);
     }
 
@@ -81,13 +82,13 @@ public class Card : Draggable<CardHandler>, IPointerEnterHandler, IPointerExitHa
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (dragged || selectedDraggableHolder != null) return;
-        rectTransform.DOAnchorPosY(200f, 0.5f);
+        tween = rectTransform.DOAnchorPosY(200f, 0.5f);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         if (dragged || selectedDraggableHolder != null) return;
-        rectTransform.DOAnchorPosY(startPos, 0.5f);
+        tween = rectTransform.DOAnchorPosY(startPos, 0.5f);
     }
 }
  

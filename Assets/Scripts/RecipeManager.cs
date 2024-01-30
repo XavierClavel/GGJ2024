@@ -26,7 +26,7 @@ public static class RecipeManager
       uncoveredRecipes.Add(recipeIndex);
       AudioManager.PlaySfx("New");
       Notebook.instance.dictIndexToRecipeDisplay[recipeIndex].DisplayRecipe(recipe, recipeIndex);
-      Player.ShowRecipePanel();
+      Player.ShowRecipePanel("New combination discovered !");
       Player.instance.recipeDisplay.DisplayRecipe(recipe, recipeIndex);
       SaveManager.Save();
    }
@@ -44,7 +44,7 @@ public static class RecipeManager
          }
          else
          {
-            Player.ShowRecipePanel(false);
+            Player.ShowRecipePanel();
             Player.instance.recipeDisplay.DisplayRecipe(recipe);
          }
          
@@ -61,7 +61,7 @@ public static class RecipeManager
             recipe.addInput(cardKeys);
             AudioManager.PlaySfx("Invalidate");
             Player.instance.recipeDisplay.DisplayRecipe(recipe);
-            Player.ShowFailedRecipePanel();
+            Player.ShowRecipePanel("Items used cannot be combined");
             return null;
          }
       }
@@ -74,7 +74,7 @@ public static class RecipeManager
          newRecipe.addOutput(findRecipe(cardKey));
       }
       
-      Player.ShowRecipePanel(false);
+      Player.ShowRecipePanel();
       Player.instance.recipeDisplay.DisplayRecipe(newRecipe);
       
       AudioManager.PlaySfx("Validate");

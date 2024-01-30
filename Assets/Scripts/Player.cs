@@ -41,6 +41,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Button upgradesDisplayButton;
     [SerializeField] private RectTransform upgradesDisplayTransform;
     private bool isPauseMenuActive = false;
+    private Sequence sequenceDisplayRecipePanel;
 
     public static void Heal()
     {
@@ -59,30 +60,21 @@ public class Player : MonoBehaviour
     {
         instance.infoPanel.DOAnchorPosY(infoPanelPosHidden, 1f).SetEase(Ease.InOutQuad);
     }
-
-    public static void setRecipeText(string text)
+    
+    
+    public static void ShowRecipePanel(string text = "")
     {
+        instance.recipeText.gameObject.SetActive(text != "");
         instance.recipeText.SetText(text);
-    }
-    
-    public static void ShowRecipePanel(bool newRecipe = true)
-    {
-        instance.recipeText.SetText(newRecipe ? "New combination discovered !" : "");
-        Sequence sequence = DOTween.Sequence();
-        sequence.Append(instance.recipePanel.DOAnchorPosY(infoPanelPosVisible, 1f).SetEase(Ease.InOutQuad));
-        sequence.AppendInterval(2f);
-        sequence.Append(instance.recipePanel.DOAnchorPosY(infoPanelPosHidden, 1f).SetEase(Ease.InOutQuad));
-        sequence.Play();
-    }
-    
-    public static void ShowFailedRecipePanel()
-    {
-        instance.recipeText.SetText("Items used cannot be combined");
-        Sequence sequence = DOTween.Sequence();
-        sequence.Append(instance.recipePanel.DOAnchorPosY(infoPanelPosVisible, 1f).SetEase(Ease.InOutQuad));
-        sequence.AppendInterval(2f);
-        sequence.Append(instance.recipePanel.DOAnchorPosY(infoPanelPosHidden, 1f).SetEase(Ease.InOutQuad));
-        sequence.Play();
+        instance.sequenceDisplayRecipePanel?.Kill();
+        instance.sequenceDisplayRecipePanel = DOTween.Sequence()
+            .Append(instance.recipePanel.DOAnchorPosY(infoPanelPosVisible, 1f).SetEase(Ease.InOutQuad))
+            .AppendCallback(delegate { Debug.Log("Moving down ok"); })
+            .AppendInterval(3f)
+            .AppendCallback(delegate { Debug.Log("Wait ok"); })
+            .Append(instance.recipePanel.DOAnchorPosY(infoPanelPosHidden, 1f).SetEase(Ease.InOutQuad))
+            .AppendCallback(delegate { Debug.Log("sequence completed"); })
+            .Play();
     }
 
     
