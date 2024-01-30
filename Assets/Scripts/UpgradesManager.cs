@@ -22,7 +22,8 @@ public class UpgradesManager : MonoBehaviour
     public void DisplayUpgrades()
     {
         instance = this;
-        rectTransform.DOAnchorPosY(visiblePos, 1f).SetEase(Ease.InOutQuad).SetDelay(0.5f);
+        float delay = WaveManager.isWaveShop() ? 0.5f : 1.5f;
+        rectTransform.DOAnchorPosY(visiblePos, 1f).SetEase(Ease.InOutQuad).SetDelay(delay);
         upgradeButtons.ForEach(it => it.Activate());
         upgradeButtons.Shuffle();
         List<UpgradeButton> buttons = new List<UpgradeButton>()

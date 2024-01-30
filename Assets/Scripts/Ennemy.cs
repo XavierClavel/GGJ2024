@@ -128,7 +128,7 @@ public class Ennemy : MonoBehaviour
 
     private void setDamage()
     {
-        damage = patience / 3;
+        damage = isKing ? 1 : patience / 3;
         damageDisplay.SetText(damage.ToString());
     }
     

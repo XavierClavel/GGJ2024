@@ -3618,8 +3618,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1102.4099, y: -1.9999542}
-  m_SizeDelta: {x: 131, y: 131}
+  m_AnchoredPosition: {x: 1102.4099, y: -7.55}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &390063803
 MonoBehaviour:
@@ -9438,8 +9438,6 @@ MonoBehaviour:
   emptyGameObject: {fileID: 7830224266651012849, guid: c73c4ea8f91e3ed4ab913f44d5b9365c, type: 3}
   pauseMenu: {fileID: 843982796}
   winScreen: {fileID: 4845687811949641884}
-  upgradesDisplayButton: {fileID: 85931726}
-  upgradesDisplayTransform: {fileID: 85931725}
 --- !u!1 &977844210
 GameObject:
   m_ObjectHideFlags: 0

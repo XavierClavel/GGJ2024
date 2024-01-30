@@ -38,8 +38,6 @@ public class Player : MonoBehaviour
     [SerializeField] private RectTransform emptyGameObject;
     [SerializeField] private RectTransform pauseMenu;
     [SerializeField] private RectTransform winScreen;
-    [SerializeField] private Button upgradesDisplayButton;
-    [SerializeField] private RectTransform upgradesDisplayTransform;
     private bool isPauseMenuActive = false;
     private Sequence sequenceDisplayRecipePanel;
 
@@ -321,27 +319,18 @@ public class Player : MonoBehaviour
             yield return Helpers.getWait(0.2f);
         }
 
-        yield return Helpers.getWait(1f);
+        if (!WaveManager.isWaveShop())
+        {
+            yield return Helpers.getWait(1f);
+        }
+        
         foreach (var card in cards)
         {
             Destroy(card);
         }
-        Debug.Log(WaveManager.getCurrentWave());
+        
         if (WaveManager.getCurrentWave() == 20) Win();
-        else DisplayButtonChoseUpgrades();
-    }
-
-    public void DisplayUpgrades()
-    {
-        upgradesDisplayButton.interactable = false;
-        upgradesDisplayTransform.DOAnchorPosY(1000f, 1f);
-        instance.upgradesPanel.DisplayUpgrades();
-    }
-
-    private void DisplayButtonChoseUpgrades()
-    {
-        upgradesDisplayButton.interactable = true;
-        upgradesDisplayTransform.DOAnchorPosY(600f, 1f);
+        else instance.upgradesPanel.DisplayUpgrades();
     }
 
     public static void TakeDamage(int amount)
