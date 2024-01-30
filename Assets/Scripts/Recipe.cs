@@ -11,6 +11,11 @@ public class Recipe
     {
         if (key != null) cards.Add(key);
     }
+
+    public void addInput(List<string> keys)
+    {
+        keys.ForEach(addInput);
+    }
     public void addOutput(string key, int amount)
     {
         if (amount <= 0) return;
