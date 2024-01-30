@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     private static int health;
     private static int maxHealth;
     private static int gold;
-    public static float infoPanelPosVisible = 450f;
+    public static float infoPanelPosVisible = 420f;
     public static float infoPanelPosHidden = 900f;
 
     public RectTransform infoPanel;
