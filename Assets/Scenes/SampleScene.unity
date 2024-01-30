@@ -952,6 +952,7 @@ RectTransform:
   - {fileID: 1791674994}
   - {fileID: 5319322415761729629}
   - {fileID: 5525077266321278099}
+  - {fileID: 311073044}
   - {fileID: 1781386344}
   - {fileID: 1406968789}
   - {fileID: 1399790093}
@@ -959,7 +960,6 @@ RectTransform:
   - {fileID: 866811364}
   - {fileID: 300294002}
   - {fileID: 300923742}
-  - {fileID: 311073044}
   - {fileID: 85931725}
   - {fileID: 853377026}
   - {fileID: 843982796}

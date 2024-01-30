@@ -231,7 +231,6 @@ public class Player : MonoBehaviour
         Sequence s = DOTween.Sequence();
         s.Append(Merchant.instance.buttonTransform.DOAnchorPosX(Merchant.instance.posHidden, 1f)
             .SetEase(Ease.InOutQuad));
-        AudioManager.PlaySfx("Merchant_Bye");
         s.AppendCallback(HideInfoPanel);
         s.AppendInterval(0.5f);
         foreach (var consumable in Merchant.instance.consumables)

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 342f46b995b1f3b4f932c9cc95d9586a, type: 3}
   m_Name: Merchant_Bye
   m_EditorClassIdentifier: 
-  key: Merchant_Hello
+  key: Merchant_Bye
   clip: {fileID: 8300000, guid: 899b9133889e69b4d9247a60918e5910, type: 3}
   volume: 1
