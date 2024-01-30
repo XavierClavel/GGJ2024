@@ -696,7 +696,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Credit font : Goudy Medieval'
+  m_text: 'Font : Goudy Medieval, by Dieter Steffmann'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 337e6833d36d77a4eb45d2c95e3d6656, type: 2}
   m_sharedMaterial: {fileID: 7635577906036268653, guid: 337e6833d36d77a4eb45d2c95e3d6656, type: 2}
