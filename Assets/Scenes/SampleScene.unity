@@ -959,13 +959,13 @@ RectTransform:
   - {fileID: 35142602}
   - {fileID: 866811364}
   - {fileID: 300294002}
+  - {fileID: 300923742}
   - {fileID: 85931725}
   - {fileID: 853377026}
   - {fileID: 843982796}
   - {fileID: 1276981435}
   - {fileID: 4845687811949641884}
   - {fileID: 1308818656}
-  - {fileID: 300923742}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
