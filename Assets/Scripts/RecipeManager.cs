@@ -38,7 +38,16 @@ public static class RecipeManager
       {
          if (!recipe.matchesInput(cardKeys)) continue;
          int recipeIndex = DataManager.recipes.IndexOf(recipe);
-         if (!uncoveredRecipes.Contains(recipeIndex)) UncoverRecipe(recipe, recipeIndex);
+         if (!uncoveredRecipes.Contains(recipeIndex))
+         {
+            UncoverRecipe(recipe, recipeIndex);
+         }
+         else
+         {
+            Player.ShowRecipePanel(false);
+            Player.instance.recipeDisplay.DisplayRecipe(recipe);
+         }
+         
          AudioManager.PlaySfx("Validate");
          return recipe;
       }
@@ -57,8 +66,12 @@ public static class RecipeManager
       Recipe newRecipe = new Recipe();
       foreach (var cardKey in cardKeys)
       {
+         newRecipe.addInput(cardKey);
          newRecipe.addOutput(findRecipe(cardKey));
       }
+      
+      Player.ShowRecipePanel(false);
+      Player.instance.recipeDisplay.DisplayRecipe(newRecipe);
       
       AudioManager.PlaySfx("Validate");
       return newRecipe;

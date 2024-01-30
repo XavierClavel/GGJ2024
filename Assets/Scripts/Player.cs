@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
 
     public RectTransform recipePanel;
     public RecipeDisplay recipeDisplay;
+    public TextMeshProUGUI recipeText;
 
     [SerializeField] private TextMeshProUGUI pickPileDisplay;
     [SerializeField] private TextMeshProUGUI discardPileDisplay;
@@ -56,8 +57,9 @@ public class Player : MonoBehaviour
         instance.infoPanel.DOAnchorPosY(infoPanelPosHidden, 1f).SetEase(Ease.InOutQuad);
     }
     
-    public static void ShowRecipePanel()
+    public static void ShowRecipePanel(bool newRecipe = true)
     {
+        instance.recipeText.SetText(newRecipe ? "New combination discovered !" : "Combination used :");
         Sequence sequence = DOTween.Sequence();
         sequence.Append(instance.recipePanel.DOAnchorPosY(infoPanelPosVisible, 1f).SetEase(Ease.InOutQuad));
         sequence.AppendInterval(2f);

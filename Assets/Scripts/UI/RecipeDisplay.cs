@@ -11,7 +11,7 @@ public class RecipeDisplay : MonoBehaviour
     [SerializeField] private List<TextMeshProUGUI> texts;
     private int recipeIndex;
 
-    public void DisplayRecipe(Recipe recipe, int recipeIndex)
+    public void DisplayRecipe(Recipe recipe, int recipeIndex = -1)
     {
         for (int i = 0; i < images.Count; i++)
         {
@@ -24,7 +24,7 @@ public class RecipeDisplay : MonoBehaviour
         }
         
         this.recipeIndex = recipeIndex;
-        bool isRecipeUncovered = RecipeManager.isRecipeUncovered(recipeIndex);
+        bool isRecipeUncovered = recipeIndex == -1 || RecipeManager.isRecipeUncovered(recipeIndex);
         int index = 0;
         foreach (var key in recipe.getInput())
         {
