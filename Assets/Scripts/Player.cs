@@ -5,6 +5,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 
@@ -37,6 +38,8 @@ public class Player : MonoBehaviour
     [SerializeField] private RectTransform emptyGameObject;
     [SerializeField] private RectTransform pauseMenu;
     [SerializeField] private RectTransform winScreen;
+    [SerializeField] private Button upgradesDisplayButton;
+    [SerializeField] private RectTransform upgradesDisplayTransform;
     private bool isPauseMenuActive = false;
 
     public static void Heal()
@@ -55,6 +58,11 @@ public class Player : MonoBehaviour
     public static void HideInfoPanel()
     {
         instance.infoPanel.DOAnchorPosY(infoPanelPosHidden, 1f).SetEase(Ease.InOutQuad);
+    }
+
+    public static void setRecipeText(string text)
+    {
+        instance.recipeText.SetText(text);
     }
     
     public static void ShowRecipePanel(bool newRecipe = true)
@@ -328,7 +336,20 @@ public class Player : MonoBehaviour
         }
         Debug.Log(WaveManager.getCurrentWave());
         if (WaveManager.getCurrentWave() == 20) Win();
-        else instance.upgradesPanel.DisplayUpgrades();
+        else DisplayButtonChoseUpgrades();
+    }
+
+    public void DisplayUpgrades()
+    {
+        upgradesDisplayButton.interactable = false;
+        upgradesDisplayTransform.DOAnchorPosY(1000f, 1f);
+        instance.upgradesPanel.DisplayUpgrades();
+    }
+
+    private void DisplayButtonChoseUpgrades()
+    {
+        upgradesDisplayButton.interactable = true;
+        upgradesDisplayTransform.DOAnchorPosY(600f, 1f);
     }
 
     public static void TakeDamage(int amount)
