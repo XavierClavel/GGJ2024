@@ -87,7 +87,7 @@ public class Card : Draggable<CardHandler>, IPointerEnterHandler, IPointerExitHa
     public void OnPointerExit(PointerEventData eventData)
     {
         if (dragged || selectedDraggableHolder != null) return;
-        rectTransform.DOAnchorPosY(0f, 0.5f);
+        rectTransform.DOAnchorPosY(startPos, 0.5f);
     }
 }
  
