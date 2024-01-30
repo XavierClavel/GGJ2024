@@ -30,13 +30,15 @@ public class Merchant : MonoBehaviour
     public void Show()
     {
         AudioManager.PlaySfx("Merchant_Hello");
+        merchantTransform.localScale = Vector3.one;
         merchantTransform.DOAnchorPosX(posVisible, 1f).SetEase(Ease.InOutQuad);
     }
 
     public void Hide()
     {
         AudioManager.PlaySfx("Merchant_Bye");
-        merchantTransform.DOAnchorPosX(posHidden, 1f).SetEase(Ease.InOutQuad);
+        merchantTransform.DOScaleX(-1f, 0.3f).SetEase(Ease.InCubic);
+        merchantTransform.DOAnchorPosX(posHidden, 1f).SetEase(Ease.InOutQuad).SetDelay(0.3f);
     }
 
     public void SpawnShop()

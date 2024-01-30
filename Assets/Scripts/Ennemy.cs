@@ -202,8 +202,11 @@ public class Ennemy : MonoBehaviour
 
     private IEnumerator Fail()
     {
-        updateEnnemyList(this);
-        yield return Helpers.getWait(ennemiesList.Count * 0.4f);
+        if (!isKing)
+        {
+            updateEnnemyList(this);
+            yield return Helpers.getWait(ennemiesList.Count * 0.4f);
+        }
         Debug.Log("Ennemy has left");
         AudioManager.PlaySfx("Fail");
         Player.TakeDamage(damage);
