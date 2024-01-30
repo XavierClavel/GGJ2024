@@ -171,6 +171,7 @@ public class Ennemy : MonoBehaviour
     {
         foreach (var effet in input)
         {
+            AudioManager.PlaySfx("Validate");
             if (!dictEmotions.ContainsKey(effet.Key)) continue;
             dictEmotions[effet.Key] -= effet.Value;
             dictKeyToEmotionDisplay[effet.Key].setValue(dictEmotions[effet.Key]);

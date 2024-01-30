@@ -14,12 +14,8 @@ public class AudioManager : MonoBehaviour
 
     [Header("Audio Sources")]
     [SerializeField] private AudioSource titleScreenMusic;
-    [SerializeField] private AudioSource shipMusic;
-    [SerializeField] private AudioSource planetJungleMusic;
-    [SerializeField] private AudioSource planetIceMusic;
-    [SerializeField] private AudioSource planetDesertMusic;
-    [SerializeField] private AudioSource planetStormMusic;
-    [SerializeField] private AudioSource planetMushroomMusic;
+    [SerializeField] private AudioSource bossMusic;
+
 
     [Header(" ")]
     //public sfxContainer[] test;
@@ -59,8 +55,8 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        LowPitchRange = 0.95f;
-        HighPitchRange = 1.05f;
+        LowPitchRange = 1f;
+        HighPitchRange = 1f;
     }
 
 

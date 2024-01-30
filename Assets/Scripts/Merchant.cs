@@ -29,11 +29,13 @@ public class Merchant : MonoBehaviour
 
     public void Show()
     {
+        AudioManager.PlaySfx("Merchant_Hello");
         merchantTransform.DOAnchorPosX(posVisible, 1f).SetEase(Ease.InOutQuad);
     }
 
     public void Hide()
     {
+        AudioManager.PlaySfx("Merchant_Bye");
         merchantTransform.DOAnchorPosX(posHidden, 1f).SetEase(Ease.InOutQuad);
     }
 

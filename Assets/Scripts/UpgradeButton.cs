@@ -19,7 +19,6 @@ public class UpgradeButton : MonoBehaviour
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(action);
         button.onClick.AddListener(UpgradesManager.CloseUpgradesPanel);
-        AudioManager.PlaySfx("Validate");
     }
 
 

@@ -329,6 +329,7 @@ public class Player : MonoBehaviour
 
     private static void Death()
     {
+        AudioManager.PlaySfx("Loose");
         TransitionManager.TransitionToScene("SampleScene");
     }
 

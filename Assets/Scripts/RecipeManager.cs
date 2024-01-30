@@ -45,7 +45,7 @@ public static class RecipeManager
       //If one card is intonation => fail
       foreach (var cardKey in cardKeys)
       {
-         if (DataManager.dictKeyToCard[cardKey].isIntonation()) return null;
+         if (DataManager.dictKeyToCard[cardKey].isIntonation()); return null;
       }
       
       //Build output based on cards

@@ -84,7 +84,7 @@ public class UpgradesManager : MonoBehaviour
     {
         upgradeButton.Setup($"Add to deck", delegate
             {
-                DeckManager.AddCardToDeck(key);
+               DeckManager.AddCardToDeck(key);
             }, DataManager.dictKeyToCard[key].getIcon(), 
             DataManager.dictKeyToCard[key].getAccentColor()
         );
@@ -92,6 +92,7 @@ public class UpgradesManager : MonoBehaviour
     
     public static void CloseUpgradesPanel()
     {
+        AudioManager.PlaySfx("Validate");
         instance.upgradeButtons.ForEach(it => it.Deactivate());
         instance.rectTransform.DOAnchorPosY(hiddenPos, 1f)
             .SetEase(Ease.InOutQuad)
