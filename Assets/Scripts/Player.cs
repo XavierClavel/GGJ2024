@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     private static int health;
     private static int maxHealth;
     private static int gold;
-    public static float infoPanelPosVisible = 450f;
+    public static float infoPanelPosVisible = 360;
     public static float infoPanelPosHidden = 900f;
 
     public RectTransform infoPanel;
@@ -231,6 +231,7 @@ public class Player : MonoBehaviour
         Sequence s = DOTween.Sequence();
         s.Append(Merchant.instance.buttonTransform.DOAnchorPosX(Merchant.instance.posHidden, 1f)
             .SetEase(Ease.InOutQuad));
+        AudioManager.PlaySfx("Merchant_Bye");
         s.AppendCallback(HideInfoPanel);
         s.AppendInterval(0.5f);
         foreach (var consumable in Merchant.instance.consumables)
