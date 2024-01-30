@@ -31,7 +31,7 @@ Talk;Dance;;;;2;2;2;
 Talk;Dance;Playful;;;4;4;4;
 Cuddle;Tell;Joke;4;4;;;;4
 Talk;Sing;Dance;;;4;4;4;
-Talk;Sing;Talk;3;3;3;3;;
-Dance;Sing;Dance;;3;;3;3;2
-Tell;Joke;Joke;3;;3;;3;3
-Cuddle;Cuddle;Tell;;3;3;3;;3
+Joke;Sing;Talk;3;3;3;3;;
+Dance;Sing;Cuddle;;3;;3;3;2
+Dance;Tell;Joke;3;;3;;3;3
+Tell;Cuddle;Talk;;3;3;3;;3
