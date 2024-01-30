@@ -172,7 +172,7 @@ public class Ennemy : MonoBehaviour
 
         if (dictEmotions.Count == 0)
         {
-            Cure();
+            StartCoroutine(nameof(Cure));
             return;
         }
 
@@ -184,31 +184,33 @@ public class Ennemy : MonoBehaviour
         go.SetActive(false);
         if (patience == 0)
         {
-            Fail();
+            StartCoroutine(nameof(Fail));
         }
     }
 
     public static bool isWaveOver() => ennemiesList.isEmpty();
 
-    private void Cure()
+    private IEnumerator Cure()
     {
+        updateEnnemyList(this);
+        yield return Helpers.getWait(ennemiesList.Count * 0.4f);
         Debug.Log("Patient is cured !");
         AudioManager.PlaySfx("Cure");
         Player.IncreaseGold(patience);
-        updateEnnemyList(this);
         Leave();
     }
 
-    protected virtual void Fail()
+    private IEnumerator Fail()
     {
-
+        updateEnnemyList(this);
+        yield return Helpers.getWait(ennemiesList.Count * 0.4f);
         Debug.Log("Ennemy has left");
         AudioManager.PlaySfx("Fail");
         Player.TakeDamage(damage);
         if (!isKing)
         {
             Leave();
-            return;
+            yield break;
         }
         patience = 3;
         for (int i = 0; i < patience; i++)
@@ -220,7 +222,6 @@ public class Ennemy : MonoBehaviour
 
     private void Leave()
     {
-        updateEnnemyList(this);
         rectTransform.DOScaleX(-1f, 0.3f).SetEase(Ease.InCubic);
         rectTransform.DOAnchorPosX(800f, 2f).SetDelay(0.3f).OnComplete(
             delegate { Destroy(gameObject); });
