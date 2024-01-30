@@ -114,7 +114,7 @@ public class Ennemy : MonoBehaviour
     {
         if (isKing)
         {
-            patience = 3; 
+            patience = 2; 
             return;
         }
         int total = 0;

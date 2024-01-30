@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
@@ -7,7 +8,7 @@ public abstract class Draggable<T> : MonoBehaviour, IDragHandler, IBeginDragHand
 {
     [SerializeField] protected Image image;
     public RectTransform rectTransform;
-    protected Transform slot;
+    protected RectTransform slot;
     [HideInInspector] public DraggableHolder<T> hoverDraggableHolder = null;
     [HideInInspector] public DraggableHolder<T> selectedDraggableHolder = null;
     protected bool canBeDragged = true;
@@ -41,11 +42,13 @@ public abstract class Draggable<T> : MonoBehaviour, IDragHandler, IBeginDragHand
         if (hoverDraggableHolder == null)
         {
             AttachToSlot();
+            return;
         } else if (!hoverDraggableHolder.isFree(this))
         {
-            AttachToSlot();
             hoverDraggableHolder.hoverDraggable = null;
             hoverDraggableHolder = null;
+            AttachToSlot();
+            return;
         }
         else
         {
@@ -60,9 +63,9 @@ public abstract class Draggable<T> : MonoBehaviour, IDragHandler, IBeginDragHand
             hoverDraggableHolder.hoverDraggable = null;
             hoverDraggableHolder = null;
             onPlaced();
+            onEndDrag();
         }
         
-        onEndDrag();
     }
 
     protected virtual void onPlaced()
@@ -74,7 +77,7 @@ public abstract class Draggable<T> : MonoBehaviour, IDragHandler, IBeginDragHand
     {
     }
     
-    protected void AttachToDraggableHolder(DraggableHolder<T> draggableHolder)
+    private void AttachToDraggableHolder(DraggableHolder<T> draggableHolder)
     {
         rectTransform.SetParent(draggableHolder.rectTransform);
         rectTransform.anchorMin = 0.5f * Vector2.one;
@@ -82,18 +85,23 @@ public abstract class Draggable<T> : MonoBehaviour, IDragHandler, IBeginDragHand
         rectTransform.anchoredPosition = Vector2.zero;
     }
     
-    protected void AttachToSlot()
+    private void AttachToSlot()
     {
         if (!onDrop()) return;
-        if (selectedDraggableHolder != null)
+        
+        rectTransform.DOMove(slot.position, 0.65f).SetEase(Ease.InOutQuad).OnComplete(delegate
         {
-            selectedDraggableHolder.selectedDraggable = null;
-            selectedDraggableHolder = null;
-        }
-        rectTransform.SetParent(slot);
-        rectTransform.anchorMin = 0.5f * Vector2.one;
-        rectTransform.anchorMax = 0.5f * Vector2.one;
-        rectTransform.anchoredPosition = Vector2.zero;
+            if (selectedDraggableHolder != null)
+            {
+                selectedDraggableHolder.selectedDraggable = null;
+                selectedDraggableHolder = null;
+            }
+            
+            rectTransform.SetParent(slot, true);
+            rectTransform.anchorMin = 0.5f * Vector2.one;
+            rectTransform.anchorMax = 0.5f * Vector2.one;
+            onEndDrag();
+        });
     }
 
     protected virtual bool onDrop()

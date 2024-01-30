@@ -24,7 +24,7 @@ public class Card : Draggable<CardHandler>, IPointerEnterHandler, IPointerExitHa
     private Tween tween;
     
 
-    public Card setup(string key, Transform slot)
+    public Card setup(string key, RectTransform slot)
     {
         cardHandler = DataManager.dictKeyToCard[key];
         titleDisplay.SetText(cardHandler.getKey());

@@ -15,7 +15,7 @@ public class Consumable : Draggable<string>, IPointerEnterHandler, IPointerExitH
     private UnityAction action;
     private bool bought = false;
 
-    public Consumable setSlot(Transform slot)
+    public Consumable setSlot(RectTransform slot)
     {
         this.slot = slot;
         return this;
