@@ -29,6 +29,10 @@ public class EnnemyManager : MonoBehaviour
             -200f
         };
         WaveData waveData = WaveManager.getWaveData();
+        if (WaveManager.getCurrentWave() is 20)
+        {
+            AudioManager.playBossMusic();
+        }
         int ennemiesAmount = waveData.ennemies.getRandom();
         for (int i = 0; i < ennemiesAmount; i++)
         {

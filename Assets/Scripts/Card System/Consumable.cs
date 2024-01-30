@@ -6,7 +6,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Consumable : Draggable<string>, IPointerEnterHandler
+public class Consumable : Draggable<string>, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private Image icon;
     private int cost;
@@ -60,7 +60,10 @@ public class Consumable : Draggable<string>, IPointerEnterHandler
 
     protected override void onEndDrag()
     {
-        if (!bought) costDisplay.gameObject.SetActive(true);
+        if (!bought)
+        {
+            costDisplay.gameObject.SetActive(true);
+        }
         Player.setSelectedConsumable(null);
     }
 
@@ -84,5 +87,10 @@ public class Consumable : Draggable<string>, IPointerEnterHandler
     public void OnPointerEnter(PointerEventData eventData)
     {
         Player.instance.infoText.SetText(text);
+    }
+    
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        Player.instance.infoText.SetText("Welcome to the shop !");
     }
 }

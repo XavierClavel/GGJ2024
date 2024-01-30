@@ -330,6 +330,10 @@ public class Player : MonoBehaviour
     private static void Death()
     {
         AudioManager.PlaySfx("Loose");
+        if (AudioManager.playingBossMusic)
+        {
+            AudioManager.playMainMusic();
+        }
         TransitionManager.TransitionToScene("SampleScene");
     }
 
@@ -349,6 +353,7 @@ public class Player : MonoBehaviour
 
     public void Win()
     {
+        AudioManager.playMainMusic();
         winScreen.DOAnchorPosY(0f, 1f).SetEase(Ease.InOutQuad);
     }
 

@@ -39,13 +39,18 @@ public static class RecipeManager
          if (!recipe.matchesInput(cardKeys)) continue;
          int recipeIndex = DataManager.recipes.IndexOf(recipe);
          if (!uncoveredRecipes.Contains(recipeIndex)) UncoverRecipe(recipe, recipeIndex);
+         AudioManager.PlaySfx("Validate");
          return recipe;
       }
       
       //If one card is intonation => fail
       foreach (var cardKey in cardKeys)
       {
-         if (DataManager.dictKeyToCard[cardKey].isIntonation()); return null;
+         if (DataManager.dictKeyToCard[cardKey].isIntonation())
+         {
+            AudioManager.PlaySfx("Invalidate");
+            return null;
+         }
       }
       
       //Build output based on cards
@@ -54,7 +59,8 @@ public static class RecipeManager
       {
          newRecipe.addOutput(findRecipe(cardKey));
       }
-
+      
+      AudioManager.PlaySfx("Validate");
       return newRecipe;
 
    }

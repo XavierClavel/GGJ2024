@@ -44,6 +44,7 @@ public class MainMenu : MonoBehaviour
 
     public void ToMainMenu()
     {
+        if (AudioManager.playingBossMusic) AudioManager.playMainMusic();
         TransitionManager.TransitionToScene("MainMenu");
     }
 
@@ -56,6 +57,7 @@ public class MainMenu : MonoBehaviour
     public void EraseData()
     {
         SaveManager.Erase();
+        if (AudioManager.playingBossMusic) AudioManager.playMainMusic();
         TransitionManager.TransitionToScene("SampleScene");
     }
 

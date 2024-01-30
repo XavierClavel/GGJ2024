@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
@@ -9,11 +10,12 @@ public class AudioManager : MonoBehaviour
     List<clip> audioIds;
 
     private static float sfxVolume = 1f;
+    public static bool playingBossMusic = false;
 
 
 
     [Header("Audio Sources")]
-    [SerializeField] private AudioSource titleScreenMusic;
+    [SerializeField] private AudioSource mainMusic;
     [SerializeField] private AudioSource bossMusic;
 
 
@@ -62,7 +64,7 @@ public class AudioManager : MonoBehaviour
 
     public void StopTime()
     {
-        titleScreenMusic.Pause();
+        mainMusic.Pause();
         if (audioIds.Count > 0)
         {
             foreach (clip audioId in audioIds)
@@ -133,6 +135,22 @@ public class AudioManager : MonoBehaviour
         yield return new WaitForSeconds(time);
         audioIds.Remove(audioId);
         Destroy(audioId.audio);
+    }
+    
+    public static void playBossMusic()
+    {
+        playingBossMusic = true;
+        instance.mainMusic.DOFade(0f, 1f).SetEase(Ease.Linear).OnComplete(instance.mainMusic.Stop);
+        instance.bossMusic.Play();
+        instance.bossMusic.DOFade(1f, 1f).SetEase(Ease.Linear);
+    }
+    
+    public static void playMainMusic()
+    {
+        playingBossMusic = false;
+        instance.bossMusic.DOFade(0f, 1f).SetEase(Ease.Linear).OnComplete(instance.bossMusic.Stop);
+        instance.mainMusic.Play();
+        instance.mainMusic.DOFade(1f, 1f).SetEase(Ease.Linear);
     }
 
 }
