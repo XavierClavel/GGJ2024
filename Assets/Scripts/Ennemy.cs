@@ -21,6 +21,7 @@ public class Ennemy : MonoBehaviour
     private List<GameObject> patiencePoints = new List<GameObject>();
     private Dictionary<string, int> dictEmotions = new Dictionary<string, int>();
     private bool isKing = false;
+    private const int kingPatience = 2;
 
     private Dictionary<string, EmotionDisplay> dictKeyToEmotionDisplay = new Dictionary<string, EmotionDisplay>();
     protected int damage;
@@ -114,7 +115,7 @@ public class Ennemy : MonoBehaviour
     {
         if (isKing)
         {
-            patience = 2; 
+            patience = kingPatience; 
             return;
         }
         int total = 0;
@@ -215,7 +216,7 @@ public class Ennemy : MonoBehaviour
             Leave();
             yield break;
         }
-        patience = 3;
+        patience = kingPatience;
         for (int i = 0; i < patience; i++)
         {
             GameObject go = Instantiate(patiencePoint, patienceLayout);
