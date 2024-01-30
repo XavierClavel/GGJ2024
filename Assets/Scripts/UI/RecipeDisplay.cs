@@ -44,6 +44,11 @@ public class RecipeDisplay : MonoBehaviour
 
         images[index].sprite = Notebook.instance.equalsIcon;
 
+        if (recipe.getOutput().Count == 0)
+        {
+            images[5].gameObject.SetActive(false);
+        }
+
         int textIndex = -1;
 
         foreach (var emotion in recipe.getOutput())

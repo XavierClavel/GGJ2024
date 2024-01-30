@@ -59,7 +59,17 @@ public class Player : MonoBehaviour
     
     public static void ShowRecipePanel(bool newRecipe = true)
     {
-        instance.recipeText.SetText(newRecipe ? "New combination discovered !" : "Combination used :");
+        instance.recipeText.SetText(newRecipe ? "New combination discovered !" : "");
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(instance.recipePanel.DOAnchorPosY(infoPanelPosVisible, 1f).SetEase(Ease.InOutQuad));
+        sequence.AppendInterval(2f);
+        sequence.Append(instance.recipePanel.DOAnchorPosY(infoPanelPosHidden, 1f).SetEase(Ease.InOutQuad));
+        sequence.Play();
+    }
+    
+    public static void ShowFailedRecipePanel()
+    {
+        instance.recipeText.SetText("Items used cannot be combined");
         Sequence sequence = DOTween.Sequence();
         sequence.Append(instance.recipePanel.DOAnchorPosY(infoPanelPosVisible, 1f).SetEase(Ease.InOutQuad));
         sequence.AppendInterval(2f);

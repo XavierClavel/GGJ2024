@@ -57,7 +57,11 @@ public static class RecipeManager
       {
          if (DataManager.dictKeyToCard[cardKey].isIntonation())
          {
+            Recipe recipe = new Recipe();
+            recipe.addInput(cardKeys);
             AudioManager.PlaySfx("Invalidate");
+            Player.instance.recipeDisplay.DisplayRecipe(recipe);
+            Player.ShowFailedRecipePanel();
             return null;
          }
       }
