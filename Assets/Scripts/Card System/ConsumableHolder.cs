@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConsumableHolder : DraggableHolder<string>
+public class ConsumableHolder : DraggableHolder
 {
-    protected override Draggable<string> getSelectedDraggable()
+    protected override Draggable getSelectedDraggable()
     {
-        Debug.Log(Player.getSelectedConsumable());
         return Player.getSelectedConsumable();
     }
 }

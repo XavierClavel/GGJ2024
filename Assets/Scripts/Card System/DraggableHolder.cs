@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public abstract class DraggableHolder<T> : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public abstract class DraggableHolder : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [HideInInspector] public Draggable<T> hoverDraggable;
-    [HideInInspector] public Draggable<T> selectedDraggable;
+    [HideInInspector] public Draggable hoverDraggable;
+    [HideInInspector] public Draggable selectedDraggable;
     public RectTransform rectTransform;
     
     public void OnPointerEnter(PointerEventData e)
     {
-        Draggable<T> draggable = getSelectedDraggable();
+        Draggable draggable = getSelectedDraggable();
         if (draggable == null) return;
         hoverDraggable = draggable;
         hoverDraggable.hoverDraggableHolder = this;
         onPointerEnter();
     }
 
-    protected abstract Draggable<T> getSelectedDraggable();
+    protected abstract Draggable getSelectedDraggable();
     
     public void OnPointerExit(PointerEventData e)
     {
@@ -51,7 +51,7 @@ public abstract class DraggableHolder<T> : MonoBehaviour, IPointerEnterHandler, 
         
     }
     
-    public bool isFree(Draggable<T> draggable)
+    public bool isFree(Draggable draggable)
     {
         return selectedDraggable == null || selectedDraggable == draggable;
     }

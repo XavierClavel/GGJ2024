@@ -9,7 +9,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public class Card : Draggable<CardHandler>, IPointerEnterHandler, IPointerExitHandler
+public class Card : Draggable, IPointerEnterHandler, IPointerExitHandler
 {
     
     [SerializeField] private TextMeshProUGUI titleDisplay;

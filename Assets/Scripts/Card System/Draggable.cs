@@ -4,20 +4,19 @@ using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public abstract class Draggable<T> : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
+public abstract class Draggable : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     [SerializeField] protected Image image;
     public RectTransform rectTransform;
     protected RectTransform slot;
-    [HideInInspector] public DraggableHolder<T> hoverDraggableHolder = null;
-    [HideInInspector] public DraggableHolder<T> selectedDraggableHolder = null;
+    [HideInInspector] public DraggableHolder hoverDraggableHolder = null;
+    [HideInInspector] public DraggableHolder selectedDraggableHolder = null;
     protected bool canBeDragged = true;
     
     public void OnBeginDrag(PointerEventData data)
     {
         if (!canBeDragged) return;
         image.raycastTarget = false;
-        Debug.Log("Pointer down");
         transform.SetParent(EnnemyManager.instance.canvas);
         onBeginDrag();
     }
@@ -77,7 +76,7 @@ public abstract class Draggable<T> : MonoBehaviour, IDragHandler, IBeginDragHand
     {
     }
     
-    private void AttachToDraggableHolder(DraggableHolder<T> draggableHolder)
+    private void AttachToDraggableHolder(DraggableHolder draggableHolder)
     {
         rectTransform.SetParent(draggableHolder.rectTransform);
         rectTransform.anchorMin = 0.5f * Vector2.one;

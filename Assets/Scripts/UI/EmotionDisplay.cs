@@ -25,13 +25,11 @@ public class EmotionDisplay : MonoBehaviour
             return null;
         }
         valueDisplay.SetText(value.ToString());
-        Debug.Log(valueDisplay.text);
         return this;
     }
 
     public EmotionDisplay setup(string key, int value)
     {
-        Debug.Log(value);
         setType(key);
         setValue(value);
         return this;

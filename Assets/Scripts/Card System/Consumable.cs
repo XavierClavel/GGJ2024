@@ -6,7 +6,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Consumable : Draggable<string>, IPointerEnterHandler, IPointerExitHandler
+public class Consumable : Draggable, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private Image icon;
     private int cost;
